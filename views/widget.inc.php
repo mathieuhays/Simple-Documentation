@@ -1,0 +1,102 @@
+<?php
+
+	if ( ! defined( 'ABSPATH' ) ) exit;
+	
+	global $wp_roles, $wpdb;
+	
+	$item_number = $this->settings['item_per_page'];
+	$user = $user = wp_get_current_user();
+    	
+    $entries = $wpdb->get_results("SELECT * FROM $wpdb->simpleDocumentation ORDER BY ordered ASC");
+    
+    $final_entries = array();
+    $user_roles = $user->roles[0];
+    
+    foreach($entries as $data){
+	    
+	    if( ($data->restricted == null && in_array( $user_roles, $this->settings['user_role'])) || ( $data->restricted !== null && in_array( $user_roles, json_decode($data->restricted)) ) )
+	    	$final_entries[] = $data;
+	    
+    }
+    
+    $pages_count = floor(count( $final_entries ) / $item_number);
+    if( (count($final_entries) % $item_number) > 0 ) $pages_count++;
+    $current_page = isset($_GET['sd']) ? intval($_GET['sd']) : 1;
+
+?>
+<div id="simpledocumentation_inside">
+	<?php if(count($final_entries)>0){ ?>
+	<div class="widget_header">
+		<h4><?php echo $this->settings['label_welcome_title']; ?></h4>
+		<div class="welcome_message">
+			<?php echo $this->settings['label_welcome_message']; ?>
+		</div>
+	</div>
+	<ul class="list_doc" id="simpledoc_list">
+		<?php
+			$page_i = $current_page - 1;
+			for($i = ($page_i * $item_number); ($i < $page_i * $item_number + $item_number) && $i >= ($page_i * $item_number) && $i < count($entries); $i++){
+				$item = $final_entries[$i];
+				$id = $item->ID;
+				$icon = $this->icon($item->type);
+				$title = stripslashes($item->title);
+				$content = htmlspecialchars_decode(stripslashes($item->content));
+				if($item->type == 'file'){
+					$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));
+					$content = "<a href='$url'>$url</a>";
+				}
+				if($item->type == 'link') $content = "<a href='$content'>$content</a>";
+				
+				if($item->restricted) $users = json_decode( $item->restricted );
+				else $users = $this->settings['user_role'];
+				
+				$usersAllowed = '';
+				$registered_usr = $wp_roles->roles;
+				$ua = 0;
+				foreach($users as $user){
+					if($ua>0) $usersAllowed .= ', ';
+					/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'], $this->slug );
+					$ua++;
+				}
+				
+				echo "
+				<li id='simpledoc_{$id}' class='smpldoc_li'>
+					<div class='el_front' data-id='{$id}' data-order='{$i}'>
+						<span class='el_front_bf'>
+							<i class='fa fa-{$icon}'></i>
+						</span>
+						<span class='el_title'>
+							{$title}
+						</span>
+					</div>
+					<div class='el_expand'>
+						{$content}
+					</div>
+				</li>";
+				
+			}
+		?>	
+	</ul>
+	<div class="widget_footer">
+	<?php if($pages_count > 0): ?>
+		<nav>
+			Pages: 
+		<?php
+			for($i=1;$i <= $pages_count;$i++){ 
+				$class = ($i==$current_page)?" class='active'":'';
+				echo "<a href='?sd=$i'$class>$i</a>"; 
+			}
+		?>
+		</nav>
+	<?php endif; ?>
+	</div>
+	<?php 
+	
+		}else{
+			
+			echo "<p>" . __('No Documentation available yet.', $this->slug ) . "</p>";
+			
+		}
+	
+	?>
+</div>
