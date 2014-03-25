@@ -9,11 +9,9 @@ Find the stable version on the Wordpress Repository: [Simple Documentation](http
 
 Current version in development: 1.2
 
-| Task                         |   Status    |
-| :--------------------------- | :---------- |
-| Re-order by drag and drop    | [x]      |
-| Per user restriction         | [x]      |
-| Import/Export                | [ ] *options missing* |
-| Multisite                    | [ ] *Need to be checked* |
-| Update from previous version | [ ] *to fix*  |
-| Translations optimization    | [ ] *Waiting* |
+[x] Re-order by drag&drop
+[x] Per user restriction
+[ ] Import/Export
+[ ] Multisite support
+[ ] Update from previous version
+[ ] Translations optimization
