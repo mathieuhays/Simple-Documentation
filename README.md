@@ -11,9 +11,9 @@ Current version in development: 1.2
 
 | Task                         |   Status    |
 | :--------------------------- | :---------- |
-| Re-order by drag and drop    | **DONE**      |
-| Per user restriction         | **DONE**      |
-| Import/Export                | *options missing* |
-| Multisite                    | *Need to be checked* |
-| Update from previous version | *to fix*  |
-| Translations optimization    | *Waiting* |
+| Re-order by drag and drop    | [x]      |
+| Per user restriction         | [x]      |
+| Import/Export                | [ ] *options missing* |
+| Multisite                    | [ ] *Need to be checked* |
+| Update from previous version | [ ] *to fix*  |
+| Translations optimization    | [ ] *Waiting* |
