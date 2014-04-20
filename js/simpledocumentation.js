@@ -431,8 +431,11 @@ jQuery(document).ready(function($){
 		import_text.val( ajax_object.processing + '...');
 		
 		jQuery.post( ajax_object.ajax_url , data , function(response){ 
-			//import_text.val( ajax_object.done );
 			console.log(response);
+			var res = $.parseJSON(response);
+			
+			if(res.status == 'ok') import_text.val( ajax_object.label_done );
+			else import_text.val( 'Error !' );
 		});
 	});
 	

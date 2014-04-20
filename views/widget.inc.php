@@ -42,7 +42,14 @@
 				$title = stripslashes($item->title);
 				$content = htmlspecialchars_decode(stripslashes($item->content));
 				if($item->type == 'file'){
-					$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));
+					
+					if( !$item->attachment_id && is_array($item->content)){
+						$file = json_decode(stripslashes(htmlspecialchars_decode($item->content)));
+						$url = $file['url'];
+					}else{
+						$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));	
+					}
+					
 					$content = "<a href='$url'>$url</a>";
 				}
 				if($item->type == 'link') $content = "<a href='$content'>$content</a>";

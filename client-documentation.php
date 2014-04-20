@@ -334,7 +334,7 @@ class simpleDocumentation {
 			'order_saved' => __( 'Order saved', $this->slug ),
 			'loading' => __( 'Loading', $this->slug ),
 			'processing' => __( 'Processing', $this->slug ),
-			'done' => __( 'Done', $this->slug )
+			'label_done' => __( 'Done', $this->slug )
 		);
 
         if($pagenow == 'index.php' || ($pagenow == 'admin.php' && ( $_GET['page'] == $this->slug || $_GET['page'] == $this->slug . '_import_export') )){
@@ -507,12 +507,15 @@ class simpleDocumentation {
 			foreach($data as $d){
 				$attachment_url = $d->attachment_id ? wp_get_attachment_url( $d->attachment_id ) : null;
 				$attachment_filename = $d->attachment_id ? wp_get_attachment_metadata( $d->attachment_id ) : null;
-		
+				
+				if($d->type == 'file') $content = json_decode($d->content);
+				else $content = htmlspecialchars_decode($d->content);
+				
 				$final[] = array(
 					'ID' => $d->ID,
-					'title' => $d->title,
+					'title' => htmlspecialchars_decode($d->title),
 					'attachment_id' => $d->attachment_id,
-					'content' => htmlspecialchars_decode($d->content),
+					'content' => $content,
 					'etoile_b' => $d->etoile_b,
 					'etoile_t' => $d->etoile_t,
 					'ordered' => $d->ordered,
@@ -530,9 +533,9 @@ class simpleDocumentation {
 		
 		return array(
 			'ID' => $data->ID,
-			'title' => $data->title,
+			'title' => htmlspecialchars_decode($data->title),
 			'attachment_id' => $data->attachment_id,
-			'content' => htmlspecialchars_decode($data->content),
+			'content' => htmlspecialchars_decode($content),
 			'etoile_b' => $data->etoile_b,
 			'etoile_t' => $data->etoile_t,
 			'ordered' => $data->ordered,
@@ -701,9 +704,21 @@ class simpleDocumentation {
 			
 		}elseif($_POST['a'] == 'export'){
 			
+			$options = array( 'included' => false, 'data' => null );
+			if($_POST['options'] == 'include'){
+				$options['included'] = true;
+				$options['data'] = array(
+					'user_role' => $this->settings['user_role'],
+					'item_per_page' => $this->settings['item_per_page'],
+					'label_widget_title' => $this->settings['label_widget_title'],
+					'label_welcome_title' => $this->settings['label_welcome_title'],
+					'label_welcome_message' => $this->settings['label_welcome_message']
+				);
+			}
+			
 			$query = "SELECT * FROM $wpdb->simpleDocumentation";
 			if($data = $wpdb->get_results( $query ))
-				$this->s( $this->filterData($data, true) );
+				$this->s( array( $this->filterData($data, true), $options ) );
 				
 			else
 				$this->s( __('error', $this->slug ));
@@ -711,40 +726,48 @@ class simpleDocumentation {
 		}elseif($_POST['a'] == 'import'){
 			
 			//var_dump( $_POST['data'] );
-			$data = $_POST['data']; 
-			var_dump( $data );
+			$data = $_POST['data'];
+			
 			$cols = "(type,title,content,restricted,attachment_id,ordered)";
-			$values = '';
+			$values = array();
+			$actualval = array();
 			$nmb = 0;
-			foreach($data as $item){
+			foreach($data[0] as $item){
 				$type = $item['type'];
-				$title = $item['title'];
-				$content = $item['content'];
+				$title = stripslashes(htmlspecialchars_decode($item['title']));
+				$content = stripslashes(htmlspecialchars_decode($item['content']));
 				$restricted = json_encode( $item['restricted'] );
-				$attachment_id = $item['attachment_id'];
+				$attachment_id = false;
 				$ordered = $item['ordered'];
-				$values .= ($nmb > 0 ? ',' : '') . "(
-					{$type}, 
-					{$title},
-					{$content},
-					{$restricted},
-					{$attachment_id},
-					{$ordered}
-				)";
+				$values[] = "( %s, %s, %s, %s, %d, %d )";
+				
+				if($type == 'file') $content = json_encode(array( 'filename' => $item['attachment_filename'], 'url' => $item['attachment_url']) );
+				
+				array_push( $actualval, $type, $title, $content, $restricted, $attachment_id, $ordered );
 				$nmb++;
 			}
 			
 			$options = false;
-			
-			if($_POST['options'] == 'include'){
+			if( isset($data[1]['included']) && $data[1]['included'] ){
+				
 				$options = true;
+				$opt = $data[1]['data'];
+				
+				$set = array('user_role', 'item_per_page', 'label_widget_title', 'label_welcome_title', 'label_welcome_message');
+				
+				foreach( $set as $st ){
+					if( !empty($opt[$st]) ) $this->settings[$st] = $opt[$st];
+				}
+				$this->update_settings();
 			}
 			
-			$query = "INSERT INTO $wpdb->simpleDocumentation $cols VALUES$values";
-			if($data = $wpdb->get_results( $query ))
+			
+			$query = $wpdb->prepare( "INSERT INTO $wpdb->simpleDocumentation $cols VALUES " . implode( ',', $values ), $actualval );
+			
+			if($data = $wpdb->query( $query ))
 				$this->s( array( 'status' => 'ok', 'type' => 'get-data', 'data' => array( 'item' => $nmb, 'options' => $options )));	
 			else
-				$this->s( __('error', $this->slug ));
+				$this->s( array( 'status' => 'error' ) );
 			
 		}
 		

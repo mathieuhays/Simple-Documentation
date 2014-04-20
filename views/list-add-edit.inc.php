@@ -27,7 +27,15 @@
 							$title = stripslashes($item->title);
 							$content = htmlspecialchars_decode(stripslashes($item->content));
 							if($item->type == 'file'){
-								$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));
+								
+								// File from import
+								if( !$item->attachment_id){
+									$file = json_decode(htmlspecialchars_decode($item->content));
+									$url = $file->url;
+								}else{
+									$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));	
+								}
+								
 								$content = "<a href='$url'>$url</a>";
 							}
 							if($item->type == 'link') $content = "<a href='$content'>$content</a>";
@@ -42,6 +50,9 @@
 							
 							$registered_usr = $wp_roles->roles;
 							$ua = 0;
+							
+							// Import empty roles fix
+							if(empty($users)) $users = $this->settings['user_role'];
 							
 							foreach($users as $user){
 								if($ua>0) $usersAllowed .= ', ';

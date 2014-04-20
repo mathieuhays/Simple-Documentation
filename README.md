@@ -13,7 +13,7 @@ Tasks | Status
 --------------- | ----------------
 Re-order by drag&drop 			| 	**DONE**
 Per user restriction 			| 	**DONE**
-Import/Export 					| 	*Options to include*
+Import/Export 					| 	**DONE**
 Multisite support 				| 	*To check*
 Update from previous version	|	**DONE**
 Translations optimization		|	*Waiting*
