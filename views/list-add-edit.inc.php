@@ -42,6 +42,7 @@
 							
 							$registered_usr = $wp_roles->roles;
 							$ua = 0;
+							
 							foreach($users as $user){
 								if($ua>0) $usersAllowed .= ', ';
 								/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'], $this->slug );

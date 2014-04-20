@@ -107,6 +107,8 @@ class simpleDocumentation {
 	public function settings(){
 		global $wpdb;
 		
+		$table = get_site_option( 'clientDocumentation_table' );
+		
 		$settings_defaults = array(
 			'table' => $wpdb->prefix . $this->slug,
 			'user_role' => array( 'administrator', 'editor' ),
@@ -138,19 +140,20 @@ class simpleDocumentation {
 			
 			$this->settings = $settings;
 			
-		}
-		/* Upgrade from previous version */
-		elseif( $table = get_site_option( 'clientDocumentation_table' ) ){
+		}/* Upgrade from previous version */
+		elseif( !empty( $table ) ){
 			
 			foreach( $settings_defaults as $setting => $default ){
 				
 				if( $setting == 'table')
 					$this->settings['table'] = $table;
-				
 				else
-					$this->settings[$setting] = ( get_option( 'clientDocumentation_'.$rename[$setting] ) ?: $default );
+					$this->settings[$setting] = ( get_option( 'clientDocumentation_'.$rename[$setting] ) ? get_option( 'clientDocumentation_'.$rename[$setting] ) : $default );
 								
 			}
+			
+			if( !is_array( $this->settings['user_role'] ) )
+				$this->settings['user_role'] = array( $this->settings['user_role'] );
 			
 			/* Save settings */
 			if( add_site_option( $this->slug . '_main_settings', $this->settings ) ){
@@ -168,8 +171,7 @@ class simpleDocumentation {
 				
 			}
       
-		}
-		/* New Installation */
+		}/* New Installation */
 		else{
 			
 			$this->settings = $settings_defaults;
@@ -177,6 +179,9 @@ class simpleDocumentation {
 		}
 		
 		$wpdb->simpleDocumentation = $this->settings['table'];
+		
+		// Activation hook fix on upgrade
+		if( $this->settings['db_version'] != '2.0' ) $this->setup_tables();
 		
 	}
 	
@@ -210,9 +215,9 @@ class simpleDocumentation {
 		
 		if($this->settings['db_version'] == '1.0'){
 			
-			$cdoc_tables = "ALTER TABLE ".$table." ADD COLUMN 'restricted' varchar(500), ADD COLUMN 'attachment_id' int(5), ADD COLUMN 'ordered' int(5)";
+			$cdoc_tables = "ALTER TABLE ".$table." ADD COLUMN restricted varchar(500), ADD COLUMN attachment_id int(5), ADD COLUMN ordered int(5)";
 			
-			if( dbDelta( $cdoc_tables ) )
+			if( $wpdb->query( $cdoc_tables ) )
 				$this->settings['db_version'] = '2.0';
 			
 			$this->settings['first_activation'] = false;
@@ -233,7 +238,7 @@ class simpleDocumentation {
 				UNIQUE KEY ID (ID)
 			);";
 			
-			dbDelta( $cdoc_tables );
+			$wpdb->query( $cdoc_tables );
 				
 		}
 
@@ -258,8 +263,8 @@ class simpleDocumentation {
 	public function uninstall(){
 		global $wpdb;
 
-	    $wpdb->query( "DROP TABLE $wpdb->simpleDocumentation" );
-		delete_site_option( $this->slug . '_main_settings' );
+	    $wpdb->query( "DROP TABLE " . $wpdb->simpleDocumentation );
+		delete_site_option( 'simpledocumentation_main_settings' );
 		
 	}
 	
@@ -737,8 +742,7 @@ class simpleDocumentation {
 			
 			$query = "INSERT INTO $wpdb->simpleDocumentation $cols VALUES$values";
 			if($data = $wpdb->get_results( $query ))
-				$this->s( array( 'status' => 'ok', 'type' => 'get-data', 'data' => array( 'item' => $nmb, 'options' => $options ) );
-				
+				$this->s( array( 'status' => 'ok', 'type' => 'get-data', 'data' => array( 'item' => $nmb, 'options' => $options )));	
 			else
 				$this->s( __('error', $this->slug ));
 			
