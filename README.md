@@ -15,5 +15,5 @@ Re-order by drag&drop 			| 	**DONE**
 Per user restriction 			| 	**DONE**
 Import/Export 					| 	*Options to include*
 Multisite support 				| 	*To check*
-Update from previous version	|	*To fix*
+Update from previous version	|	**DONE**
 Translations optimization		|	*Waiting*
