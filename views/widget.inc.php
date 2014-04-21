@@ -71,7 +71,7 @@
 						{$content}
 					</div>";
 				
-				if($item->type == 'link' || $item->type == 'file') $expand = '';
+				if( in_array($item->type, array('link', 'file'))) $expand = '';
 				
 				echo "
 				<li id='simpledoc_{$id}' class='smpldoc_li'>
