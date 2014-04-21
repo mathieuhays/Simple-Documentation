@@ -56,7 +56,7 @@ jQuery(document).ready(function($){
 		add_sw.fadeOut(function(){
 			list_sw.fadeIn();
 			current = 'list';
-			swtch_btn.html( 'Add new' );
+			swtch_btn.html( ajax_object.add_new );
 		});
 		
 		resetFormView();
@@ -101,7 +101,7 @@ jQuery(document).ready(function($){
 			list_sw.fadeOut(function(){
 				add_sw.fadeIn();
 				current = 'add';
-				swtch_btn.html( 'View List' );
+				swtch_btn.html( ajax_object.view_list );
 			});
 			
 		}else{
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
 		
 		var content = attachment = title = '';
 		
-		$('#smpldoc_additem').attr('data-action', 'add').text( 'Add item' );
+		$('#smpldoc_additem').attr('data-action', 'add').text( ajax_object.add_item );
 		
 		if(data !== undefined){
 			
@@ -131,7 +131,7 @@ jQuery(document).ready(function($){
 			$('.add_list').find('li').addClass('smpldoc_disabled');
 			$('#smdoc_'+data.type+'_cat').parent('li').removeClass('smpldoc_disabled').addClass('smpldoc_active');
 			
-			$('#smpldoc_additem').attr('data-action', 'edit').text( 'Save changes' );
+			$('#smpldoc_additem').attr('data-action', 'edit').text( ajax_object.save_changes );
 			
 			if(data.restricted){
 				$('.smpldoc_item_users').each(function(){
@@ -431,11 +431,9 @@ jQuery(document).ready(function($){
 		import_text.val( ajax_object.processing + '...');
 		
 		jQuery.post( ajax_object.ajax_url , data , function(response){ 
-			console.log(response);
-			var res = $.parseJSON(response);
-			
+			var res = $.parseJSON(response);			
 			if(res.status == 'ok') import_text.val( ajax_object.label_done );
-			else import_text.val( 'Error !' );
+			else import_text.val( ajax_object.error );
 		});
 	});
 	

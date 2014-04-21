@@ -14,6 +14,6 @@ Tasks | Status
 Re-order by drag&drop 			| 	**DONE**
 Per user restriction 			| 	**DONE**
 Import/Export 					| 	**DONE**
-Multisite support 				| 	*To check*
+Multisite support 				| 	**DONE**
 Update from previous version	|	**DONE**
-Translations optimization		|	*Waiting*
+Translations optimization		|	*In Progress*

@@ -4,7 +4,7 @@
 	Plugin Name: Simple Documentation
 	Plugin URI: http://mathieuhays.co.uk/simple-documentation/
 	Description: This plugin helps webmasters/developers to provide documentation through the wordpress dashboard.
-	Version: 1.2-alpha
+	Version: 1.2 beta
 	Author: Mathieu Hays
 	Author URI: http://mathieuhays.co.uk
 	License: GPL2
@@ -334,7 +334,11 @@ class simpleDocumentation {
 			'order_saved' => __( 'Order saved', $this->slug ),
 			'loading' => __( 'Loading', $this->slug ),
 			'processing' => __( 'Processing', $this->slug ),
-			'label_done' => __( 'Done', $this->slug )
+			'label_done' => __( 'Done', $this->slug ),
+			'error' => __( 'Error!', $this->slug ),
+			'add_item' => __( 'Add item', $this->slug ),
+			'save_changes' => __( 'Save changes', $this->slug ),
+			'add_new' => __( 'Add new', $this->slug )
 		);
 
         if($pagenow == 'index.php' || ($pagenow == 'admin.php' && ( $_GET['page'] == $this->slug || $_GET['page'] == $this->slug . '_import_export') )){
@@ -756,7 +760,8 @@ class simpleDocumentation {
 				$set = array('user_role', 'item_per_page', 'label_widget_title', 'label_welcome_title', 'label_welcome_message');
 				
 				foreach( $set as $st ){
-					if( !empty($opt[$st]) ) $this->settings[$st] = $opt[$st];
+					if( !empty($opt[$st]) && $st == 'user_role' ) $this->settings[$st] = json_decode($opt[$st]);
+					elseif( !empty($opt[$st]) ) $this->settings[$st] = $opt[$st];
 				}
 				$this->update_settings();
 			}

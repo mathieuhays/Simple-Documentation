@@ -50,9 +50,9 @@
 						$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));	
 					}
 					
-					$content = "<a href='$url'>$url</a>";
+					$title = "<a href='$url'>$title</a>";
 				}
-				if($item->type == 'link') $content = "<a href='$content'>$content</a>";
+				if($item->type == 'link') $title = "<a href='$content'>".stripslashes($item->title)."</a>";
 				
 				if($item->restricted) $users = json_decode( $item->restricted );
 				else $users = $this->settings['user_role'];
@@ -66,6 +66,13 @@
 					$ua++;
 				}
 				
+				$expand = "
+					<div class='el_expand'>
+						{$content}
+					</div>";
+				
+				if($item->type == 'link' || $item->type == 'file') $expand = '';
+				
 				echo "
 				<li id='simpledoc_{$id}' class='smpldoc_li'>
 					<div class='el_front' data-id='{$id}' data-order='{$i}'>
@@ -76,9 +83,7 @@
 							{$title}
 						</span>
 					</div>
-					<div class='el_expand'>
-						{$content}
-					</div>
+					{$expand}
 				</li>";
 				
 			}
@@ -87,7 +92,7 @@
 	<div class="widget_footer">
 	<?php if($pages_count > 0): ?>
 		<nav>
-			Pages: 
+			<?php _e('Pages', $this->slug ); ?>: 
 		<?php
 			for($i=1;$i <= $pages_count;$i++){ 
 				$class = ($i==$current_page)?" class='active'":'';

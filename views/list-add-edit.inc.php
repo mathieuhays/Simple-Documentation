@@ -8,7 +8,7 @@
 	?>
 	<div class="wrap">
 		
-		<h2><?php _e( 'Simple Documentation', $this->slug ); ?> <a href="#add_new_content" class="add-new-h2" id="swtch_btn">Add New</a></h2>
+		<h2><?php _e( 'Simple Documentation', $this->slug ); ?> <a href="#add_new_content" class="add-new-h2" id="swtch_btn"><?php _e( 'Add New', $this->slug ); ?></a></h2>
 
 		<div class="<?php echo $this->slug; ?> clearfix">
 			
@@ -88,24 +88,24 @@
 				</div>
 				<div id="sd_add" style="display:none">
 				
-					<h3>Add Content</h3>
+					<h3><?php _e( 'Add Content', $this->slug ); ?></h3>
 					
 					<ul class="add_list clearfix">
 						<li>
 							<a href="#video" data-type='video' id='smdoc_video_cat'><i class="fa fa-youtube-play"></i><br />
-							Video</a>
+							<?php _e( 'Video', $this->slug ); ?></a>
 						</li>
 						<li>
 							<a href="#note" data-type='note' id='smdoc_note_cat'><i class="fa fa-comments"></i><br />
-							Note</a>
+							<?php _e( 'Note', $this->slug ); ?></a>
 						</li>
 						<li>
 							<a href="#link" data-type='link' id='smdoc_link_cat'><i class="fa fa-link"></i><br />
-							Link</a>
+							<?php _e( 'Link', $this->slug ); ?></a>
 						</li>
 						<li>
 							<a href="#file" data-type='file' id='smdoc_file_cat'><i class="fa fa-files-o"></i><br />
-							File</a>
+							<?php _e( 'File', $this->slug ); ?></a>
 						</li>
 					</ul>
 					
@@ -114,7 +114,7 @@
 						<table class="form-table">
 							<tbody>
 								<tr valign="top">
-									<th scope="row"><label for="smpldoc_item_title">Title</label></th>
+									<th scope="row"><label for="smpldoc_item_title"><?php _e( 'Title', $this->slug ); ?></label></th>
 									<td><input name="smpldoc_item_title" type="text" id="smpldoc_item_title" value="" class="large-text"></td>
 								</tr>
 								<tr valign="top" class="smpldoc_editor_field" id="smpldoc_editor">
@@ -139,10 +139,10 @@
 								</tr>
 								<tr valign="top">
 									<th scope="row">
-										<label for="smpldoc_item_users">Limit to user roles</label><br />
+										<label for="smpldoc_item_users"><?php _e( 'Limit to user roles', $this->slug ); ?></label><br />
 										<small>
-											Leave blank to use default<br/>
-											Current Defaults:<br />
+											<?php _e( 'Leave blank to use default', $this->slug ); ?><br/>
+											<?php _e( 'Current Defaults', $this->slug ); ?>:<br />
 											<?php 
 												$i=0;
 												foreach($this->settings['user_role'] as $defrol){ 
@@ -180,19 +180,22 @@
 			<div class="smpldcmttn_side">
 				<h3><?php _e( 'Information', $this->slug ); ?></h3>
 				
-				<p>Welcome to Simple Documentation.</p>
+				<p><?php _e('Welcome to Simple Documentation.', $this->slug ); ?></p>
 				
-				<h4>Add new content</h4>
-				<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</p>
+				<h2><?php _e('Update', $this->slug ); ?> 1.2</h2>
+				<p><?php _e( "I'm glad you just get the brand new version of simple documentation. I do my best to improve this plugin on my free time.", $this->slug ); ?></p>
+				<p><?php _e( "This new update comes with new features such as item re-ordering and restricting access per user.", $this->slug ); ?></p>
 				
-				<h4>Re-order</h4>
-				<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</p>
+				<h2><?php _e('Contribution', $this->slug ); ?></h2>
+				<p><?php _e("Some good people I would like to thank, helped me with the translations", $this->slug ); ?></p>
+				<ul>
+					<li><?php _e('Spanish translation by', $this->slug ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
+					<li><?php _e('German translation by', $this->slug ); ?> <a href='http://alexander.pfabel.de/'>Alexander Pfabel</a></li>
+					<li><?php _e('Serbo-Croatian translation by', $this->slug ); ?> <a href='http://www.webhostinghub.com/'>Borisa Djuraskovic</a></li>
+				</ul>
+				<p><?php _e('If you want to contribute, feel free to ', $this->slug); ?><a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', $this->slug ); ?></a> <?php _e('or', $this->slug ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', $this->slug ); ?></a></p>
 				
-				<h4>Settings</h4>
-				<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</p>
-				
-				<h4>Import / Export</h4>
-				<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</p>
+				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='http://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('Report issues', $this->slug); ?></a></p>
 			</div>
 		
 		</div>
