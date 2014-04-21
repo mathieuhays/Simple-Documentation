@@ -155,6 +155,9 @@ class simpleDocumentation {
 			if( !is_array( $this->settings['user_role'] ) )
 				$this->settings['user_role'] = array( $this->settings['user_role'] );
 			
+			// 1.1.X editor as default. Need to add administrator as well.
+			if( !in_array( 'administrator', $this->settings['user_role']) ) $this->settings['user_role'][] = 'administrator';
+			
 			/* Save settings */
 			if( add_site_option( $this->slug . '_main_settings', $this->settings ) ){
 			
