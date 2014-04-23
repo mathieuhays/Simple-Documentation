@@ -2,6 +2,8 @@
 })(jQuery);
 jQuery(document).ready(function($){
 	
+	var tinyMCE = tinyMCE || tinymce;
+	
 	var list_admin = $('#simpledoc_list');
 	var elements_admin = list_admin.find('li');
 	
@@ -42,7 +44,9 @@ jQuery(document).ready(function($){
 	/** Reset the main form **/
 	function resetFormView(){
 		
-		tinyMCE.activeEditor.setContent('');
+		var editor = tinyMCE.get( 'smpldoc_item_content' );
+		if(editor) editor.setContent('');
+		
 		$('#smpldoc_item_title').val('');
 		$('#item_type').val('nope');
 		$('#smpldoc_item_link').val('');
@@ -146,7 +150,8 @@ jQuery(document).ready(function($){
 		if(type=='note'||type=='video'){
 			input.fadeOut(200).val( '' );
 			file.fadeOut(200).val( '' );
-			tinyMCE.activeEditor.setContent( content );
+			var editorW = tinyMCE.get( 'smpldoc_item_content' );
+			if(editorW) editorW.setContent(content);
 			editor.delay(200).fadeIn(100);
 		}else if(type=='file'){
 			input.fadeOut(200).val('');
@@ -226,7 +231,6 @@ jQuery(document).ready(function($){
 	
 	function fill_form(data){
 		
-		console.log(data);
 		if(current === 'list'){
 			
 			//fill information
@@ -245,7 +249,7 @@ jQuery(document).ready(function($){
 	/** Handle ajax response **/
 	function settings_response(response){
 		
-		console.log(response);
+		//console.log(response);
 		var res = $.parseJSON(response);
 		//console.log(res);
 		
@@ -261,6 +265,7 @@ jQuery(document).ready(function($){
 				$('#simpledoc_'+res.id).fadeOut(500);
 			}else if(res.type == 'get-data'){
 				
+				console.log(res.data);
 				fill_form(res.data);
 				
 			}else if(res.type == 'edit'){
@@ -272,7 +277,7 @@ jQuery(document).ready(function($){
 				else if(res.data.type == 'file') content = '<a href="'+res.data.attachment_url+'">'+res.data.attachment_name+'</a>';
 				else content = res.data.content;
 				
-				console.log(res.data);
+				//console.log(res.data);
 				
 				item.find('.el_expand').html( content );
 				item.find('.smpldoc_usersallowed').attr('title', res.data.users.join(', ') );
@@ -308,22 +313,25 @@ jQuery(document).ready(function($){
 	$('#smpldoc_additem').on('click', function(e){
 		e.preventDefault();
 		
-		var user_restriction = [], emptyfields = [], actionType = 'add';
+		var user_restriction = [], emptyfields = [], actionType = 'add', getcontent = '';
 		
 		$('.smpldoc_item_users').each(function(){
 			if($(this).is(':checked')) user_restriction.push($(this).val());
 		});
+		
+		var editor = tinyMCE.get( 'smpldoc_item_content' );
+		
+		if(editor) getcontent = editor.getContent();
 		
 		var item = {
 			title: $('#smpldoc_item_title').val(),
 			type: $('#item_type').val(),
 			input: $('#smpldoc_item_link').val(),
 			file: $('#smpldoc_item_file').val(),
-			editor: tinyMCE.activeEditor.getContent(),
+			editor: getcontent,
 			user_roles: user_restriction
 		};
 		
-		console.log( item.editor );
 		if( item.type == 'nope' ) emptyfields.push('type');
 		
 		if( item.title.length < 1 ) emptyfields.push('title');
@@ -357,7 +365,7 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 		
 		var id = $(this).parent().parent().attr('data-id');
-		console.log('ID::'+id);
+		
 		var data = {
 			action: 'simpleDocumentation_ajax',
 			a: 'delete',

@@ -542,7 +542,7 @@ class simpleDocumentation {
 			'ID' => $data->ID,
 			'title' => htmlspecialchars_decode($data->title),
 			'attachment_id' => $data->attachment_id,
-			'content' => htmlspecialchars_decode($content),
+			'content' => htmlspecialchars_decode($data->content),
 			'etoile_b' => $data->etoile_b,
 			'etoile_t' => $data->etoile_t,
 			'ordered' => $data->ordered,
