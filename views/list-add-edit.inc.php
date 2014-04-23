@@ -147,7 +147,7 @@
 												$i=0;
 												foreach($this->settings['user_role'] as $defrol){ 
 													if($i>0) echo ', ';
-													_e( $defrol, $this->slug );
+													_e( $defrol );
 													$i++;
 												} 
 											?>
