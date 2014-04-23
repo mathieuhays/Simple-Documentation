@@ -5,7 +5,7 @@
 ?>
 <div class="wrap sd_importexport">
 	<h2><?php _e('Import / Export', $this->slug ); ?></h2>
-	
+
 	<h3><?php _e('Export', $this->slug ); ?></h3>
 	<p>
 		<textarea id="sd_export" class="large-text disabled" disabled></textarea>

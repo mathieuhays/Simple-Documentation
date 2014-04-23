@@ -183,7 +183,6 @@
 				<p><?php _e('Welcome to Simple Documentation.', $this->slug ); ?></p>
 				
 				<h2><?php _e('Update', $this->slug ); ?> 1.2</h2>
-				<p><?php _e( "I'm glad you just get the brand new version of simple documentation. I do my best to improve this plugin on my free time.", $this->slug ); ?></p>
 				<p><?php _e( "This new update comes with new features such as item re-ordering and restricting access per user.", $this->slug ); ?></p>
 				
 				<h2><?php _e('Contribution', $this->slug ); ?></h2>
