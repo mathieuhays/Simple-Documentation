@@ -1,308 +1,422 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Documentation\n"
-"POT-Creation-Date: 2014-04-23 18:36-0000\n"
-"PO-Revision-Date: 2014-04-23 18:37-0000\n"
-"Last-Translator: \n"
-"Language-Team: Mathieu HAYS <mathieu@mathieuhays.co.uk>\n"
-"Language: en\n"
+"Project-Id-Version: Simple Documentation v1.2 beta\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-04-24 21:14:19+0000\n"
+"Last-Translator: Alexander Pfabel <localization@pfabel.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
-"X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-SearchPath-0: /Library/WebServer/Documents/wp/wp001/wp-content/"
-"plugins/client-documentation\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:118
+#. translators: plugin header field 'Name'
+#: client-documentation.php:0
+#: views/list-add-edit.inc.php:11
+#@ client-documentation
+msgid "Simple Documentation"
+msgstr ""
+
+#. translators: plugin header field 'PluginURI'
+#: client-documentation.php:0
+#@ client-documentation
+msgid "http://mathieuhays.co.uk/simple-documentation/"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: client-documentation.php:0
+#@ client-documentation
+msgid "This plugin helps webmasters/developers to provide documentation through the wordpress dashboard."
+msgstr "Dieses Plugin hilft Webmastern / Entwicklern eine Dokumentation im Wordpress-Dashboard zur Verfügung zu stellen."
+
+#. translators: plugin header field 'Author'
+#: client-documentation.php:0
+#@ client-documentation
+msgid "Mathieu Hays"
+msgstr ""
+
+#. translators: plugin header field 'AuthorURI'
+#: client-documentation.php:0
+#@ client-documentation
+msgid "http://mathieuhays.co.uk"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: client-documentation.php:0
+#@ client-documentation
+msgid "1.2 beta"
+msgstr ""
+
+#: client-documentation.php:118
+#@ client-documentation
 msgid "Resources"
-msgstr "Ressourcen"
+msgstr "Handbuch"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:119
+#: client-documentation.php:119
+#@ client-documentation
 msgid "Welcome"
-msgstr "Willkommen"
+msgstr "Inhalt"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:120
+#: client-documentation.php:120
+#@ client-documentation
 msgid "Need Help ? All you need is here !"
-msgstr "Benötigen Sie Hilfe? Alles was Sie brauchen finden Sie hier!"
+msgstr "Wichtige Informationen zu WordPress!"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:250
+#: client-documentation.php:250
+#@ client-documentation
 msgid "How to create your first post"
 msgstr "Wie du deinen ersten Beitrag erstellst"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:251
+#: client-documentation.php:251
+#@ client-documentation
 msgid "Example of content"
 msgstr "Beispiel für Inhalte"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:333
+#: client-documentation.php:333
+#@ client-documentation
 msgid "Following fields are missing :"
 msgstr "Es fehlen folgende Felder:"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:334
+#: client-documentation.php:334
+#@ client-documentation
 msgid "is missing !"
 msgstr "fehlt!"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:336
+#: client-documentation.php:336
+#@ client-documentation
 msgid "View List"
-msgstr ""
+msgstr "Ansichtsliste"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:337
+#: client-documentation.php:337
+#@ client-documentation
 msgid "Order saved"
-msgstr ""
+msgstr "Reihenfolge gespeichert"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:338
+#: client-documentation.php:338
+#@ client-documentation
 msgid "Loading"
-msgstr ""
+msgstr "Lädt"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:339
+#: client-documentation.php:339
+#@ client-documentation
 msgid "Processing"
-msgstr ""
+msgstr "Läuft"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:340
+#: client-documentation.php:340
+#@ client-documentation
 msgid "Done"
-msgstr ""
+msgstr "Fertig"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:341
+#: client-documentation.php:341
+#@ client-documentation
 msgid "Error!"
 msgstr "Fehler!"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:342
+#: client-documentation.php:342
+#@ client-documentation
 msgid "Add item"
 msgstr "Neue Inhalte hinzufügen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:343
+#: client-documentation.php:343
+#@ client-documentation
 msgid "Save changes"
 msgstr "Speichern"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:344
+#: client-documentation.php:344
+#@ client-documentation
 msgid "Add new"
 msgstr "Neue Inhalte hinzufügen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:382
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:383
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:7
+#: client-documentation.php:382
+#: client-documentation.php:383
+#: views/import-export.inc.php:7
+#@ client-documentation
 msgid "Import / Export"
 msgstr "Import / Export"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:390
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:391
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:7
+#: client-documentation.php:390
+#: client-documentation.php:391
+#: views/settings.inc.php:7
+#@ client-documentation
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:398
+#: client-documentation.php:398
+#@ client-documentation
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:483
+#: client-documentation.php:483
+#@ client-documentation
 msgid "Settings saved"
 msgstr "Optionen aktualisiert"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:574
+#: client-documentation.php:574
+#@ client-documentation
 msgid "title"
 msgstr "Überschrift"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:582
+#: client-documentation.php:582
+#@ client-documentation
 msgid "content"
 msgstr "Inhalt"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:588
+#: client-documentation.php:588
+#@ client-documentation
 msgid "link"
-msgstr "link"
+msgstr "Link"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:597
+#: client-documentation.php:597
+#@ client-documentation
 msgid "file"
-msgstr ""
+msgstr "Datei"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:731
+#: client-documentation.php:638
+#: views/list-add-edit.inc.php:59
+#: views/list-add-edit.inc.php:161
+#: views/settings.inc.php:37
+#: views/widget.inc.php:65
+#@ client-documentation
+#@ default
+msgid "name"
+msgstr "Name"
+
+#: client-documentation.php:731
+#@ client-documentation
 msgid "error"
 msgstr "Fehler"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:9
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:14
+#: views/import-export.inc.php:9
+#: views/import-export.inc.php:14
+#@ client-documentation
 msgid "Export"
 msgstr "Export"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:16
+#: views/import-export.inc.php:16
+#@ client-documentation
 msgid "Include options"
-msgstr ""
+msgstr "Mit Inhalten"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:17
+#: views/import-export.inc.php:17
+#@ client-documentation
 msgid "if included, options will be overwritten"
-msgstr ""
+msgstr "Alle Inhalte werden dann überschrieben"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:20
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:25
+#: views/import-export.inc.php:20
+#: views/import-export.inc.php:25
+#@ client-documentation
 msgid "Import"
 msgstr "Import"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:11
-msgid "Simple Documentation"
-msgstr "Einfache Dokumentation"
-
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:11
+#: views/list-add-edit.inc.php:11
+#@ client-documentation
 msgid "Add New"
 msgstr "Neue Inhalte hinzufügen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:18
+#: views/list-add-edit.inc.php:18
+#@ client-documentation
 msgid "Documentation list"
-msgstr "Dokumentenliste"
+msgstr "Dokumentationsliste"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:47
+#: views/list-add-edit.inc.php:47
+#@ client-documentation
 msgid "(default) "
-msgstr ""
+msgstr "(Standard) "
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:91
+#: views/list-add-edit.inc.php:91
+#@ client-documentation
 msgid "Add Content"
 msgstr "Neue Inhalte hinzufügen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:96
+#: views/list-add-edit.inc.php:96
+#@ client-documentation
 msgid "Video"
 msgstr "Video"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:100
+#: views/list-add-edit.inc.php:100
+#@ client-documentation
 msgid "Note"
 msgstr "Notiz"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:104
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:129
+#: views/list-add-edit.inc.php:104
+#: views/list-add-edit.inc.php:129
+#@ client-documentation
 msgid "Link"
 msgstr "Link"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:108
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:133
+#: views/list-add-edit.inc.php:108
+#: views/list-add-edit.inc.php:133
+#@ client-documentation
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:117
+#: views/list-add-edit.inc.php:117
+#@ client-documentation
 msgid "Title"
 msgstr "Überschrift"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:136
+#: views/list-add-edit.inc.php:136
+#@ client-documentation
 msgid "Upload a file"
 msgstr "Datei hochladen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:137
+#: views/list-add-edit.inc.php:137
+#@ client-documentation
 msgid "Select a file"
-msgstr ""
+msgstr "Datei auswählen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:142
+#: views/list-add-edit.inc.php:142
+#@ client-documentation
 msgid "Limit to user roles"
-msgstr ""
+msgstr "Benutzerrolle"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:144
+#: views/list-add-edit.inc.php:144
+#@ client-documentation
 msgid "Leave blank to use default"
-msgstr ""
+msgstr "Leer lassen, um Standard zu verwenden"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:145
+#: views/list-add-edit.inc.php:145
+#@ client-documentation
 msgid "Current Defaults"
-msgstr ""
+msgstr "Aktueller Standard"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:181
+#: views/list-add-edit.inc.php:181
+#@ client-documentation
 msgid "Information"
 msgstr "Informationen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:183
+#: views/list-add-edit.inc.php:183
+#@ client-documentation
 msgid "Welcome to Simple Documentation."
-msgstr ""
+msgstr "Willkommen zu Simple Documentation."
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:185
+#: views/list-add-edit.inc.php:185
+#@ client-documentation
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:186
-msgid ""
-"This new update comes with new features such as item re-ordering and "
-"restricting access per user."
-msgstr ""
+#: views/list-add-edit.inc.php:186
+#@ client-documentation
+msgid "This new update comes with new features such as item re-ordering and restricting access per user."
+msgstr "Dieses Update kommt mit neuen Features wie Artikel-Sortierung und Zugriff nach Benutzername."
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:188
+#: views/list-add-edit.inc.php:188
+#@ client-documentation
 msgid "Contribution"
-msgstr ""
+msgstr "Beiträge"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:189
+#: views/list-add-edit.inc.php:189
+#@ client-documentation
 msgid "Some good people I would like to thank, helped me with the translations"
-msgstr ""
+msgstr "Ich danke den großartigen Menschen, die mir bei den Übersetzungen geholfen haben"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:191
+#: views/list-add-edit.inc.php:191
+#@ client-documentation
 msgid "Spanish translation by"
-msgstr ""
+msgstr "Spanische Übersetzung von"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:192
+#: views/list-add-edit.inc.php:192
+#@ client-documentation
 msgid "German translation by"
-msgstr ""
+msgstr "Deutsche Übersetzung von"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:193
+#: views/list-add-edit.inc.php:193
+#@ client-documentation
 msgid "Serbo-Croatian translation by"
-msgstr ""
+msgstr "Serbo-Kroatische Übersetzung von"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+#: views/list-add-edit.inc.php:195
+#@ client-documentation
 msgid "If you want to contribute, feel free to "
-msgstr ""
+msgstr "Fühl dich frei, wenn du dazu beitragen möchtest "
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+#: views/list-add-edit.inc.php:195
+#@ client-documentation
 msgid "contact me"
-msgstr ""
+msgstr "kontaktiere mich"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+#: views/list-add-edit.inc.php:195
+#@ client-documentation
 msgid "or"
-msgstr ""
+msgstr "oder"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+#: views/list-add-edit.inc.php:195
+#@ client-documentation
 msgid "fork the project on github"
-msgstr ""
+msgstr "teile das Projekt auf GitHub"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:197
+#: views/list-add-edit.inc.php:197
+#@ client-documentation
 msgid "Plugin created by"
-msgstr "Dieses Plugin wurde erstellt von"
+msgstr "Plugin erstellt von"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:197
+#: views/list-add-edit.inc.php:197
+#@ client-documentation
 msgid "Report issues"
-msgstr ""
+msgstr "Melde Fehler"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:13
+#: views/settings.inc.php:13
+#@ client-documentation
 msgid "As all fields are required, any empty field will keep its former value"
-msgstr ""
+msgstr "Da alle Felder Pflichtfelder sind, werden alle leeren Feld ihren früheren Wert übernehmen"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:19
+#: views/settings.inc.php:19
+#@ client-documentation
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:23
+#: views/settings.inc.php:23
+#@ client-documentation
 msgid "Number of items displayed per page"
-msgstr "Elemente pro Seite"
+msgstr "Anzahl angezeigter Beiträge pro Seite"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:27
+#: views/settings.inc.php:27
+#@ client-documentation
 msgid "Default client user role"
-msgstr ""
+msgstr "Standard-Benutzerrolle"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:45
+#: views/settings.inc.php:45
+#@ client-documentation
 msgid "Custom titles & content"
-msgstr ""
+msgstr "Eigene Überschrift und Inhalt"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:51
+#: views/settings.inc.php:51
+#@ client-documentation
 msgid "Widget Title"
-msgstr "Überschrift des Widgets"
+msgstr "Widget-Überschrift"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:52
+#: views/settings.inc.php:52
+#@ client-documentation
 msgid "Welcome Title"
-msgstr "\"Willkommens\"-Gruß"
+msgstr "Willkommen-Überschrift"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:53
+#: views/settings.inc.php:53
+#@ client-documentation
 msgid "Welcome Message"
-msgstr "Einleitender Text"
+msgstr "Willkommen-Nachricht"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:83
+#: views/settings.inc.php:83
+#@ client-documentation
 msgid "Save"
 msgstr "Speichern"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/widget.inc.php:95
+#: views/widget.inc.php:95
+#@ client-documentation
 msgid "Pages"
 msgstr "Seiten"
 
-#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/widget.inc.php:109
+#: views/widget.inc.php:109
+#@ client-documentation
 msgid "No Documentation available yet."
-msgstr ""
+msgstr "Keine Dokumentation vorhanden."
+
