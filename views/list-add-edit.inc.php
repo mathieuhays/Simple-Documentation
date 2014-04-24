@@ -189,7 +189,7 @@
 				<p><?php _e("Some good people I would like to thank, helped me with the translations", $this->slug ); ?></p>
 				<ul>
 					<li><?php _e('Spanish translation by', $this->slug ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
-					<li><?php _e('German translation by', $this->slug ); ?> <a href='http://alexander.pfabel.de/'>Alexander Pfabel</a></li>
+					<li><?php _e('German translation by', $this->slug ); ?> Alexander Pfabel</li>
 					<li><?php _e('Serbo-Croatian translation by', $this->slug ); ?> <a href='http://www.webhostinghub.com/'>Borisa Djuraskovic</a></li>
 				</ul>
 				<p><?php _e('If you want to contribute, feel free to ', $this->slug); ?><a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', $this->slug ); ?></a> <?php _e('or', $this->slug ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', $this->slug ); ?></a></p>
