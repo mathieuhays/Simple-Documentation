@@ -359,7 +359,7 @@ class simpleDocumentation {
 
 		// Filter by role and apply custom title
 		if($this->check_user_role($this->settings['user_role']))
-	    	wp_add_dashboard_widget( $this->slug , $this->settings['label_widget_title'] , array( $this, 'dashboard_widget') );
+	    	wp_add_dashboard_widget( $this->slug , stripslashes($this->settings['label_widget_title']) , array( $this, 'dashboard_widget') );
 	    
     }
     

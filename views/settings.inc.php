@@ -58,19 +58,19 @@
 			foreach( $custom as $cstm => $cstv ){
 				
 				$label = __( $cstv, $this->slug );
-				$value = $this->settings[ 'label_' . $cstm ];
+				$value = stripslashes( htmlspecialchars_decode( $this->settings[ 'label_' . $cstm ] )) ;
 				
 				if($cstm == 'welcome_message'){
 					echo "
 					<tr>
 						<th><label for='label_$cstm'>$label</label></th>
-						<td><textarea name='label_$cstm' class='large-text' rows='5'>$value'</textarea></td>
+						<td><textarea name='label_$cstm' class='large-text' rows='5'>$value</textarea></td>
 					</tr>";
 				}else{
 					echo "
 					<tr>
 						<th><label for='label_$cstm'>$label</label></th>
-						<td><input type='text' name='label_$cstm' value='$value' class='regular-text'></td>
+						<td><input type='text' name='label_$cstm' value=\"$value\" class='regular-text'></td>
 					</tr>";
 				}
 				

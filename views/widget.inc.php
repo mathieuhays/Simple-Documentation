@@ -27,9 +27,9 @@
 <div id="simpledocumentation_inside">
 	<?php if(count($final_entries)>0){ ?>
 	<div class="widget_header">
-		<h4><?php echo $this->settings['label_welcome_title']; ?></h4>
+		<h4><?php echo htmlspecialchars(stripslashes($this->settings['label_welcome_title'])); ?></h4>
 		<div class="welcome_message">
-			<?php echo $this->settings['label_welcome_message']; ?>
+			<?php echo htmlspecialchars(stripslashes($this->settings['label_welcome_message'])); ?>
 		</div>
 	</div>
 	<ul class="list_doc" id="simpledoc_list">

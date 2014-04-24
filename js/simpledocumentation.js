@@ -2,7 +2,7 @@
 })(jQuery);
 jQuery(document).ready(function($){
 	
-	var tinyMCE = tinyMCE || tinymce;
+	var tinyMCE = tinyMCE || window.tinymce;
 	
 	var list_admin = $('#simpledoc_list');
 	var elements_admin = list_admin.find('li');
