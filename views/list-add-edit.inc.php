@@ -186,7 +186,6 @@
 				<p><?php _e( "This new update comes with new features such as item re-ordering and restricting access per user.", $this->slug ); ?></p>
 				
 				<h2><?php _e('Contribution', $this->slug ); ?></h2>
-				<p><?php _e("Some good people I would like to thank, helped me with the translations", $this->slug ); ?></p>
 				<ul>
 					<li><?php _e('Spanish translation by', $this->slug ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
 					<li><?php _e('German translation by', $this->slug ); ?> Alexander Pfabel</li>
