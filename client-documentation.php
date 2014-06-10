@@ -356,6 +356,7 @@ class simpleDocumentation {
      * 	Add Widget on dashboard.
      */
     public function add_dashboard(){
+
 		global $wpdb, $wp_roles;
 		
 		$entries = $wpdb->get_results("SELECT restricted FROM {$wpdb->simpleDocumentation} ORDER BY ordered ASC");

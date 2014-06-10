@@ -249,7 +249,7 @@ jQuery(document).ready(function($){
 	/** Handle ajax response **/
 	function settings_response(response){
 		
-		console.log(response);
+		//console.log(response);
 		var res = $.parseJSON(response);
 		//console.log(res);
 		
