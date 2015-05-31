@@ -1,6 +1,5 @@
 === Simple Documentation ===
 Contributors: mathieuhays
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=862ML9VW2NVQU
 Tags: documentation,video,link,file,note,screenr,youtube,vimeo,backend,embed,multisite
 Requires at least: 3.0.1
 Tested up to: 3.9.1
