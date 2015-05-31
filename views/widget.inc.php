@@ -5,13 +5,11 @@
 	global $wp_roles, $wpdb;
 	
 	$item_number = $this->settings['item_per_page'];
-	
 	$user = wp_get_current_user();
     	
     $entries = $wpdb->get_results("SELECT * FROM $wpdb->simpleDocumentation ORDER BY ordered ASC");
     
-    $final_entries = array();
-    
+    $final_entries = array();	
     $user_roles = $user->roles[0];
     
     foreach($entries as $data){
@@ -76,6 +74,7 @@
 					</div>";
 				
 				if( in_array($item->type, array('link', 'file'))) $expand = '';
+				
 				
 				echo "
 				<li id='simpledoc_{$id}' class='smpldoc_li'>

@@ -4,7 +4,7 @@
 	Plugin Name: Simple Documentation
 	Plugin URI: http://mathieuhays.co.uk/simple-documentation/
 	Description: This plugin helps webmasters/developers to provide documentation through the wordpress dashboard.
-	Version: 1.2.1
+	Version: 1.2.2
 	Author: Mathieu Hays
 	Author URI: http://mathieuhays.co.uk
 	License: GPL2
@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class simpleDocumentation {
 	
-	const VERSION = "1.2.1";
+	const VERSION = "1.2.2";
 	
 	/* Used as text domain and slug */
 	public $slug = 'simpledocumentation';
@@ -356,7 +356,6 @@ class simpleDocumentation {
      * 	Add Widget on dashboard.
      */
     public function add_dashboard(){
-
 		global $wpdb, $wp_roles;
 		
 		$entries = $wpdb->get_results("SELECT restricted FROM {$wpdb->simpleDocumentation} ORDER BY ordered ASC");
@@ -532,11 +531,11 @@ class simpleDocumentation {
 				$attachment_filename = $d->attachment_id ? wp_get_attachment_metadata( $d->attachment_id ) : null;
 				
 				if($d->type == 'file') $content = json_decode($d->content);
-				else $content = htmlspecialchars_decode($d->content);
+				else $content = stripslashes(htmlspecialchars_decode($d->content));
 				
 				$final[] = array(
 					'ID' => $d->ID,
-					'title' => htmlspecialchars_decode($d->title),
+					'title' => stripslashes(htmlspecialchars_decode($d->title)),
 					'attachment_id' => $d->attachment_id,
 					'content' => $content,
 					'etoile_b' => $d->etoile_b,
@@ -556,9 +555,9 @@ class simpleDocumentation {
 		
 		return array(
 			'ID' => $data->ID,
-			'title' => htmlspecialchars_decode($data->title),
+			'title' => stripslashes(htmlspecialchars_decode($data->title)),
 			'attachment_id' => $data->attachment_id,
-			'content' => htmlspecialchars_decode($data->content),
+			'content' => stripslashes(htmlspecialchars_decode($data->content)),
 			'etoile_b' => $data->etoile_b,
 			'etoile_t' => $data->etoile_t,
 			'ordered' => $data->ordered,
@@ -656,8 +655,8 @@ class simpleDocumentation {
 						
 						$data = array(
 							'type' => $item['type'],
-							'title' => $title,
-							'content' => ( isset($content) ? htmlspecialchars_decode(addslashes($content)) : null ),
+							'title' => stripslashes($title),
+							'content' => ( isset($content) ? stripslashes(htmlspecialchars_decode($content)) : null ),
 							'attachment' => ( isset($attachment) ? $attachment : null ),
 							'attachment_url' => ( isset($attachment_url) ? $attachment_url : null ),
 							'attachment_name' => ( isset($attachment_name) ? $attachment_name->file : null),

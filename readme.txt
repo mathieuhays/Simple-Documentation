@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: documentation,video,link,file,note,screenr,youtube,vimeo,backend,embed,multisite
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,12 +38,24 @@ Backend Users and Administrators can pin items to highlight them.
 * Spanish (thanks to [Sugartoys](http://sugartoys.net)) (adapted from version 1.1.x)
 * Serbo-Croatian (thanks to [Borisa Djuraskovic](http://www.webhostinghub.com/)) (adapted from version 1.1.x)
 
+= Contribute = 
+
+You can submit issues and pull request on [Github](https://github.com/mathieuhays/Simple-Documentation)
+
 == Installation ==
 
 The installation is not tricky. It's simple as activating the plugin and Add content !
 Hit the import/export button to copy your installation on multiple WP installations.
 
 == Changelog ==
+
+= 1.2.2 =
+
+* Remove slashes appearing after editing an item.
+
+= 1.2.1 =
+
+* User restriction issue fix.
 
 = 1.2.0 =
 
