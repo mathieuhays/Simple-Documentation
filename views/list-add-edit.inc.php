@@ -190,10 +190,11 @@
 					<li><?php _e('Spanish translation by', $this->slug ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
 					<li><?php _e('German translation by', $this->slug ); ?> Alexander Pfabel</li>
 					<li><?php _e('Serbo-Croatian translation by', $this->slug ); ?> <a href='http://www.webhostinghub.com/'>Borisa Djuraskovic</a></li>
+					<li><?php _e('Dutch translation by', $this->slug ); ?> <a href='http://www.funsite.eu'>Gerhard Hoogterp</a></li>
 				</ul>
 				<p><?php _e('If you want to contribute, feel free to ', $this->slug); ?><a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', $this->slug ); ?></a> <?php _e('or', $this->slug ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', $this->slug ); ?></a></p>
 				
-				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='http://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('Report issues', $this->slug); ?></a></p>
+				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='https://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('Report issues', $this->slug); ?></a></p>
 			</div>
 		
 		</div>
