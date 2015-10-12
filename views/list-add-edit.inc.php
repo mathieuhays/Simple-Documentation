@@ -52,8 +52,11 @@
 							$ua = 0;
 							
 							// Import empty roles fix
-							if(empty($users)) $users = $this->settings['user_role'];
-							
+							if(empty($users)){
+								$this->settings['user_role'] = array( 'administrator', 'editor' );
+								$users = $this->settings['user_role'];
+							}
+
 							foreach($users as $user){
 								if($ua>0) $usersAllowed .= ', ';
 								/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'], $this->slug );
