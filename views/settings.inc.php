@@ -27,16 +27,15 @@
 				<th><?php _e( 'Default client user role', $this->slug ); ?></th>
 				<td class="smplodc_user_items clearfix">
 				<?php	
-					$roles = $wp_roles->roles;
-	                foreach($roles as $srole => $vrole){
-	                	
-	                	if(in_array($srole, $this->settings['user_role'])) $checked = ' checked';
-	                	else $checked = '';
-	                	
-	                	echo '
-	                <p><input type="checkbox" name="user_role[]" value="'.$srole.'"'.$checked.'>'.__( $vrole['name'] ).'</p>';
-	                
-	                }
+				$roles = $wp_roles->roles;
+				foreach($roles as $srole => $vrole){
+					$checked = '';
+					if(!empty($this->settings['user_role'])){
+						if(in_array($srole, $this->settings['user_role'])) $checked = ' checked';
+					}
+					echo '
+					<p><input type="checkbox" name="user_role[]" value="'.$srole.'"'.$checked.'>'.__( $vrole['name'] ).'</p>';
+				}
 				?>
 				</td>
 			</tr>
