@@ -157,7 +157,7 @@ jQuery(document).ready(function($){
 		}else if(type=='file'){
 			input.fadeOut(200).val('');
 			editor.fadeOut(200).val('');
-			file.val( attachment );
+			$('#smpldoc_item_file').val( attachment );
 			file.delay(200).fadeIn(100);
 			if (attachment_url && attachment_filename) {
 				$('#smpldoc_filename').html( '<a href="'+attachment_url+'">'+(attachment_filename || '')+'</a>' );
@@ -279,7 +279,7 @@ jQuery(document).ready(function($){
 				item.find('.el_title').html( res.data.title );
 
 				if(res.data.type == 'link') content = '<a href="'+res.data.content+'">'+res.data.content+'</a>';
-				else if(res.data.type == 'file') content = '<a href="'+res.data.attachment_url+'">'+res.data.attachment_name+'</a>';
+				else if(res.data.type == 'file') content = '<a href="'+res.data.attachment_url+'">'+res.data.attachment_url+'</a>';
 				else content = res.data.content;
 
 				//console.log(res.data);
