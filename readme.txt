@@ -2,8 +2,8 @@
 Contributors: mathieuhays
 Tags: documentation,video,link,file,note,screenr,youtube,vimeo,backend,embed,multisite
 Requires at least: 3.0.1
-Tested up to: 4.2.2
-Stable tag: 1.2.3
+Tested up to: 4.4.2
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,7 +38,7 @@ Backend Users and Administrators can pin items to highlight them.
 * Serbo-Croatian (thanks to [Borisa Djuraskovic](http://www.webhostinghub.com/)) (adapted from version 1.1.x)
 * Dutch (thanks to [Gerhard Hoogterp](http://www.funsite.eu))
 
-= Contribute = 
+= Contribute =
 
 You can submit issues and pull request on [Github](https://github.com/mathieuhays/Simple-Documentation)
 
@@ -48,6 +48,10 @@ The installation is not tricky. It's simple as activating the plugin and Add con
 Hit the import/export button to copy your installation on multiple WP installations.
 
 == Changelog ==
+
+= 1.2.4 =
+
+* Fix file attachment edition issues
 
 = 1.2.3 =
 

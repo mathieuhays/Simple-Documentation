@@ -1,24 +1,24 @@
 <?php
-	
+
 	if ( ! defined( 'ABSPATH' ) ) exit;
-	
+
 	global $wp_roles, $wpdb;
-    	
+
     	$entries = $wpdb->get_results("SELECT * FROM $wpdb->simpleDocumentation ORDER BY ordered ASC");
 	?>
 	<div class="wrap">
-		
+
 		<h2><?php _e( 'Simple Documentation', $this->slug ); ?> <a href="#add_new_content" class="add-new-h2" id="swtch_btn"><?php _e( 'Add New', $this->slug ); ?></a></h2>
 
 		<div class="<?php echo $this->slug; ?> clearfix">
-			
+
 			<div class="smpldcmttn_main">
-				
+
 				<div id="sd_list">
 				<h3><?php _e( 'Documentation list', $this->slug ); ?></h3>
-				
+
 				<ul class="list_doc" id="simpledoc_list">
-					
+
 					<?php
 						$i=0;
 						foreach($entries as $item){
@@ -27,39 +27,39 @@
 							$title = stripslashes($item->title);
 							$content = htmlspecialchars_decode(stripslashes($item->content));
 							if($item->type == 'file'){
-								
+
 								// File from import
 								if( !$item->attachment_id){
 									$file = json_decode(htmlspecialchars_decode($item->content));
 									$url = $file->url;
 								}else{
-									$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));	
+									$url = htmlspecialchars(wp_get_attachment_url($item->attachment_id));
 								}
-								
+
 								$content = "<a href='$url'>$url</a>";
 							}
 							if($item->type == 'link') $content = "<a href='$content'>$content</a>";
-							
+
 							$usersAllowed = '';
-							
+
 							if($item->restricted){ $users = json_decode( $item->restricted ); }
-							else{ 
+							else{
 								$usersAllowed = __( '(default) ', $this->slug );
 								$users = $this->settings['user_role'];
 							}
-							
+
 							$registered_usr = $wp_roles->roles;
 							$ua = 0;
-							
+
 							// Import empty roles fix
 							if(empty($users)) $users = $this->settings['user_role'];
-							
+
 							foreach($users as $user){
 								if($ua>0) $usersAllowed .= ', ';
 								/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'], $this->slug );
 								$ua++;
 							}
-							
+
 							echo "
 							<li id='simpledoc_{$id}' class='smpldoc_li'>
 								<div class='el_front' data-id='{$id}' data-order='{$i}'>
@@ -80,16 +80,16 @@
 									{$content}
 								</div>
 							</li>";
-							
+
 							$i++;
 						}
-					?>		
+					?>
 				</ul>
 				</div>
 				<div id="sd_add" style="display:none">
-				
+
 					<h3><?php _e( 'Add Content', $this->slug ); ?></h3>
-					
+
 					<ul class="add_list clearfix">
 						<li>
 							<a href="#video" data-type='video' id='smdoc_video_cat'><i class="fa fa-youtube-play"></i><br />
@@ -108,7 +108,7 @@
 							<?php _e( 'File', $this->slug ); ?></a>
 						</li>
 					</ul>
-					
+
 					<div class="smpldoc_form">
 						<div id="smpldoc_overlay"></div>
 						<table class="form-table">
@@ -122,7 +122,7 @@
 										<?php wp_editor( '', 'smpldoc_item_content', $settings = array(
 											'media_buttons' => false,
 											'teeny' => true
-										)); ?>						
+										)); ?>
 									</td>
 								</tr>
 								<tr valign="top" class="smpldoc_link_field" style="display:none" id="smpldoc_input">
@@ -143,13 +143,13 @@
 										<small>
 											<?php _e( 'Leave blank to use default', $this->slug ); ?><br/>
 											<?php _e( 'Current Defaults', $this->slug ); ?>:<br />
-											<?php 
+											<?php
 												$i=0;
-												foreach($this->settings['user_role'] as $defrol){ 
+												foreach($this->settings['user_role'] as $defrol){
 													if($i>0) echo ', ';
 													_e( $defrol );
 													$i++;
-												} 
+												}
 											?>
 										</small>
 									</th>
@@ -170,21 +170,21 @@
 							</tbody>
 						</table>
 					</div>
-					
+
 					<input type="hidden" id="item_type" value='nope' />
 					<input type="hidden" id="item_id" value='nope' />
 				</div>
-			
+
 			</div>
-			
+
 			<div class="smpldcmttn_side">
 				<h3><?php _e( 'Information', $this->slug ); ?></h3>
-				
+
 				<p><?php _e('Welcome to Simple Documentation.', $this->slug ); ?></p>
-				
+
 				<h2><?php _e('Update', $this->slug ); ?> 1.2</h2>
 				<p><?php _e( "This new update comes with new features such as item re-ordering and restricting access per user.", $this->slug ); ?></p>
-				
+
 				<h2><?php _e('Contribution', $this->slug ); ?></h2>
 				<ul>
 					<li><?php _e('Spanish translation by', $this->slug ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
@@ -193,10 +193,10 @@
 					<li><?php _e('Dutch translation by', $this->slug ); ?> <a href='http://www.funsite.eu'>Gerhard Hoogterp</a></li>
 				</ul>
 				<p><?php _e('If you want to contribute, feel free to ', $this->slug); ?><a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', $this->slug ); ?></a> <?php _e('or', $this->slug ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', $this->slug ); ?></a></p>
-				
-				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='https://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('Report issues', $this->slug); ?></a></p>
+
+				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='https://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='https://github.com/mathieuhays/Simple-Documentation/issues'><?php _e('Report issues', $this->slug); ?></a></p>
 			</div>
-		
+
 		</div>
-	
+
 	</div>
