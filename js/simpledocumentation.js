@@ -115,11 +115,11 @@ jQuery(document).ready(function($){
 
 		$('#item_type').val(type);
 
-		var content,
-			attachment,
-			attachment_url,
-			attachment_filename,
-			title;
+		var content = '',
+			attachment = 0,
+			attachment_url = '',
+			attachment_filename = '',
+			title = '';
 
 		$('#smpldoc_additem').attr('data-action', 'add').text( ajax_object.add_item );
 
@@ -270,7 +270,6 @@ jQuery(document).ready(function($){
 				$('#simpledoc_'+res.id).fadeOut(500);
 			}else if(res.type == 'get-data'){
 
-				console.log(res.data);
 				fill_form(res.data);
 
 			}else if(res.type == 'edit'){
