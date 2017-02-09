@@ -1,0 +1,57 @@
+//
+//  Simple Documentation - Component
+//  - Type Selector
+//
+
+$type-selector-item-border: 1px solid $toolbar-border-color;
+$type-selector-active-state: rgba(255,255,255,1);
+
+.simpledoc-type-selector {
+    background: $toolbar-background-color;
+    border: 1px solid $toolbar-border-color;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    &__button {
+        background: transparent;
+        border: 0;
+        color: #ddd;
+        cursor: pointer;
+        outline: none;
+        padding: 10px 20px;
+        transition: background-color .6s, color .6s;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+            background-color: $type-selector-active-state;
+            color: #333;
+        }
+    }
+
+    &__item {
+        border-right: $type-selector-item-border;
+        display: inline-block;
+        margin-bottom: 0;
+        padding: 0;
+        vertical-align: middle;
+
+        &.first {
+            border-left: $type-selector-item-border;
+        }
+
+        &.selected {
+            .simpledoc-type-selector__button {
+                background-color: $type-selector-active-state;
+                color: #333;
+            }
+        }
+    }
+
+    .dashicons {
+        height: 16px;
+        margin-right: 10px;
+        width: 16px;
+    }
+}
