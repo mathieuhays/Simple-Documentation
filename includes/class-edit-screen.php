@@ -5,10 +5,11 @@
 
 namespace SimpleDocumentation;
 
-use Utilities\Loader;
+use SimpleDocumentation\Utilities\Loader;
 use SimpleDocumentation\Core;
-use DocumentationItems\DocumentationItem;
-use DocumentationItems\DocumentationTypes;
+use SimpleDocumentation\DocumentationItems\DocumentationItem;
+use SimpleDocumentation\DocumentationItems\DocumentationItems;
+use SimpleDocumentation\DocumentationItems\DocumentationTypes;
 
 class EditScreen {
     private static $instance;
@@ -76,7 +77,7 @@ class EditScreen {
             'simpleDocumentationEditScreen',
             [
                 'metaboxes' => array_map( function( $type ) {
-                    return sprintf( '%s-%s', CORE::SLUG, $type->get_slug() )
+                    return sprintf( '%s-%s', CORE::SLUG, $type->get_slug() );
                 }, DocumentationTypes::get_instance()->get_all() ),
                 'current_type' => $current_type->get_slug()
             ]

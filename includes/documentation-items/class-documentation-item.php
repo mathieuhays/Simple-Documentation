@@ -5,73 +5,11 @@
 
 namespace SimpleDocumentation\DocumentationItems;
 
+use SimpleDocumentation\PostType_Item;
 use SimpleDocumentation\DocumentationItems\DocumentationItems;
 use SimpleDocumentation\DocumentationItems\DocumentationTypes;
 
-class DocumentationItem {
-    public $ID;
-    public $post;
-
-    /**
-     *  Construct
-     *
-     *  @param  Int|WP_Post     $post_mixed
-     */
-    public function __construct( $post_mixed ) {
-        $this->ID = Utilities\get_post_id( $post_mixed );
-    }
-
-
-    /**
-     *  Get Post ID For Object
-     *
-     *  @return int
-     */
-    public function get_id() {
-        return $this->ID;
-    }
-
-
-    /**
-     *  Get WP_Post for object
-     *
-     *  @return WP_Post
-     */
-    public function get_post() {
-        if ( empty( $this->post ) ) {
-            $this->post = get_post( $this->get_id() );
-        }
-
-        return $this->post;
-    }
-
-
-    /**
-     *  Get Item Title
-     *
-     *  @return string
-     */
-    public function get_title() {
-        return get_the_title( $this->get_id() );
-    }
-
-
-    /**
-     *  Get Item Content
-     *
-     *  @return string
-     */
-    public function get_content() {
-        $post = $this->get_post();
-
-        if ( !empty( $post->post_content ) ) {
-            return apply_filters( 'the_content', $post->post_content );
-        }
-
-        return '';
-    }
-
-
+class DocumentationItem extends PostType_Item {
     /**
      *  Get View Link
      *

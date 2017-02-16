@@ -3,7 +3,7 @@
  *  Plugin Name: Simple Documentation
  *  Plugin URI: https://mathieuhays.co.uk/simple-documentation/
  *  Description: Plugin description here... @TODO
- *  Version: 2.0.0
+ *  Version: 2.0.0-alpha
  *  Author: Mathieu Hays
  *  Author URI: https://mathieuhays.co.uk
  *  License: GPL2

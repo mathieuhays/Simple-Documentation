@@ -7,8 +7,8 @@
 
 namespace SimpleDocumentation;
 
-use Utilities\Loader;
-use DocumentationItems\DocumentationItems;
+use SimpleDocumentation\Utilities\Loader;
+use SimpleDocumentation\DocumentationItems\DocumentationItems;
 use SimpleDocumentation\Core;
 
 class PluginPage {

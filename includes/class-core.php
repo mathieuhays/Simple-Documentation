@@ -35,17 +35,12 @@ class Core {
         // Require all files
 
         // Utilities
-        require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-post-type-column-manager.php';
+        require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-post-type-column-helper.php';
         require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterator.php';
         require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterators.php';
-        require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/utilities.php';
+        require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-loader.php';
 
-        // DocumentationItems
-        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-item.php';
-        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-items.php';
-        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-type.php';
-        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-types.php';
-
+        require_once SIMPLEDOC_INCLUDES_DIR . '/class-post-type-item.php';
         require_once SIMPLEDOC_INCLUDES_DIR . '/class-dashboard.php';
         require_once SIMPLEDOC_INCLUDES_DIR . '/class-edit-screen.php';
         require_once SIMPLEDOC_INCLUDES_DIR . '/class-export.php';
@@ -54,18 +49,18 @@ class Core {
         require_once SIMPLEDOC_INCLUDES_DIR . '/class-settings.php';
         require_once SIMPLEDOC_INCLUDES_DIR . '/class-upgrade.php';
 
+        // DocumentationItems
+        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-item.php';
+        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-items.php';
+        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-type.php';
+        require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-types.php';
+
         /**
          *  Load bootstraps when relevant
          */
 
         // Getters & Setters for the plugin's settings
         Settings::get_instance()->bootstrap();
-
-        // Register & Handle Documentation Item Types
-        DocumentationItems\DocumentationTypes::get_instance()->bootstrap();
-
-        // Register && handle Documentation Items
-        DocumentationItems\DocumentationItems::get_instance()->bootstrap();
 
         // Upgrade - handle data structure convertion from previous versions
         Upgrade::get_instance()->bootstrap();
@@ -84,6 +79,12 @@ class Core {
 
         // Export
         Export::get_instance()->bootstrap();
+
+        // Register & Handle Documentation Item Types
+        DocumentationItems\DocumentationTypes::get_instance()->bootstrap();
+
+        // Register && handle Documentation Items
+        DocumentationItems\DocumentationItems::get_instance()->bootstrap();
     }
 
 
@@ -104,7 +105,7 @@ class Core {
      *
      *  @return Core singleton instance
      */
-    public function get_instance() {
+    public static function get_instance() {
         if ( is_null( self::$instance ) ) {
             self::$instance = new self;
         }
