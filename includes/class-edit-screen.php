@@ -60,7 +60,7 @@ class EditScreen {
 
 		$current_type = DocumentationTypes::get_instance()->get_default();
 
-		if ( $self  === 'post.php' ) {
+		if ( $self === 'post.php' ) {
 			$current_type = (new DocumentationItem)->get_type();
 		}
 
@@ -79,7 +79,7 @@ class EditScreen {
 				'metaboxes' => array_map( function( $type ) {
 					return sprintf( '%s-%s', CORE::SLUG, $type->get_slug() );
 				}, DocumentationTypes::get_instance()->get_all() ),
-				'current_type' => $current_type->get_slug()
+				'current_type' => $current_type->get_slug(),
 			]
 		);
 	}
@@ -106,7 +106,6 @@ class EditScreen {
 			'normal'
 		);
 
-
 		/**
 		 *  Note Meta Box
 		 */
@@ -118,7 +117,6 @@ class EditScreen {
 			'normal'
 		);
 
-
 		/**
 		 *  Note Meta Box
 		 */
@@ -129,7 +127,6 @@ class EditScreen {
 			DocumentationItems::POST_TYPE,
 			'normal'
 		);
-
 
 		/**
 		 *  Note Meta Box
