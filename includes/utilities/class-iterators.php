@@ -14,64 +14,64 @@
 namespace SimpleDocumentation\Utilities;
 
 class Iterators {
-    /**
-     *  @var Iterators singleton instance
-     */
-    private static $instance;
-    private        $iterators = [];
+	/**
+	 *  @var Iterators singleton instance
+	 */
+	private static $instance;
+	private        $iterators = [];
 
 
-    /**
-     *  Setup new Iterator - replicates setup_post_data in WP (more or less)
-     *
-     *  @param  Iterator    $iterator
-     *  @return Iterator
-     */
-    public function setup( $iterator ) {
-        $this->iterators[] = $iterator;
+	/**
+	 *  Setup new Iterator - replicates setup_post_data in WP (more or less)
+	 *
+	 *  @param  Iterator    $iterator
+	 *  @return Iterator
+	 */
+	public function setup( $iterator ) {
+		$this->iterators[] = $iterator;
 
-        return $this->get();
-    }
-
-
-    /**
-     *  Get Current Iterator
-     *
-     *  @return Iterator or false if there's none
-     */
-    public function get() {
-        $length = count( $this->iterators );
-
-        if ( $length === 0 ) {
-            return false;
-        }
-
-        return $this->iterators[ $length - 1 ];
-    }
+		return $this->get();
+	}
 
 
-    /**
-     *  Reset Iterators' handler to the previous iterator
-     *
-     *  @return bool - whether there's still iterators to go through or not
-     */
-    public function reset() {
-        array_pop( $this->iterators );
+	/**
+	 *  Get Current Iterator
+	 *
+	 *  @return Iterator or false if there's none
+	 */
+	public function get() {
+		$length = count( $this->iterators );
 
-        return !empty( $this->iterators );
-    }
+		if ( $length === 0 ) {
+			return false;
+		}
+
+		return $this->iterators[ $length - 1 ];
+	}
 
 
-    /**
-     *  Get Instance
-     *
-     *  @return Iterators singleton instance
-     */
-    public static function get_instance() {
-        if ( is_null( self::$instance ) ) {
-            self::$instance = new self;
-        }
+	/**
+	 *  Reset Iterators' handler to the previous iterator
+	 *
+	 *  @return bool - whether there's still iterators to go through or not
+	 */
+	public function reset() {
+		array_pop( $this->iterators );
 
-        return self::$instance;
-    }
+		return ! empty( $this->iterators );
+	}
+
+
+	/**
+	 *  Get Instance
+	 *
+	 *  @return Iterators singleton instance
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
+	}
 }

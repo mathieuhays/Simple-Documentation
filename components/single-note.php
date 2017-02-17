@@ -11,9 +11,9 @@ $item = new DocumentationItem( $documentation_id );
 
 ?>
 <div>
-    <h1>Note: <?php echo $item->get_title() ?></h1>
+	<h1>Note: <?php echo $item->get_title() ?></h1>
 
-    <div>
-        <?php echo $item->get_content() ?>
-    </div>
+	<div>
+		<?php echo $item->get_content() ?>
+	</div>
 </div>

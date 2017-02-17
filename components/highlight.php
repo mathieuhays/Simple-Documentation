@@ -4,5 +4,5 @@
  */
 ?>
 <div>
-    highlight
+	highlight
 </div>
