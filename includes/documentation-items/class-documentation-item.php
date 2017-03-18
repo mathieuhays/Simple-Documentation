@@ -16,7 +16,7 @@ class DocumentationItem extends PostType_Item {
 	 *  @return string
 	 */
 	public function get_view_link() {
-		// @TODO
+		// @TODO implement plugin item view permalink
 	}
 
 
