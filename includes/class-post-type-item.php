@@ -7,7 +7,7 @@ namespace SimpleDocumentation;
 
 class PostType_Item {
 	/**
-	 *  @var WP_Post
+	 *  @var \WP_Post
 	 */
 	private $post;
 
@@ -20,7 +20,7 @@ class PostType_Item {
 	/**
 	 *  Construct
 	 *
-	 *  @param  WP_Post|Int $post - optional - default to current post
+	 *  @param  \WP_Post|Int $post - optional - default to current post
 	 */
 	public function __construct( $post = null ) {
 		$this->post = get_post( $post );
