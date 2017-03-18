@@ -9,7 +9,7 @@ use SimpleDocumentation\Utilities\PostTypeColumnHelper;
 
 class DocumentationItems {
 	/**
-	 *  @var Items singleton instance
+	 *  @var DocumentationItems singleton instance
 	 */
 	private static $instance;
 
@@ -135,7 +135,7 @@ class DocumentationItems {
 	/**
 	 *  Get instance
 	 *
-	 *  @return Items singleton instance
+	 *  @return DocumentationItems singleton instance
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
