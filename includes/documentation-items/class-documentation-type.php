@@ -57,7 +57,7 @@ class DocumentationType {
 			return sprintf( 'dashicons %s', $class );
 		}
 
-		return $class;
+		return (string) $class;
 	}
 
 
