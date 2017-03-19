@@ -5,8 +5,6 @@
 
 namespace SimpleDocumentation\DocumentationItems;
 
-use SimpleDocumentation\DocumentationItems\DocumentationType;
-
 class DocumentationTypes {
 	private static $instance;
 	public         $types = [];
