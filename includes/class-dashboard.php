@@ -5,7 +5,7 @@
 
 namespace SimpleDocumentation;
 
-use Utilities\Loader;
+use \SimpleDocumentation\Utilities\Loader;
 
 class Dashboard {
 	/**
