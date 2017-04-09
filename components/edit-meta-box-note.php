@@ -9,5 +9,5 @@ wp_editor(
 	 eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
 	 lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget
 	 metus.',
-	'simpledoc_note_editor'
+	'simpledocumentation_note_data'
 );

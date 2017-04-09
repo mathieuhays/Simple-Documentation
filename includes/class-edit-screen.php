@@ -27,12 +27,12 @@ class EditScreen {
 		/**
 		 *  Load JavaScript
 		 */
-		add_action( 'admin_init', [ $this, 'enqueue_js' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_js' ] );
 
 		/**
-		 *  Register Meta Boxes
+		 * On Item Save
 		 */
-		add_action( 'add_meta_boxes_' . DocumentationItems::POST_TYPE, [ $this, 'register_meta_boxes' ] );
+		add_action( 'save_post_' . DocumentationItems::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
 	}
 
 
@@ -46,21 +46,21 @@ class EditScreen {
 
 	/**
 	 *  Enqueue JavaScript
+	 *
+	 * @param string $hook
 	 */
-	public function enqueue_js() {
-		global $self;
-
+	public function enqueue_js( $hook ) {
 		/**
 		 *  Restrict Asset loading for the edit screen
 		 */
-		if ( $self !== 'post-new.php' &&
-			 $self !== 'post.php' ) {
-			return false;
+		if ( $hook !== 'post-new.php' &&
+		     $hook !== 'post.php' ) {
+			return;
 		}
 
 		$current_type = DocumentationTypes::get_instance()->get_default();
 
-		if ( $self === 'post.php' ) {
+		if ( $hook === 'post.php' ) {
 			$current_type = (new DocumentationItem)->get_type();
 		}
 
@@ -77,7 +77,7 @@ class EditScreen {
 			'simpleDocumentationEditScreen',
 			[
 				'metaboxes' => array_map( function( $type ) {
-					return sprintf( '%s-%s', CORE::SLUG, $type->get_slug() );
+					return $type->get_slug();
 				}, DocumentationTypes::get_instance()->get_all() ),
 				'current_type' => $current_type->get_slug(),
 			]
@@ -86,90 +86,38 @@ class EditScreen {
 
 
 	/**
-	 *  Register Meta Boxes
+	 * On Item Save
+	 *
+	 * @param int $post_id
+	 * @param \WP_Post $post
+	 * @param bool $update
 	 */
-	public function register_meta_boxes() {
-		/**
-		 *  @TODO generate this from DocumentationTypes list.
-		 *  add property to type object whether we need to register a meta box
-		 *  or not
-		 */
+	public function on_save( $post_id, $post, $update ) {
+		if ( ! isset( $_REQUEST['simpledocumentation_type'] ) ) {
+			return;
+		}
 
-		/**
-		 *  Note Meta Box
-		 */
-		add_meta_box(
-			CORE::SLUG . '-note',
-			__( 'Note settings', 'simple-documentation' ),
-			[ $this, 'render_note_meta_box' ],
-			DocumentationItems::POST_TYPE,
-			'normal'
-		);
+		$type_slug = $_REQUEST['simpledocumentation_type'];
+		$type = DocumentationTypes::get_instance()->get( $type_slug );
 
-		/**
-		 *  Note Meta Box
-		 */
-		add_meta_box(
-			CORE::SLUG . '-video',
-			__( 'Video settings', 'simple-documentation' ),
-			[ $this, 'render_video_meta_box' ],
-			DocumentationItems::POST_TYPE,
-			'normal'
-		);
+		if ( $type === false ) {
+			/**
+			 * Un-recognised type, something went wrong here
+			 */
+			return;
+		}
 
-		/**
-		 *  Note Meta Box
-		 */
-		add_meta_box(
-			CORE::SLUG . '-link',
-			__( 'Link settings', 'simple-documentation' ),
-			[ $this, 'render_link_meta_box' ],
-			DocumentationItems::POST_TYPE,
-			'normal'
-		);
+		$data_field_name = sprintf( 'simpledocumentation_%s_data', $type->get_slug() );
 
-		/**
-		 *  Note Meta Box
-		 */
-		add_meta_box(
-			CORE::SLUG . '-file',
-			__( 'File settings', 'simple-documentation' ),
-			[ $this, 'render_file_meta_box' ],
-			DocumentationItems::POST_TYPE,
-			'normal'
-		);
-	}
+		if ( ! isset( $_REQUEST[ $data_field_name ] ) ) {
+			/**
+			 * Data type should provide a data field to be valid
+			 */
+			return;
+		}
 
-
-	/**
-	 *  Render Note Meta Box
-	 */
-	public function render_note_meta_box() {
-		Loader::component( 'edit-meta-box-note' );
-	}
-
-
-	/**
-	 *  Render Video Meta Box
-	 */
-	public function render_video_meta_box() {
-		Loader::component( 'edit-meta-box-video' );
-	}
-
-
-	/**
-	 *  Render Link Meta Box
-	 */
-	public function render_link_meta_box() {
-		Loader::component( 'edit-meta-box-link' );
-	}
-
-
-	/**
-	 *  Render File Meta Box
-	 */
-	public function render_file_meta_box() {
-		Loader::component( 'edit-meta-box-file' );
+		$item = new DocumentationItem( $post );
+		$item->set_type( $type );
 	}
 
 

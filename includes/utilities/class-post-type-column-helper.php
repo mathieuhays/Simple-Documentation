@@ -206,9 +206,10 @@ class PostTypeColumnHelper {
 	/**
 	 *  Append data for key in array. Creates array if not defined already
 	 *
-	 *  @param  array   $array
-	 *  @param  string  $key
-	 *  @param  mixed   $data
+	 * @param  array   $array
+	 * @param  string  $key
+	 * @param  mixed   $data
+	 * @return array
 	 */
 	public static function append( $array, $key, $data ) {
 		if ( ! isset( $array[ $key ] ) ) {

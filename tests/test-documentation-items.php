@@ -30,7 +30,7 @@ class DocumentationItemsTests extends WP_UnitTestCase {
 
 	public function test_convert_post_to_documentation_item() {
 		$post = $this->factory->post->create_and_get([
-			'post_type' => DocumentationItems::POST_TYPE
+			'post_type' => DocumentationItems::POST_TYPE,
 		]);
 
 		$result_post = DocumentationItems::get_instance()->convert_post_to_documentation_item( $post );

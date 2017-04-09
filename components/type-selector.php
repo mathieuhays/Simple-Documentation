@@ -22,12 +22,13 @@ if ( $iterator->have_items() ) {
 
 		printf(
 			'<li class="simpledoc-type-selector__item %s %s">
-				<button type="button" class="simpledoc-type-selector__button">
+				<button type="button" class="simpledoc-type-selector__button js-edit-type-selector" data-type="%s">
 					%s %s
 				</button>
 			</li>',
 			$iterator->current_item_is_first() ? 'first' : '',
 			$selected ? 'selected' : '',
+			$type->get_slug(),
 			$type->get_icon(),
 			$type->get_label()
 		);
@@ -35,3 +36,6 @@ if ( $iterator->have_items() ) {
 
 	echo '</ol>';
 }
+
+?>
+<input type="hidden" name="simpledocumentation_type" id="simpledocumentation_type" value="">

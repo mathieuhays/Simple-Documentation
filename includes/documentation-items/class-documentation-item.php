@@ -89,4 +89,29 @@ class DocumentationItem extends PostType_Item {
 			true
 		);
 	}
+
+
+	/**
+	 * Set Item Type
+	 *
+	 * @param DocumentationType $type
+	 */
+	public function set_type( $type ) {
+		update_post_meta( $this->get_id(), 'simpledocumentation_type', $type->get_slug() );
+	}
+
+
+	/**
+	 * Set Item Type Data
+	 *
+	 * @param DocumentationType $type
+	 * @param mixed $data
+	 */
+	public function set_type_data( $type, $data ) {
+		update_post_meta(
+			$this->get_id(),
+			sprintf( 'simpledocumentation_%s_data', $type->get_slug() ),
+			$data
+		);
+	}
 }

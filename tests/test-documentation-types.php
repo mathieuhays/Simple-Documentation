@@ -45,3 +45,4 @@ class DocumentationTypesTests extends WP_UnitTestCase {
 		// @TODO implement get_all() test
 	}
 }
+w

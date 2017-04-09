@@ -28,10 +28,10 @@ const ROOT = __dirname;
 const ASSETS = path.join(ROOT, 'assets');
 const JS = path.join(ASSETS, 'js');
 const CSS = path.join(ASSETS, 'css');
-const SCSS = path.join(ASSETS, 'scss');
+const SCSS = path.join(ASSETS, 'sass');
 
 // Globs
-const ALL_SCSS_FILES = [ path.join(SCSS, '**/*.scss'), '!' + path.join(SCSS, 'bower_components/**/*.*') ];
+const ALL_SCSS_FILES = [ path.join(SCSS, '**/*.scss') ];
 const MAIN_SCSS_FILES = [ path.join(SCSS, '**/*.scss'), '!' + path.join(SCSS, '**/_*.scss') ];
 const JS_FILES = [ path.join(JS, '*.js'), '!' + path.join(JS, '*.min.js') ];
 const PHP_FILES = [ path.join(ROOT, '**/*.php') ];
@@ -65,7 +65,7 @@ gulp.task('scss:build:development', function() {
     return gulp.src(MAIN_SCSS_FILES)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        // .pipe(postcss([ autoprefixer({ browsers: ['> 5%', 'IE 9'] }) ]))
+        .pipe(postcss([ autoprefixer({ browsers: ['> 5%', 'IE 9'] }) ]))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(CSS));
 });

@@ -6,7 +6,14 @@
 namespace SimpleDocumentation\DocumentationItems;
 
 class DocumentationTypes {
+	/**
+	 * @var DocumentationTypes
+	 */
 	private static $instance;
+
+	/**
+	 * @var DocumentationType[]
+	 */
 	public         $types = [];
 
 
@@ -71,11 +78,14 @@ class DocumentationTypes {
 	 *  @param  string  $icon
 	 */
 	public function register( $slug, $label, $icon = null ) {
-		$this->types[ $slug ] = new DocumentationType(
+		$type = new DocumentationType(
 			$slug,
 			$label,
 			$icon
 		);
+
+		$this->types[ $slug ] = $type;
+		$type->setup();
 	}
 
 
@@ -83,7 +93,7 @@ class DocumentationTypes {
 	 *  Get Documentation Type
 	 *
 	 *  @param  string  $slug
-	 *  @return DocumentationType or false
+	 *  @return DocumentationType|false
 	 */
 	public function get( $slug ) {
 		if ( isset( $this->types[ $slug ] ) ) {
@@ -110,10 +120,20 @@ class DocumentationTypes {
 	/**
 	 *  Get All Types
 	 *
-	 *  @return array
+	 *  @return DocumentationType[]
 	 */
 	public function get_all() {
 		return array_values( $this->types );
+	}
+
+
+	/**
+	 * Get List of Slugs
+	 *
+	 * @return string[]
+	 */
+	public function get_slugs() {
+		return array_keys( $this->types );
 	}
 
 

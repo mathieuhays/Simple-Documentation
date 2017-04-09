@@ -56,7 +56,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 		$test_title = 'Test Title';
 
 		$post = $this->factory->post->create_and_get([
-			'post_title' => $test_title
+			'post_title' => $test_title,
 		]);
 
 		$item = new PostType_Item( $post );
@@ -80,7 +80,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 		$test_content = '<p>Test Content</p>';
 
 		$post = $this->factory->post->create_and_get([
-			'post_content' => $test_content
+			'post_content' => $test_content,
 		]);
 
 		$item = new PostType_Item( $post );
@@ -107,7 +107,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 		global $post;
 
 		$random_page = $this->factory->post->create_and_get([
-			'post_type' => 'page'
+			'post_type' => 'page',
 		]);
 
 		$post = $random_page;
@@ -121,5 +121,4 @@ class PostTypeItemTests extends WP_UnitTestCase {
 
 		wp_reset_postdata();
 	}
-
 }
