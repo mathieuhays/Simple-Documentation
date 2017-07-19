@@ -6,14 +6,9 @@
 namespace SimpleDocumentation;
 
 use SimpleDocumentation\Utilities\Loader;
-use SimpleDocumentation\Core;
-use SimpleDocumentation\DocumentationItems\DocumentationItem;
-use SimpleDocumentation\DocumentationItems\DocumentationItems;
-use SimpleDocumentation\DocumentationItems\DocumentationTypes;
 
 class EditScreen {
 	private static $instance;
-
 
 	/**
 	 *  Bootstrap
@@ -32,7 +27,9 @@ class EditScreen {
 		/**
 		 * On Item Save
 		 */
-		add_action( 'save_post_' . DocumentationItems::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
+		add_action( 'save_post_' . DocumentationItem::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
+
+		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 	}
 
 
@@ -58,12 +55,6 @@ class EditScreen {
 			return;
 		}
 
-		$current_type = DocumentationTypes::get_instance()->get_default();
-
-		if ( $hook === 'post.php' ) {
-			$current_type = (new DocumentationItem)->get_type();
-		}
-
 		wp_enqueue_script(
 			Core::SLUG . '-edit-screen',
 			SIMPLEDOC_JS_URL . '/edit-screen.js',
@@ -76,10 +67,8 @@ class EditScreen {
 			CORE::SLUG . '-edit-screen',
 			'simpleDocumentationEditScreen',
 			[
-				'metaboxes' => array_map( function( $type ) {
-					return $type->get_slug();
-				}, DocumentationTypes::get_instance()->get_all() ),
-				'current_type' => $current_type->get_slug(),
+				'metaboxes' => [],
+				'current_type' => false,
 			]
 		);
 	}
@@ -93,31 +82,65 @@ class EditScreen {
 	 * @param bool $update
 	 */
 	public function on_save( $post_id, $post, $update ) {
-		if ( ! isset( $_REQUEST['simpledocumentation_type'] ) ) {
-			return;
-		}
+		//.
+	}
 
-		$type_slug = $_REQUEST['simpledocumentation_type'];
-		$type = DocumentationTypes::get_instance()->get( $type_slug );
 
-		if ( $type === false ) {
-			/**
-			 * Un-recognised type, something went wrong here
-			 */
-			return;
-		}
+	/**
+	 * Add attachment meta box to the edit screen
+	 */
+	public function register_meta_boxes() {
+		/**
+		 * Attachments Meta Boxes
+		 */
+		add_meta_box(
+			'simpledocumentation-attachment',
+			'Attachments',
+			[ $this, 'attachment_meta_box_callback' ],
+			DocumentationItem::POST_TYPE,
+			'side'
+		);
 
-		$data_field_name = sprintf( 'simpledocumentation_%s_data', $type->get_slug() );
+		/**
+		 * User Role Restriction
+		 */
+		add_meta_box(
+			'simpledocumentation-user-roles',
+			'Restrict access to user roles',
+			[ $this, 'user_roles_meta_box_callback' ],
+			DocumentationItem::POST_TYPE,
+			'side'
+		);
 
-		if ( ! isset( $_REQUEST[ $data_field_name ] ) ) {
-			/**
-			 * Data type should provide a data field to be valid
-			 */
-			return;
-		}
+		/**
+		 * Multisite options
+		 */
+		add_meta_box(
+			'simpledocumentation-multisite-options',
+			'Multisite Options',
+			[ $this, 'multisite_meta_box_callback' ],
+			DocumentationItem::POST_TYPE,
+			'side'
+		);
+	}
 
-		$item = new DocumentationItem( $post );
-		$item->set_type( $type );
+
+	/**
+	 * Attachment Meta Box Component Loader
+	 */
+	public function attachment_meta_box_callback() {
+		Loader::component( 'meta-box-attachments' );
+	}
+
+	/**
+	 * Restrict User Roles Meta Box Component Loader
+	 */
+	public function user_roles_meta_box_callback() {
+		Loader::component( 'meta-box-user-roles' );
+	}
+
+	public function multisite_meta_box_callback() {
+		Loader::component( 'meta-box-multisite' );
 	}
 
 

@@ -8,8 +8,6 @@
 namespace SimpleDocumentation;
 
 use SimpleDocumentation\Utilities\Loader;
-use SimpleDocumentation\DocumentationItems\DocumentationItems;
-use SimpleDocumentation\Core;
 
 class PluginPage {
 	private static $instance;
@@ -97,14 +95,14 @@ class PluginPage {
 		if ( $self === 'post.php' && isset( $_GET['post'] ) ) {
 			$post_id = (int) $_GET['post'];
 
-			if ( get_post_type( $post_id ) === DocumentationItems::POST_TYPE ) {
+			if ( get_post_type( $post_id ) === DocumentationItem::POST_TYPE ) {
 				$force_highlight = true;
 			}
 		}
 
 		// Creating a new documentation item
 		if ( $self === 'post-new.php' && isset( $_GET['post_type'] ) &&
-			 $_GET['post_type'] === DocumentationItems::POST_TYPE ) {
+			 $_GET['post_type'] === DocumentationItem::POST_TYPE ) {
 			$force_highlight = true;
 		}
 
@@ -123,7 +121,7 @@ class PluginPage {
 	public function hide_quick_edit() {
 		printf(
 			'<style>.type-%s .row-actions .inline { display: none; }</style>',
-			DocumentationItems::POST_TYPE
+			DocumentationItem::POST_TYPE
 		);
 	}
 
@@ -177,7 +175,7 @@ class PluginPage {
 	 */
 	public function get_manage_link( $format = 'absolute' ) {
 		$relative_url = add_query_arg(
-			[ 'post_type' => DocumentationItems::POST_TYPE ],
+			[ 'post_type' => DocumentationItem::POST_TYPE ],
 			'edit.php'
 		);
 
@@ -197,7 +195,7 @@ class PluginPage {
 	 */
 	public function get_add_new_link() {
 		return add_query_arg(
-			[ 'post_type' => DocumentationItems::POST_TYPE ],
+			[ 'post_type' => DocumentationItem::POST_TYPE ],
 			admin_url( 'post-new.php' )
 		);
 	}
@@ -250,7 +248,7 @@ class PluginPage {
 			$item_id = (int) $_GET[ self::ITEM_ID_PARAM ];
 
 			if ( ! empty( $item_id ) &&
-				get_post_type( $item_id ) === DocumentationItems::POST_TYPE ) {
+				get_post_type( $item_id ) === DocumentationItem::POST_TYPE ) {
 				return $item_id;
 			}
 		}

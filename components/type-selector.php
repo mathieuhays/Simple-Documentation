@@ -9,6 +9,8 @@ use \SimpleDocumentation\Utilities\Iterator;
 use \SimpleDocumentation\DocumentationItems\DocumentationItem;
 use \SimpleDocumentation\DocumentationItems\DocumentationTypes;
 
+/*
+
 $types = DocumentationTypes::get_instance()->get_all();
 $iterator = Iterators::get_instance()->setup( new Iterator( $types ) );
 $item = new DocumentationItem;
@@ -39,3 +41,18 @@ if ( $iterator->have_items() ) {
 
 ?>
 <input type="hidden" name="simpledocumentation_type" id="simpledocumentation_type" value="">
+
+*/ ?>
+<style>
+	.video-banner-button {
+		background: #ddd;
+		border: 0;
+		cursor: pointer;
+		display: block;
+		font-size: 22px;
+		margin-top: 20px;
+		padding: 40px;
+		width: 100%;
+	}
+</style>
+<button class="video-banner-button">Add video</button>

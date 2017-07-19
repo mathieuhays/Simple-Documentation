@@ -42,18 +42,13 @@ class Core {
 
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-post-type-item.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-dashboard.php';
+		require_once SIMPLEDOC_INCLUDES_DIR . '/class-documentation-item.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-edit-screen.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-export.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-import.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-plugin-page.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-settings.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-upgrade.php';
-
-		// DocumentationItems
-		require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-item.php';
-		require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-items.php';
-		require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-type.php';
-		require_once SIMPLEDOC_INCLUDES_DIR . '/documentation-items/class-documentation-types.php';
 
 		/**
 		 *  Load bootstraps when relevant
@@ -81,10 +76,10 @@ class Core {
 		Export::get_instance()->bootstrap();
 
 		// Register & Handle Documentation Item Types
-		DocumentationItems\DocumentationTypes::get_instance()->bootstrap();
+		DocumentationItem::bootstrap();
 
 		// Register && handle Documentation Items
-		DocumentationItems\DocumentationItems::get_instance()->bootstrap();
+//		DocumentationItems\DocumentationItems::get_instance()->bootstrap();
 	}
 
 

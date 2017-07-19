@@ -12,26 +12,26 @@ class PostTypeColumnHelperTests extends WP_UnitTestCase {
 	}
 
 	public function test_handle_column_content() {
-		// @TODO implement test
+		// @TODO implement test_handle_column_content
 	}
 
 	public function test_handle_columns() {
-		// @TODO implement test
+		// @TODO implement test_handle_columns
 	}
 
 	public function test_handle_column_size() {
-		// @TODO implement test
+		// @TODO implement test_handle_column_size
 	}
 
 	public function test_add() {
-		// @TODO implement test
+		// @TODO implement test_add
 	}
 
 	public function test_remove() {
-		// @TODO implement test
+		// @TODO implement test_remove
 	}
 
 	public function test_append() {
-		// @TODO implement test
+		// @TODO implement test_append
 	}
 }

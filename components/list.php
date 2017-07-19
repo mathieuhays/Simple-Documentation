@@ -12,26 +12,30 @@ if ( ! $iterator->have_items() ) {
 } else {
 	echo '
 		<h2>Full list:</h2>
-		<ol>';
+		<ol class="sp-list">';
 
 	while ( $iterator->have_items() ) {
 		$item = $iterator->the_item();
-		$type = $item->get_type();
-		$type_icon = ! empty( $type ) ? $type->get_icon() : '';
+		/**
+		 * @TODO display edit button only if user has the right capibility
+		 */
 
 		printf(
-			'<li>
-				%s %s
-				<a href="%s">(View)</a>
-				-
-				<a href="%s">(Edit)</a>
+			'<li class="sp-list__item sp-doc sp-doc--list-item">
+				<a href="%s" class="sp-doc__title">%s</a>
+				<div class="sp-doc__actions">
+					<a href="%s">Edit</a>
+				</div>
 			</li>',
-			$type_icon,
-			$item->get_title(),
 			$item->get_view_link(),
+			$item->get_title(),
 			$item->get_edit_link()
 		);
 	}
 
 	echo '</ol>';
 }
+
+/**
+ * @TODO handle pagination (js async ideally with browser history mutation)
+ */

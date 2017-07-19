@@ -1,0 +1,11 @@
+//
+//	Simple Documentation
+//	Tools - Helpers
+//
+
+@mixin interactive() {
+	&:hover,
+	&:focus {
+		@content;
+	}
+}

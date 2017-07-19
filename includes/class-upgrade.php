@@ -18,7 +18,7 @@ class Upgrade {
 	 */
 	public function bootstrap() {
 		/**
-		 *  @TODO
+		 *  @TODO implement bootstrap
 		 *  if should_upgrade >> migrate()
 		 */
 	}
@@ -32,7 +32,7 @@ class Upgrade {
 	 */
 	public function should_upgrade() {
 		/**
-		 *  @TODO
+		 *  @TODO implement should_upgrade
 		 *  - Check for old option structure using get_option and the version number
 		 *  - Check if previous version's table exists
 		 */
@@ -46,7 +46,7 @@ class Upgrade {
 	 */
 	public function migrate_options() {
 		/**
-		 *  @TODO
+		 *  @TODO implement migrate_options
 		 *  - Detect version of the data structure used
 		 *  - Rename/move/delete relevant options
 		 *  - Delete legacy options entry
@@ -62,7 +62,7 @@ class Upgrade {
 	 */
 	public function migrate_table_data() {
 		/**
-		 *  @TODO
+		 *  @TODO implement migrate_table_data
 		 *  - Detect Table structure version
 		 *  - move items making possible empty metas are filled with defaults
 		 *    when relevant
