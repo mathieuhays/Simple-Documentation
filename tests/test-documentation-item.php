@@ -40,6 +40,6 @@ class DocumentationItemTests extends WP_UnitTestCase {
 	}
 
 	public function test_is_highlighted() {
-		// @TODO implement is_highlighted() test
+		// @TODO implement test_is_highlighted
 	}
 }
