@@ -2,8 +2,8 @@
 Contributors: mathieuhays
 Tags: documentation,video,link,file,note,screenr,youtube,vimeo,backend,embed,multisite
 Requires at least: 3.0.1
-Tested up to: 4.4.2
-Stable tag: 1.2.4
+Tested up to: 4.8
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,8 @@ This plugins allows you to share 4 types of content:
 As an administrator, you can add, edit or remove content, choose the number of items displayed per page in the widget, the targeted backend user role and customize the widget title and welcome message.
 
 Backend Users and Administrators can pin items to highlight them.
+
+I'm currently working on rewriting this plugin from scratch in order to improve its reliability and make it easier to maintain. Thanks for your patience.
 
 = Features =
 
@@ -48,6 +50,10 @@ The installation is not tricky. It's simple as activating the plugin and Add con
 Hit the import/export button to copy your installation on multiple WP installations.
 
 == Changelog ==
+
+= 1.2.5
+
+* Fix bug when using the editor in "Text" mode
 
 = 1.2.4 =
 

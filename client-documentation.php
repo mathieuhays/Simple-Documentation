@@ -4,7 +4,7 @@
 	Plugin Name: Simple Documentation
 	Plugin URI: https://mathieuhays.co.uk/simple-documentation/
 	Description: This plugin helps webmasters/developers to provide documentation through the wordpress dashboard.
-	Version: 1.2.4
+	Version: 1.2.5
 	Author: Mathieu Hays
 	Author URI: https://mathieuhays.co.uk
 	License: GPL2
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class simpleDocumentation {
 
-	const VERSION = "1.2.4";
+	const VERSION = "1.2.5";
 
 	/* Used as text domain and slug */
 	public $slug = 'simpledocumentation';
@@ -114,7 +114,7 @@ class simpleDocumentation {
 			'table' => $wpdb->prefix . $this->slug,
 			'user_role' => array( 'administrator', 'editor' ),
 			'first_activation' => true,
-			'db_version' => '2.1',
+			'db_version' => '2.0',
 			'item_per_page' => 10,
 			'label_widget_title' => __( 'Resources' , $this->slug ),
 			'label_welcome_title' => __( 'Welcome', $this->slug ),
@@ -185,8 +185,8 @@ class simpleDocumentation {
 		$wpdb->simpleDocumentation = $this->settings['table'];
 
 		// Activation hook fix on upgrade
-		if( $this->settings['db_version'] < '2.0' ) $this->setup_tables();
-		if( $this->settings['db_version'] < '2.1' ) $this->update_table_charset();
+		if( $this->settings['db_version'] != '2.0' ) $this->setup_tables();
+
 	}
 
 	/*
@@ -194,38 +194,6 @@ class simpleDocumentation {
 	 */
 	public function update_settings(){
 		update_site_option( $this->slug . '_main_settings', $this->settings );
-	}
-
-	public function update_table_charset() {
-		global $wpdb;
-
-		$query = array(
-			'ALTER TABLE ' . $wpdb->simpleDocumentation,
-		);
-
-		if (!empty( $wpdb->charset )) {
-			if (count($query) === 1) {
-				$query[] = ' CONVERT TO ';
-			}
-
-			$query[] = ' CHARACTER SET ' . $wpdb->charset;
-		}
-
-		if (!empty( $wpdb->collate )) {
-			if (count($query) === 1) {
-				$query[] = ' CONVERT TO ';
-			}
-
-			$query[] = ' COLLATE ' . $wpdb->collate;
-		}
-
-		$alter_table = $wpdb->query(join('', $query));
-
-		if ($alter_table){
-			$this->settings['db_version'] = '2.1';
-			$this->update_settings();
-		}
-
 	}
 
 	/**
@@ -260,13 +228,6 @@ class simpleDocumentation {
 
 		}else{
 
-			$charset_collate = '';
-
-			if ( ! empty($wpdb->charset) )
-				$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
-			if ( ! empty($wpdb->collate) )
-				$charset_collate .= " COLLATE $wpdb->collate";
-
 			$cdoc_tables = "
 	    	CREATE TABLE $table (
 				ID bigint(20) NOT NULL auto_increment,
@@ -279,7 +240,7 @@ class simpleDocumentation {
 				attachment_id bigint(20),
 				ordered bigint(20),
 				UNIQUE KEY ID (ID)
-			) $charset_collate;";
+			);";
 
 			$wpdb->query( $cdoc_tables );
 

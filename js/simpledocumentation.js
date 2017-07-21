@@ -40,7 +40,12 @@ jQuery(document).ready(function($){
 	function resetFormView(){
 
 		var editor = tinyMCE.get( 'smpldoc_item_content' );
-		if(editor) editor.setContent('');
+
+		if (editor) {
+			editor.setContent('');
+		} else {
+			$('#smpldoc_item_content').val('');
+		}
 
 		$('#smpldoc_item_title').val('');
 		$('#item_type').val('nope');
@@ -151,8 +156,15 @@ jQuery(document).ready(function($){
 		if(type=='note'||type=='video'){
 			input.fadeOut(200).val( '' );
 			file.fadeOut(200).val( '' );
+
 			var editorW = tinyMCE.get( 'smpldoc_item_content' );
-			if(editorW) editorW.setContent(content);
+
+			if (editorW) {
+				editorW.setContent(content);
+			} else {
+				$('#smpldoc_item_content').val(content);
+			}
+
 			editor.delay(200).fadeIn(100);
 		}else if(type=='file'){
 			input.fadeOut(200).val('');
@@ -325,7 +337,11 @@ jQuery(document).ready(function($){
 
 		var editor = tinyMCE.get( 'smpldoc_item_content' );
 
-		if(editor) getcontent = editor.getContent();
+		if (editor) {
+			getcontent = editor.getContent();
+		} else {
+			getcontent = $('#smpldoc_item_content').val();
+		}
 
 		var item = {
 			title: $('#smpldoc_item_title').val(),

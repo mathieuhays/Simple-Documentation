@@ -194,8 +194,6 @@
 				</ul>
 				<p><?php _e('If you want to contribute, feel free to ', $this->slug); ?><a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', $this->slug ); ?></a> <?php _e('or', $this->slug ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', $this->slug ); ?></a></p>
 
-				<p>Plugin Version: <?php echo self::VERSION; ?> - DB Version: <?php echo $this->settings['db_version']; ?>
-
 				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='https://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='https://github.com/mathieuhays/Simple-Documentation/issues'><?php _e('Report issues', $this->slug); ?></a></p>
 			</div>
 
