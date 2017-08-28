@@ -5,6 +5,6 @@
 
 ?>
 <label>
-	<input type="checkbox" name="sp_share_across_network">
+	<input type="checkbox" name="sd_share_across_network">
 	Share across networks
 </label>

@@ -8,21 +8,21 @@
 <em>Current defaults: administrator, editor</em><br>
 <br>
 <label>
-	<input type="checkbox" name="sp_user_role" value="admin">
+	<input type="checkbox" name="sd_user_role" value="admin">
 	Administrator
 </label>
 
 <label>
-	<input type="checkbox" name="sp_user_role" value="editor">
+	<input type="checkbox" name="sd_user_role" value="editor">
 	Editor
 </label>
 
 <label>
-	<input type="checkbox" name="sp_user_role" value="author">
+	<input type="checkbox" name="sd_user_role" value="author">
 	Author
 </label>
 
 <label>
-	<input type="checkbox" name="sp_user_role" value="subscriber">
+	<input type="checkbox" name="sd_user_role" value="subscriber">
 	Subscriber
 </label>

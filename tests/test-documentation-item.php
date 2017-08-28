@@ -39,7 +39,27 @@ class DocumentationItemTests extends WP_UnitTestCase {
 		$this->assertNotFalse( strpos( $item->get_edit_link(), 'post.php' ) );
 	}
 
-	public function test_is_highlighted() {
-		// @TODO implement test_is_highlighted
+	public function test_has_attachments() {
+		// @TODO implement test_has_attachments
+	}
+
+	public function test_has_video() {
+		// @TODO implement test_has_video
+	}
+
+	public function test_has_content() {
+		// @TODO implement test_has_content
+	}
+
+	public function test_get_attachments() {
+		// @TODO implement test_get_attachments
+	}
+
+	public function test_get_video() {
+		// @TODO implement test_get_video
+	}
+
+	public function test_bootstrap() {
+		// @TODO implement test_bootstrap
 	}
 }

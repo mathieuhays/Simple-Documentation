@@ -1,0 +1,45 @@
+//
+//	Simple Documentation
+//	Component - Attachment
+//
+
+.#{$namespace}attachment {
+	border-top: 1px solid #ccc;
+	padding: 10px 0;
+
+	&:first-child {
+		border-top: 0;
+		padding-top: 0;
+	}
+
+	&__wrapper {
+		padding: 5px 0;
+	}
+
+	&__title {
+		font-size: 14px;
+		margin: 0 0 5px;
+	}
+
+	&__description {
+		font-size: 12px;
+		margin-bottom: 5px;
+
+		p {
+			font-size: inherit;
+			margin: 0;
+
+			+ p {
+				margin-top: 15px;
+			}
+		}
+	}
+
+	&__actions {
+		font-size: 12px;
+	}
+
+	&__button {
+		width: 100%;
+	}
+}

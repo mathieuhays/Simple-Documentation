@@ -83,6 +83,22 @@ class EditScreen {
 	 */
 	public function on_save( $post_id, $post, $update ) {
 		//.
+
+		/**
+		 * @TODO handle attachments -- $_REQUEST['sd_attachments'] - comma separated list of attachment ids.
+		 */
+
+		/**
+		 * @TODO handle video
+		 */
+
+		/**
+		 * @TODO handle multisite option
+		 */
+
+		/**
+		 * @TODO handle user role restriction option
+		 */
 	}
 
 

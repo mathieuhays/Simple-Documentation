@@ -12,7 +12,7 @@ if ( ! $iterator->have_items() ) {
 } else {
 	echo '
 		<h2>Full list:</h2>
-		<ol class="sp-list">';
+		<ol class="sd-list">';
 
 	while ( $iterator->have_items() ) {
 		$item = $iterator->the_item();
@@ -21,9 +21,9 @@ if ( ! $iterator->have_items() ) {
 		 */
 
 		printf(
-			'<li class="sp-list__item sp-doc sp-doc--list-item">
-				<a href="%s" class="sp-doc__title">%s</a>
-				<div class="sp-doc__actions">
+			'<li class="sd-list__item sd-doc sd-doc--list-item">
+				<a href="%s" class="sd-doc__title">%s</a>
+				<div class="sd-doc__actions">
 					<a href="%s">Edit</a>
 				</div>
 			</li>',

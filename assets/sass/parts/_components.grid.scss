@@ -3,7 +3,7 @@
 //	Components - sp-grid
 //
 
-.sp-grid {
+.#{$namespace}grid {
 	@extend %clearfix;
 	margin: 0 -5px;
 

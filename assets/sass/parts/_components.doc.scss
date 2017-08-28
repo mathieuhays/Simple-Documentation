@@ -3,7 +3,7 @@
 //	Component - sp-doc
 //
 
-.sp-doc {
+.#{$namespace}doc {
 	background: $item-background-color;
 	border: 1px solid #e5e5e5;
 	box-shadow: 0 1px 1px rgba(0,0,0,.04);
@@ -33,7 +33,7 @@
 			padding-top: 250/400 * 100%;
 		}
 
-		.sp-doc__img {
+		.#{$namespace}doc__img {
 			bottom: 0;
 			display: block;
 			left: 0;
@@ -76,7 +76,7 @@
 	@include interactive() {
 		transform: scale(1.02) translateZ(10px);
 
-		.sp-doc__actions {
+		.#{$namespace}doc__actions {
 			opacity: 1;
 		}
 	}

@@ -4,64 +4,26 @@
  */
 
 ?>
-<style>
-	.sd-attachment-button {
-		background: #fff;
-		border: 1px solid #999;
-		border-radius: 5px;
-		margin-top: 15px;
-		padding: 6px 20px;
-		width: 100%;
-	}
-
-	.sp-attachment-item__wrapper {
-		padding: 5px 0;
-	}
-
-	.sp-attachment-item {
-		border-top: 1px solid #ccc;
-	}
-
-	.sp-attachment-item:first-child {
-		border-top: 0;
-	}
-
-	.sp-attachment-item__title {
-		font-size: 14px;
-		margin: 0 0 5px;
-	}
-
-	.sp-attachment-item__description {
-		font-size: 12px;
-		margin-bottom: 5px;
-	}
-
-	.sp-attachment-item__description p {
-		font-size: inherit;
-		margin: 0;
-	}
-
-	.sp-attachment-item__description p + p {
-		margin-top: 15px;
-	}
-
-	.sp-attachment-item__actions {
-		font-size: 12px;
-	}
-</style>
-
-<div class="sp-attachment-item__wrapper">
-	<div class="sp-attachment-item">
-		<h3 class="sp-attachment-item__title">tutorial.pdf</h3>
-		<div class="sp-attachment-item__description">
+<div class="sd-attachment__wrapper js-sd-attachment-list">
+	<div class="sd-attachment" data-id="0">
+		<h3 class="sd-attachment__title">tutorial.pdf</h3>
+		<div class="sd-attachment__description">
 			<p>
 				Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum.
 			</p>
 		</div>
-		<div class="sp-attachment-item__actions">
+		<div class="sd-attachment__actions">
 			<a href="" target="_blank">View</a>
+			<button type="button" class="js-sd-attachment-remove">Remove</button>
 		</div>
 	</div>
 </div>
 
-<button class="sd-attachment-button">Add Attachment</button>
+<input type="hidden" name="sd_attachments" value="">
+
+<button class="button sd-attachment__button sd-u-mt js-sd-add-attachment">Add Attachment</button>
+
+<?php
+/**
+ * @TODO maybe add a note explaining that they have to save in order to have the attachment associated with the doc
+ */
