@@ -3,7 +3,7 @@
  *  Simple Documentation -- Main Plugin Page Template
  */
 
-use SimpleDocumentation\Documentation_Item;
+use SimpleDocumentation\Models\Documentation_Item;
 use SimpleDocumentation\Utilities\Iterator;
 use SimpleDocumentation\Utilities\Iterators;
 use \SimpleDocumentation\Utilities\Loader;

@@ -3,10 +3,8 @@
  *  Simple Documentation -- Single View Component
  */
 
-use \SimpleDocumentation\PluginPage;
-
-$documentation_id = PluginPage::get_instance()->get_documentation_id();
-$item = \SimpleDocumentation\DocumentationItem::get( $documentation_id );
+$documentation_id = \SimpleDocumentation\Plugin_Page::instance()->get_documentation_id();
+$item = \SimpleDocumentation\Models\Documentation_Item::from_id( $documentation_id );
 
 ?>
 <div>
