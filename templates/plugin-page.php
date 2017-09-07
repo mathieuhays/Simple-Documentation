@@ -3,22 +3,13 @@
  *  Simple Documentation -- Main Plugin Page Template
  */
 
-use SimpleDocumentation\DocumentationItem;
-use \SimpleDocumentation\Utilities\Iterator;
-use \SimpleDocumentation\Utilities\Iterators;
+use SimpleDocumentation\Documentation_Item;
+use SimpleDocumentation\Utilities\Iterator;
+use SimpleDocumentation\Utilities\Iterators;
 use \SimpleDocumentation\Utilities\Loader;
-use \SimpleDocumentation\PluginPage;
+use \SimpleDocumentation\Plugin_Page;
 
-$plugin_page = PluginPage::get_instance();
-
-// Create an iterators for our documentation items
-$iterator = new Iterator(
-	DocumentationItem::get_page()
-);
-
-// Register iterator as our current one.
-Iterators::get_instance()->setup( $iterator );
-
+$plugin_page = Plugin_Page::instance();
 
 ?>
 <div class="wrap">
@@ -30,28 +21,36 @@ Iterators::get_instance()->setup( $iterator );
 
 	if ( $plugin_page->is_single() ) {
 		$documentation_id = $plugin_page->get_documentation_id();
-		$item = DocumentationItem::get( $documentation_id );
+		$item = Documentation_Item::from_id( $documentation_id );
 
 		/**
 		 *  Load Default single component
 		 */
 		Loader::component( 'single' );
 	} else {
+		// Create an iterators for our documentation items
+		$iterator = new Iterator(
+			Documentation_Item::get_page()
+		);
+
+		// Register iterator as our current one.
+		Iterators::instance()->setup( $iterator );
+
 		/**
 		 * Highlight
 		 */
-		Loader::component( 'highlight' );
+//		Loader::component( 'highlight' );
 
 		?>
-		<div class="sp-container">
-			<div class="sp-container__item sp-container__item--main">
+		<div class="sd-container">
+			<div class="sd-container__item sd-container__item--main">
 				<?php
 
 				Loader::component( 'list' );
 
 				?>
 			</div>
-			<div class="sp-container__item sp-container__item--side">
+			<div class="sd-container__item sd-container__item--side">
 				<?php
 
 				Loader::component( 'sidebar' );
@@ -64,7 +63,3 @@ Iterators::get_instance()->setup( $iterator );
 
 	?>
 </div>
-<?php
-
-// Reset to previous iterator if necessary
-Iterators::get_instance()->reset();

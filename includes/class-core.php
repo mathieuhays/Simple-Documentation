@@ -4,11 +4,6 @@ namespace SimpleDocumentation;
 
 class Core {
 
-	/**
-	 *  @var Core singleton instance
-	 */
-	private static $instance;
-
 	const SLUG = 'simple-documentation';
 
 
@@ -16,15 +11,11 @@ class Core {
 	 *  Bootstrap
 	 */
 	public function bootstrap() {
-		/**
-		 *  Load Utility Classes & Functions
-		 */
 		$this->load_files();
-
-		/**
-		 *  Load Textdomain
-		 */
 		$this->load_textdomain();
+
+		add_filter( 'plugin_action_links_' . plugin_basename( SIMPLEDOC_ROOT_DIR . '/client-documentation.php' ), [ $this, 'add_action_links' ] );
+		add_filter( 'plugin_row_meta', [ $this, 'add_plugin_row_meta' ], 10, 2 );
 	}
 
 
@@ -55,28 +46,28 @@ class Core {
 		 */
 
 		// Getters & Setters for the plugin's settings
-		Settings::get_instance()->bootstrap();
+		Settings::instance()->bootstrap();
 
 		// Upgrade - handle data structure convertion from previous versions
-		Upgrade::get_instance()->bootstrap();
+		Upgrade::instance()->bootstrap();
 
 		// Dashboard
-		Dashboard::get_instance()->bootstrap();
+		Dashboard::instance()->bootstrap();
 
 		// Plugin Page
-		PluginPage::get_instance()->bootstrap();
+		Plugin_Page::instance()->bootstrap();
 
 		// Customize Post Type Edit Screen
-		EditScreen::get_instance()->bootstrap();
+		Edit_Screen::instance()->bootstrap();
 
 		// Import
-		Import::get_instance()->bootstrap();
+		Import::instance()->bootstrap();
 
 		// Export
-		Export::get_instance()->bootstrap();
+		Export::instance()->bootstrap();
 
 		// Register & Handle Documentation Item Types
-		DocumentationItem::bootstrap();
+		Documentation_Item::bootstrap();
 
 		// Register && handle Documentation Items
 //		DocumentationItems\DocumentationItems::get_instance()->bootstrap();
@@ -96,15 +87,52 @@ class Core {
 
 
 	/**
-	 *  Get Instance
+	 * Add custom action link on plugin entry on the WordPress Plugins page.
 	 *
-	 *  @return Core singleton instance
+	 * @param array $links
+	 *
+	 * @return array
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
+	public function add_action_links( $links ) {
+		/**
+		 * @TODO add actual action link
+		 */
+		$links[] = '<a href="#">Settings</a>';
+
+		return $links;
+	}
+
+
+	/**
+	 * Add Plugin row meta.
+	 *
+	 * @param array $links
+	 * @param string $file
+	 *
+	 * @return array
+	 */
+	public function add_plugin_row_meta( $links, $file ) {
+		if ( strpos( $file, basename( SIMPLEDOC_ROOT_DIR ) ) !== false ) {
+			/**
+			 * @TODO add actual link
+			 */
+			$links[] = '<a href="#">Github</a>';
 		}
 
-		return self::$instance;
+		return $links;
+	}
+
+
+	/**
+	 * @return Core
+	 */
+	public static function instance() {
+	    static $instance;
+
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

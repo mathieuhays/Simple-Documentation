@@ -7,9 +7,7 @@ namespace SimpleDocumentation;
 
 use SimpleDocumentation\Utilities\Loader;
 
-class EditScreen {
-	private static $instance;
-
+class Edit_Screen {
 	/**
 	 *  Bootstrap
 	 */
@@ -27,7 +25,7 @@ class EditScreen {
 		/**
 		 * On Item Save
 		 */
-		add_action( 'save_post_' . DocumentationItem::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
+		add_action( 'save_post_' . Documentation_Item::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
 
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 	}
@@ -113,7 +111,7 @@ class EditScreen {
 			'simpledocumentation-attachment',
 			'Attachments',
 			[ $this, 'attachment_meta_box_callback' ],
-			DocumentationItem::POST_TYPE,
+			Documentation_Item::POST_TYPE,
 			'side'
 		);
 
@@ -124,7 +122,7 @@ class EditScreen {
 			'simpledocumentation-user-roles',
 			'Restrict access to user roles',
 			[ $this, 'user_roles_meta_box_callback' ],
-			DocumentationItem::POST_TYPE,
+			Documentation_Item::POST_TYPE,
 			'side'
 		);
 
@@ -135,7 +133,7 @@ class EditScreen {
 			'simpledocumentation-multisite-options',
 			'Multisite Options',
 			[ $this, 'multisite_meta_box_callback' ],
-			DocumentationItem::POST_TYPE,
+			Documentation_Item::POST_TYPE,
 			'side'
 		);
 	}
@@ -147,6 +145,7 @@ class EditScreen {
 	public function attachment_meta_box_callback() {
 		Loader::component( 'meta-box-attachments' );
 	}
+
 
 	/**
 	 * Restrict User Roles Meta Box Component Loader
@@ -161,15 +160,15 @@ class EditScreen {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return EditScreen singleton instance
+	 * @return Edit_Screen
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

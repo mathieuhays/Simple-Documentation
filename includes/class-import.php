@@ -7,12 +7,6 @@ namespace SimpleDocumentation;
 
 class Import {
 	/**
-	 *  @var Import singleton instance
-	 */
-	private static $instance;
-
-
-	/**
 	 *  Bootstrap
 	 */
 	public function bootstrap() {
@@ -26,15 +20,15 @@ class Import {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return Import singleton instance
+	 * @return Import
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

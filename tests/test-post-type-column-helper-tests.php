@@ -1,5 +1,5 @@
 <?php
-use SimpleDocumentation\Utilities\PostTypeColumnHelper;
+use SimpleDocumentation\Utilities\Post_Type_Column_Helper;
 
 /**
  * Client Documentation - test-post-type-column-helper-tests.php
@@ -33,7 +33,7 @@ class PostTypeColumnHelperTests extends WP_UnitTestCase {
 	}
 
 	public function test_append_empty_array() {
-		$array = PostTypeColumnHelper::append( [], 'test', 'data' );
+		$array = Post_Type_Column_Helper::append( [], 'test', 'data' );
 
 		$this->assertTrue( is_array( $array ) );
 		$this->assertSame( 1, count( $array ) );
@@ -42,7 +42,7 @@ class PostTypeColumnHelperTests extends WP_UnitTestCase {
 	}
 
 	public function test_append_existing_array() {
-		$array = PostTypeColumnHelper::append( [
+		$array = Post_Type_Column_Helper::append( [
 			'existing' => [ 'data' ],
 		], 'test', 'data' );
 
@@ -55,7 +55,7 @@ class PostTypeColumnHelperTests extends WP_UnitTestCase {
 	}
 
 	public function test_append_existing_array_existing_key() {
-		$array = PostTypeColumnHelper::append( [
+		$array = Post_Type_Column_Helper::append( [
 			'existing' => [ 'data' ],
 		], 'existing', 'data' );
 
@@ -67,13 +67,13 @@ class PostTypeColumnHelperTests extends WP_UnitTestCase {
 
 	public function test_sanitize_size() {
 		// Default to px
-		$this->assertSame( '10px', PostTypeColumnHelper::sanitize_size( 10 ) );
+		$this->assertSame( '10px', Post_Type_Column_Helper::sanitize_size( 10 ) );
 
 		// Doesn't override valid value
-		$this->assertSame( '10px', PostTypeColumnHelper::sanitize_size( '10px' ) );
+		$this->assertSame( '10px', Post_Type_Column_Helper::sanitize_size( '10px' ) );
 
 		// Ignore weird values
-		$this->assertSame( false, PostTypeColumnHelper::sanitize_size( false ) );
-		$this->assertSame( null, PostTypeColumnHelper::sanitize_size( null ) );
+		$this->assertSame( false, Post_Type_Column_Helper::sanitize_size( false ) );
+		$this->assertSame( null, Post_Type_Column_Helper::sanitize_size( null ) );
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-use SimpleDocumentation\DocumentationItem;
+use SimpleDocumentation\Documentation_Item;
 
 /**
  * Client Documentation - _test-documentation-item.php
@@ -17,14 +17,14 @@ class DocumentationItemTests extends WP_UnitTestCase {
 	 * @return \WP_Post
 	 */
 	public function util_create_and_get( $args = [] ) {
-		$args['post_type'] = DocumentationItem::POST_TYPE;
+		$args['post_type'] = Documentation_Item::POST_TYPE;
 		return $this->factory->post->create_and_get( $args );
 	}
 
 	public function test_get_view_link() {
 		$post = $this->util_create_and_get();
 
-		$item = DocumentationItem::from_post( $post );
+		$item = Documentation_Item::from_post( $post );
 
 		// There might be better way to test this later on...
 		$this->assertNotFalse( filter_var( $item->get_view_link(), FILTER_VALIDATE_URL ) );
@@ -33,7 +33,7 @@ class DocumentationItemTests extends WP_UnitTestCase {
 	public function test_get_edit_link() {
 		$post = $this->util_create_and_get();
 
-		$item = new DocumentationItem( $post );
+		$item = Documentation_Item::from_post( $post );
 
 		// should use wordpress admin
 		$this->assertNotFalse( strpos( $item->get_edit_link(), 'post.php' ) );

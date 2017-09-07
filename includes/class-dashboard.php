@@ -9,12 +9,6 @@ use \SimpleDocumentation\Utilities\Loader;
 
 class Dashboard {
 	/**
-	 *  @var Dashboard singleton instance
-	 */
-	private static $instance;
-
-
-	/**
 	 *  Bootstrap
 	 */
 	public function bootstrap() {
@@ -34,7 +28,7 @@ class Dashboard {
 	public function register() {
 		wp_add_dashboard_widget(
 			Core::SLUG,
-			Settings::get_instance()->get( 'label_widget_title' ),
+			Settings::instance()->get( 'label_widget_title' ),
 			[ $this, 'render' ]
 		);
 	}
@@ -49,15 +43,15 @@ class Dashboard {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return Dashboard singleton instance
+	 * @return Dashboard
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

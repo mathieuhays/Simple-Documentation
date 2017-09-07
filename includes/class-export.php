@@ -7,12 +7,6 @@ namespace SimpleDocumentation;
 
 class Export {
 	/**
-	 *  @var Export singleton instance
-	 */
-	private static $instance;
-
-
-	/**
 	 *  Bootstrap
 	 */
 	public function bootstrap() {
@@ -25,15 +19,15 @@ class Export {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return Export singleton instance
+	 * @return Export
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

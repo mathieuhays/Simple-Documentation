@@ -8,12 +8,6 @@ namespace SimpleDocumentation;
 
 class Upgrade {
 	/**
-	 *  @var Upgrade singleton instance
-	 */
-	private static $instance;
-
-
-	/**
 	 *	Bootstrap
 	 */
 	public function bootstrap() {
@@ -58,7 +52,7 @@ class Upgrade {
 	/**
 	 *  Migrate Documentation Item from the legacy custom tables to the new
 	 *  structure which uses a custom post type instead for better support
-	 *  accross environments and languages
+	 *  across environments and languages
 	 */
 	public function migrate_table_data() {
 		/**
@@ -72,15 +66,15 @@ class Upgrade {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return Upgrade singleton instance
+	 * @return Upgrade
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

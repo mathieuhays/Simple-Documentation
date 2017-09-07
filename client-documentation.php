@@ -17,4 +17,4 @@ require_once 'constants.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-core.php';
 
 // Start Plugin
-\SimpleDocumentation\Core::get_instance()->bootstrap();
+\SimpleDocumentation\Core::instance()->bootstrap();

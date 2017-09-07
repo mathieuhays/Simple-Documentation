@@ -9,11 +9,8 @@ namespace SimpleDocumentation;
 
 use SimpleDocumentation\Utilities\Loader;
 
-class PluginPage {
-	private static $instance;
-
+class Plugin_Page {
 	const ITEM_ID_PARAM = 'documentation_id';
-
 
 	/**
 	 *  Bootstrap
@@ -36,9 +33,37 @@ class PluginPage {
 		add_action( 'admin_head', [ $this, 'hide_quick_edit' ] );
 
 		/**
-		 *  Load Plugin Assets
+		 * Load plugin assets
 		 */
-		add_action( 'admin_init', [ $this, 'load_css' ] );
+		add_action( 'admin_init', [ $this, 'load_plugin_assets' ] );
+	}
+
+
+	public function load_plugin_assets() {
+		if ( ! $this->is_plugin_page() ) {
+			return;
+		}
+
+		// Meta box dependency
+		wp_enqueue_script( 'postbox' );
+		wp_enqueue_script( 'common' );
+		wp_enqueue_script( 'post' );
+
+		// Plugin
+		wp_enqueue_style(
+			CORE::SLUG . '-main',
+			SIMPLEDOC_CSS_URL . '/simple-documentation.css',
+			false,
+			SIMPLEDOC_VERSION
+		);
+
+		// Plugin
+		wp_enqueue_script(
+			CORE::SLUG . '-list',
+			SIMPLEDOC_JS_URL . '/list.js',
+			false,
+			SIMPLEDOC_VERSION
+		);
 	}
 
 
@@ -95,14 +120,14 @@ class PluginPage {
 		if ( $self === 'post.php' && isset( $_GET['post'] ) ) {
 			$post_id = (int) $_GET['post'];
 
-			if ( get_post_type( $post_id ) === DocumentationItem::POST_TYPE ) {
+			if ( get_post_type( $post_id ) === Documentation_Item::POST_TYPE ) {
 				$force_highlight = true;
 			}
 		}
 
 		// Creating a new documentation item
 		if ( $self === 'post-new.php' && isset( $_GET['post_type'] ) &&
-			 $_GET['post_type'] === DocumentationItem::POST_TYPE ) {
+			 $_GET['post_type'] === Documentation_Item::POST_TYPE ) {
 			$force_highlight = true;
 		}
 
@@ -121,23 +146,7 @@ class PluginPage {
 	public function hide_quick_edit() {
 		printf(
 			'<style>.type-%s .row-actions .inline { display: none; }</style>',
-			DocumentationItem::POST_TYPE
-		);
-	}
-
-
-	/**
-	 *  Load CSS
-	 */
-	public function load_css() {
-		/**
-		 *  Load main stylesheet for plugin
-		 */
-		wp_enqueue_style(
-			CORE::SLUG . '-main',
-			SIMPLEDOC_CSS_URL . '/simple-documentation.css',
-			false,
-			SIMPLEDOC_VERSION
+			Documentation_Item::POST_TYPE
 		);
 	}
 
@@ -175,7 +184,7 @@ class PluginPage {
 	 */
 	public function get_manage_link( $format = 'absolute' ) {
 		$relative_url = add_query_arg(
-			[ 'post_type' => DocumentationItem::POST_TYPE ],
+			[ 'post_type' => Documentation_Item::POST_TYPE ],
 			'edit.php'
 		);
 
@@ -195,7 +204,7 @@ class PluginPage {
 	 */
 	public function get_add_new_link() {
 		return add_query_arg(
-			[ 'post_type' => DocumentationItem::POST_TYPE ],
+			[ 'post_type' => Documentation_Item::POST_TYPE ],
 			admin_url( 'post-new.php' )
 		);
 	}
@@ -204,7 +213,7 @@ class PluginPage {
 	/**
 	 *  Get Plugin View Link for Given Documentatio Item
 	 *
-	 *  @param  DocumentationItem   $item
+	 *  @param  Documentation_Item   $item
 	 *  @return string
 	 */
 	public function get_view_link_for_item( $item ) {
@@ -248,7 +257,7 @@ class PluginPage {
 			$item_id = (int) $_GET[ self::ITEM_ID_PARAM ];
 
 			if ( ! empty( $item_id ) &&
-				get_post_type( $item_id ) === DocumentationItem::POST_TYPE ) {
+				get_post_type( $item_id ) === Documentation_Item::POST_TYPE ) {
 				return $item_id;
 			}
 		}
@@ -258,15 +267,15 @@ class PluginPage {
 
 
 	/**
-	 *  Get instance
-	 *
-	 *  @return PluginPage singleton instance
+	 * @return Plugin_Page
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

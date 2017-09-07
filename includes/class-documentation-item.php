@@ -5,7 +5,7 @@
 
 namespace SimpleDocumentation;
 
-final class DocumentationItem extends PostTypeItem {
+final class Documentation_Item extends Post_Type_Item {
 	/**
 	 * Post type
 	 */
@@ -37,7 +37,7 @@ final class DocumentationItem extends PostTypeItem {
 	 * @return string
 	 */
 	public function get_view_link() {
-		return PluginPage::get_instance()->get_view_link_for_item( $this );
+		return Plugin_Page::instance()->get_view_link_for_item( $this );
 	}
 
 

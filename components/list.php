@@ -3,39 +3,109 @@
  *  Simple Documentation -- List Component
  */
 
-use \SimpleDocumentation\Utilities\Iterators;
+?>
+<!---->
+<!--<div class="sd-section">-->
+<!--	<h2 class="sd-section__title">Getting Started</h2>-->
+<!---->
+<!--	<ul class="sd-section__content sd-list">-->
+<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
+<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
+<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
+<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
+<!--	</ul>-->
+<!--</div>-->
+<!---->
+<!---->
 
-$iterator = Iterators::get_instance()->get();
 
-if ( ! $iterator->have_items() ) {
-	echo 'No documentation available at the moment.';
-} else {
-	echo '
-		<h2>Full list:</h2>
-		<ol class="sd-list">';
+<div id="poststuff" class="postbox-container postbox-container--simple-documentation">
+	<?php
 
-	while ( $iterator->have_items() ) {
-		$item = $iterator->the_item();
-		/**
-		 * @TODO display edit button only if user has the right capibility
-		 */
+	/**
+	 * Load Posts Meta Boxes
+	 */
+	$sample_data = [
+		[
+			'title' => 'Get Started',
+			'items' => [
+				'Vestibulum id ligula porta felis euismod semper',
+				'Tellus Sem Adipiscing Aenean Tristique',
+				'Vulputate Tellus Mollis',
+				'Mollis Nibh Mattis Fringilla',
+			],
+		],
+		[
+			'title' => 'Events',
+			'items' => [
+				'Curabitur blandit tempus porttitor',
+				'Bibendum Vulputate Ultricies Magna Tortor',
+				'Ridiculus Ipsum Pellentesque Justo',
+				'Aenean Bibendum Malesuada Justo Dapibus',
+			],
+		],
+		[
+			'title' => 'Form Applications',
+			'items' => [
+				'Curabitur blandit tempus porttitor',
+				'Bibendum Vulputate Ultricies Magna Tortor',
+				'Ridiculus Ipsum Pellentesque Justo',
+				'Aenean Bibendum Malesuada Justo Dapibus',
+			],
+		],
+		[
+			'title' => 'Support / Help',
+			'items' => [
+				'Curabitur blandit tempus porttitor',
+				'Bibendum Vulputate Ultricies Magna Tortor',
+				'Ridiculus Ipsum Pellentesque Justo',
+				'Aenean Bibendum Malesuada Justo Dapibus',
+			],
+		],
+	];
 
-		printf(
-			'<li class="sd-list__item sd-doc sd-doc--list-item">
-				<a href="%s" class="sd-doc__title">%s</a>
-				<div class="sd-doc__actions">
-					<a href="%s">Edit</a>
-				</div>
-			</li>',
-			$item->get_view_link(),
-			$item->get_title(),
-			$item->get_edit_link()
+	/**
+	 * Register Meta boxes
+	 */
+	foreach ( $sample_data as $index => $data ) {
+		add_meta_box(
+			'simple-doc-meta-' . $index,
+			$data['title'],
+			function( $post, $options ) {
+				$args = $options['args'];
+
+				?>
+				<ul>
+					<?php foreach ( $args['items'] as $item ): ?>
+						<li>
+							<span class="dashicons dashicons-editor-alignleft"></span>
+							<?php echo $item; ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+				<?php
+			},
+			\SimpleDocumentation\Plugin_Page::instance()->get_slug(),
+			'list',
+			'default',
+			$data
 		);
 	}
 
-	echo '</ol>';
-}
+	/**
+	 * Render Meta Boxes
+	 */
+	ob_start();
+	do_meta_boxes( \SimpleDocumentation\Plugin_Page::instance()->get_slug(), 'list', null );
+	$meta_boxes = ob_get_contents();
+	ob_end_clean();
 
-/**
- * @TODO handle pagination (js async ideally with browser history mutation)
- */
+	/**
+	 * Remove Sortable class to disable Drag&Drop functionality as we don't support it yet
+	 */
+	$meta_boxes = str_replace( 'meta-box-sortables', '', $meta_boxes );
+
+	echo $meta_boxes;
+
+	?>
+</div>

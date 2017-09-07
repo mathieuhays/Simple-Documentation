@@ -1,0 +1,31 @@
+//
+//	Simple Documentation
+//	Component - Postbox container - Override drag&drop from WordPress
+//
+
+.js .postbox-container--simple-documentation {
+	.postbox {
+		// Disabling Drag&Drop on metaboxes also removes the style for the collapse/expand arrow
+		// so we redefine the style here
+		.toggle-indicator::before {
+			content: "\f142";
+			display: inline-block;
+			font: 400 20px/1 dashicons;
+			speak: none;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-decoration: none !important;
+		}
+
+		&.closed {
+			.toggle-indicator::before {
+				content: "\f140";
+			}
+		}
+
+		// Remove drag&drop cursor
+		.hndle {
+			cursor: pointer;
+		}
+	}
+}

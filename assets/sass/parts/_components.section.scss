@@ -1,0 +1,19 @@
+//
+//	Simple Documentation
+//	Component - Section
+//
+
+.#{$namespace}section {
+
+	&__title {
+
+	}
+
+	&__content {
+
+	}
+
+	& + & {
+		margin-top: 15px;
+	}
+}

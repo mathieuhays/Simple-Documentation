@@ -15,10 +15,9 @@ namespace SimpleDocumentation\Utilities;
 
 class Iterators {
 	/**
-	 *  @var Iterators singleton instance
+	 * @var Iterator[]
 	 */
-	private static $instance;
-	private        $iterators = [];
+	private $iterators = [];
 
 
 	/**
@@ -37,7 +36,7 @@ class Iterators {
 	/**
 	 *  Get Current Iterator
 	 *
-	 *  @return Iterator or false if there's none
+	 *  @return Iterator|false
 	 */
 	public function get() {
 		$length = count( $this->iterators );
@@ -63,15 +62,15 @@ class Iterators {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return Iterators singleton instance
+	 * @return Iterators
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

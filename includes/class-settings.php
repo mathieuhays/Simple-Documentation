@@ -7,12 +7,7 @@
 namespace SimpleDocumentation;
 
 class Settings {
-	/**
-	 *  @var Settings singleton instance
-	 */
-	private static $instance;
-
-	private        $settings = [];
+	private $settings = [];
 
 
 	public function bootstrap() {
@@ -60,15 +55,15 @@ class Settings {
 
 
 	/**
-	 *  Get Instance
-	 *
-	 *  @return Settings singleton instance
+	 * @return Settings
 	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
-		}
+	public static function instance() {
+	    static $instance;
 
-		return self::$instance;
+	    if ( is_null( $instance ) ) {
+	        $instance = new self;
+	    }
+
+	    return $instance;
 	}
 }

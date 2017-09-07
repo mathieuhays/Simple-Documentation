@@ -5,7 +5,7 @@
 
 namespace SimpleDocumentation;
 
-class PostTypeItem {
+class Post_Type_Item {
 	/**
 	 * @var bool
 	 */
@@ -128,27 +128,43 @@ class PostTypeItem {
 	}
 
 	/**
-	 * @param \WP_Post|int $post_mixed
+	 * @param \WP_Post $wp_post
 	 *
 	 * @return static|\WP_Error|false
 	 */
-	public static function from_post( $post_mixed ) {
-		if ( is_a( $post_mixed, 'WP_Post' ) ) {
-			$post = $post_mixed;
-		} else if ( is_numeric( $post_mixed ) ) {
-			$post = get_post( $post_mixed );
-		} else {
-			return false;
+	public static function from_post( $wp_post ) {
+		if ( ! is_a( $wp_post, 'WP_Post' ) ) {
+			return new \WP_Error(
+				'invalid-argument',
+				'Invalid parameter provided. Expected an argument of type: ' . \WP_Post::class
+			);
 		}
 
-		if ( get_post_type( $post ) !== static::POST_TYPE ) {
+		if ( get_post_type( $wp_post ) !== static::POST_TYPE ) {
 			return new \WP_Error(
 				'invalid-type',
 				'Invalid parameter provided. Expected a post of type: ' . static::POST_TYPE
 			);
 		}
 
-		return new static( $post );
+		return new static( $wp_post );
+	}
+
+	/**
+	 * Get Item based on an ID.
+	 * Alias for from_posts( $post_id ).
+	 *
+	 * @param int $post_id
+	 * @return static|false
+	 */
+	public static function from_id( $post_id ) {
+		$wp_post = get_post( $post_id );
+
+		if ( empty ( $wp_post ) ) {
+			return false;
+		}
+
+		return static::from_post( $wp_post );
 	}
 
 	/**
@@ -178,8 +194,8 @@ class PostTypeItem {
 		}
 
 		/**
-		 * @var PostTypeItem $mixed_1
-		 * @var PostTypeItem $mixed_2
+		 * @var static $mixed_1
+		 * @var static $mixed_2
 		 */
 		return $mixed_1->get_id() === $mixed_2->get_id();
 	}
@@ -192,7 +208,7 @@ class PostTypeItem {
 	 */
 	public static function query( $args = [] ) {
 		return new \WP_Query( wp_parse_args( $args, [
-			'post_type' => static::POST_TYPE
+			'post_type' => static::POST_TYPE,
 		]));
 	}
 
@@ -215,16 +231,5 @@ class PostTypeItem {
 		]);
 
 		return array_map( [ get_called_class(), 'from_post' ], $query->posts );
-	}
-
-	/**
-	 * Get Item based on an ID.
-	 * Alias for from_posts( $post_id ).
-	 *
-	 * @param int $id
-	 * @return static|\WP_Error|false
-	 */
-	public static function get( $id ) {
-		return static::from_post( $id );
 	}
 }

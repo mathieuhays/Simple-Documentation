@@ -70,7 +70,7 @@ class User {
 	/**
 	 * Whether the user can view a given documentation item or not.
 	 *
-	 * @param DocumentationItem $documentation_item
+	 * @param Documentation_Item $documentation_item
 	 *
 	 * @return bool
 	 */
@@ -85,7 +85,7 @@ class User {
 	/**
 	 * Whether the user can edit a given documentation item or not.
 	 *
-	 * @param DocumentationItem $documentation_item
+	 * @param Documentation_Item $documentation_item
 	 *
 	 * @return bool
 	 */

@@ -2,6 +2,7 @@
  *  Gulp Config
  */
 var gulp = require('gulp'),
+	watch = require('gulp-watch'),
     sass = require('gulp-sass'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
@@ -75,7 +76,9 @@ gulp.task('scss:build:development', function() {
  *  Watch SCSS
  */
 gulp.task('scss:watch', ['scss:build:development'], function() {
-    return gulp.watch(ALL_SCSS_FILES, ['scss:build:development']);
+    return watch(ALL_SCSS_FILES, function() {
+    	gulp.start('scss:build:development');
+	});
 });
 
 

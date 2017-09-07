@@ -2,7 +2,7 @@
 /**
  *  Simple Documentation - Utilities - Iterator
  *  Replicates the WordPress loop but for other objects than WP_Posts
- *  Enable to loop custom array of data accros different components
+ *  Enable to loop custom array of data across different components
  */
 
 namespace SimpleDocumentation\Utilities;

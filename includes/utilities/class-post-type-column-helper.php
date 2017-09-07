@@ -6,7 +6,7 @@
 
 namespace SimpleDocumentation\Utilities;
 
-class PostTypeColumnHelper {
+class Post_Type_Column_Helper {
 	/**
 	 * @var string Post Type
 	 */
