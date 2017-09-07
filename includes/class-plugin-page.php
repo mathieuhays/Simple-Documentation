@@ -7,6 +7,7 @@
 
 namespace SimpleDocumentation;
 
+use SimpleDocumentation\Models\Documentation_Item;
 use SimpleDocumentation\Utilities\Loader;
 
 class Plugin_Page {
@@ -211,7 +212,7 @@ class Plugin_Page {
 
 
 	/**
-	 *  Get Plugin View Link for Given Documentatio Item
+	 *  Get Plugin View Link for Given Documentation Item
 	 *
 	 *  @param  Documentation_Item   $item
 	 *  @return string

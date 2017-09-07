@@ -46,6 +46,8 @@ $plugin_page = Plugin_Page::instance();
 			<div class="sd-container__item sd-container__item--main">
 				<?php
 
+				Loader::component( 'search-field' );
+
 				Loader::component( 'list' );
 
 				?>

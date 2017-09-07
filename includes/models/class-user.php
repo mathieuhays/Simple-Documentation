@@ -4,7 +4,7 @@
  * User Class
  */
 
-namespace SimpleDocumentation;
+namespace SimpleDocumentation\Models;
 
 class User {
 	/**
@@ -90,6 +90,9 @@ class User {
 	 * @return bool
 	 */
 	public function can_edit_doc( $documentation_item ) {
+		/**
+		 * @TODO implement checks specific to a given document
+		 */
 		return $this->can( static::CAP_DOC_EDIT );
 	}
 
@@ -122,7 +125,7 @@ class User {
 	 *
 	 * @return bool|User|\WP_Error
 	 */
-	public static function get_current() {
+	public static function get_logged_in() {
 		$user_id = get_current_user_id();
 
 		if ( $user_id === 0 ) {

@@ -5,6 +5,7 @@
 
 namespace SimpleDocumentation;
 
+use SimpleDocumentation\Models\Documentation_Item;
 use SimpleDocumentation\Utilities\Loader;
 
 class Edit_Screen {

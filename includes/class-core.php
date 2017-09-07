@@ -2,6 +2,8 @@
 
 namespace SimpleDocumentation;
 
+use SimpleDocumentation\Models\Documentation_Item;
+
 class Core {
 
 	const SLUG = 'simple-documentation';
@@ -23,17 +25,19 @@ class Core {
 	 *  Load Plugin Files & Bootstrap classes when necessary
 	 */
 	public function load_files() {
-		// Require all files
-
 		// Utilities
 		require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-post-type-column-helper.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterator.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterators.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-loader.php';
 
-		require_once SIMPLEDOC_INCLUDES_DIR . '/class-post-type-item.php';
+		// Models
+		require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-post-type-item.php';
+		require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-taxonomy-item.php';
+		require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-user.php';
+		require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-item.php';
+
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-dashboard.php';
-		require_once SIMPLEDOC_INCLUDES_DIR . '/class-documentation-item.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-edit-screen.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-export.php';
 		require_once SIMPLEDOC_INCLUDES_DIR . '/class-import.php';
@@ -45,10 +49,13 @@ class Core {
 		 *  Load bootstraps when relevant
 		 */
 
+		// Models (register)
+		Documentation_Item::bootstrap();
+
 		// Getters & Setters for the plugin's settings
 		Settings::instance()->bootstrap();
 
-		// Upgrade - handle data structure convertion from previous versions
+		// Upgrade - handle data structure conversion from previous versions
 		Upgrade::instance()->bootstrap();
 
 		// Dashboard
@@ -65,12 +72,6 @@ class Core {
 
 		// Export
 		Export::instance()->bootstrap();
-
-		// Register & Handle Documentation Item Types
-		Documentation_Item::bootstrap();
-
-		// Register && handle Documentation Items
-//		DocumentationItems\DocumentationItems::get_instance()->bootstrap();
 	}
 
 

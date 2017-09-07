@@ -4,7 +4,7 @@
  * Taxonomy Item
  */
 
-namespace SimpleDocumentation;
+namespace SimpleDocumentation\Models;
 
 class Taxonomy_Item {
 	protected $term;

@@ -3,7 +3,7 @@
  * Post Type Item Base Class
  */
 
-namespace SimpleDocumentation;
+namespace SimpleDocumentation\Models;
 
 class Post_Type_Item {
 	/**
