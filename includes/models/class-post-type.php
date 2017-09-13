@@ -5,7 +5,7 @@
 
 namespace SimpleDocumentation\Models;
 
-class Post_Type_Item {
+class Post_Type {
 	/**
 	 * @var bool
 	 */

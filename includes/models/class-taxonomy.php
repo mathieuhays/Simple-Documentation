@@ -6,7 +6,7 @@
 
 namespace SimpleDocumentation\Models;
 
-class Taxonomy_Item {
+class Taxonomy {
 	protected $term;
 
 	protected static $is_bootstrapped = false;
@@ -42,7 +42,7 @@ class Taxonomy_Item {
 
 	/**
 	 * @param int|\WP_Term $mixed
-	 * @return Taxonomy_Item
+	 * @return static
 	 */
 	public function from_term( $mixed ) {
 		$term = get_term( $mixed );

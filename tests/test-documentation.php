@@ -1,14 +1,8 @@
 <?php
-use SimpleDocumentation\Documentation_Item;
 
-/**
- * Client Documentation - _test-documentation-item.php
- * User: mathieuhays
- * Date: 18/03/2017
- * Time: 10:46
- */
+use SimpleDocumentation\Models\Documentation;
 
-class DocumentationItemTests extends WP_UnitTestCase {
+class DocumentationTests extends WP_UnitTestCase {
 	/**
 	 * Create DocumentationItem \WP_Post
 	 *
@@ -17,14 +11,14 @@ class DocumentationItemTests extends WP_UnitTestCase {
 	 * @return \WP_Post
 	 */
 	public function util_create_and_get( $args = [] ) {
-		$args['post_type'] = Documentation_Item::POST_TYPE;
+		$args['post_type'] = Documentation::POST_TYPE;
 		return $this->factory->post->create_and_get( $args );
 	}
 
 	public function test_get_view_link() {
 		$post = $this->util_create_and_get();
 
-		$item = Documentation_Item::from_post( $post );
+		$item = Documentation::from_post( $post );
 
 		// There might be better way to test this later on...
 		$this->assertNotFalse( filter_var( $item->get_view_link(), FILTER_VALIDATE_URL ) );
@@ -33,7 +27,7 @@ class DocumentationItemTests extends WP_UnitTestCase {
 	public function test_get_edit_link() {
 		$post = $this->util_create_and_get();
 
-		$item = Documentation_Item::from_post( $post );
+		$item = Documentation::from_post( $post );
 
 		// should use wordpress admin
 		$this->assertNotFalse( strpos( $item->get_edit_link(), 'post.php' ) );

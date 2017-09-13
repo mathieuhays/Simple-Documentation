@@ -26,10 +26,10 @@ require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterators.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-loader.php';
 
 // Models
-require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-post-type-item.php';
-require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-taxonomy-item.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-post-type.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-taxonomy.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-user.php';
-require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-item.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation.php';
 
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-core.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-dashboard.php';
@@ -43,7 +43,7 @@ require_once SIMPLEDOC_INCLUDES_DIR . '/class-upgrade.php';
 /**
  * Instantiate Models when relevant
  */
-\SimpleDocumentation\Models\Documentation_Item::bootstrap();
+\SimpleDocumentation\Models\Documentation::bootstrap();
 
 /**
  * Instantiate Classes

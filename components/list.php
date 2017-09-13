@@ -4,20 +4,6 @@
  */
 
 ?>
-<!---->
-<!--<div class="sd-section">-->
-<!--	<h2 class="sd-section__title">Getting Started</h2>-->
-<!---->
-<!--	<ul class="sd-section__content sd-list">-->
-<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
-<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
-<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
-<!--		<li class="sd-list__item">Maecenas sed diam eget risus varius blandit sit amet non magna.</li>-->
-<!--	</ul>-->
-<!--</div>-->
-<!---->
-<!---->
-
 
 <div id="poststuff" class="postbox-container postbox-container--simple-documentation">
 	<?php

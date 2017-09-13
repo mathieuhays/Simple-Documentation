@@ -7,7 +7,7 @@ namespace SimpleDocumentation\Models;
 
 use SimpleDocumentation\Plugin_Page;
 
-final class Documentation_Item extends Post_Type_Item {
+final class Documentation extends Post_Type {
 	/**
 	 * Post type
 	 */

@@ -5,7 +5,7 @@
 
 namespace SimpleDocumentation;
 
-use SimpleDocumentation\Models\Documentation_Item;
+use SimpleDocumentation\Models\Documentation;
 use SimpleDocumentation\Utilities\Loader;
 
 class Edit_Screen {
@@ -26,7 +26,7 @@ class Edit_Screen {
 		/**
 		 * On Item Save
 		 */
-		add_action( 'save_post_' . Documentation_Item::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
+		add_action( 'save_post_' . Documentation::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
 
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 	}
@@ -112,7 +112,7 @@ class Edit_Screen {
 			'simpledocumentation-attachment',
 			'Attachments',
 			[ $this, 'attachment_meta_box_callback' ],
-			Documentation_Item::POST_TYPE,
+			Documentation::POST_TYPE,
 			'side'
 		);
 
@@ -123,7 +123,7 @@ class Edit_Screen {
 			'simpledocumentation-user-roles',
 			'Restrict access to user roles',
 			[ $this, 'user_roles_meta_box_callback' ],
-			Documentation_Item::POST_TYPE,
+			Documentation::POST_TYPE,
 			'side'
 		);
 
@@ -134,7 +134,7 @@ class Edit_Screen {
 			'simpledocumentation-multisite-options',
 			'Multisite Options',
 			[ $this, 'multisite_meta_box_callback' ],
-			Documentation_Item::POST_TYPE,
+			Documentation::POST_TYPE,
 			'side'
 		);
 	}

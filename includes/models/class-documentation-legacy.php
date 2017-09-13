@@ -6,7 +6,7 @@
 
 namespace SimpleDocumentation\Models;
 
-class Documentation_Item_Legacy {
+class Documentation_Legacy {
 	/**
 	 * Simple Documentation Custom Table Row Object
 	 *

@@ -7,7 +7,7 @@
 
 namespace SimpleDocumentation;
 
-use SimpleDocumentation\Models\Documentation_Item;
+use SimpleDocumentation\Models\Documentation;
 use SimpleDocumentation\Utilities\Loader;
 
 class Plugin_Page {
@@ -121,14 +121,14 @@ class Plugin_Page {
 		if ( $self === 'post.php' && isset( $_GET['post'] ) ) {
 			$post_id = (int) $_GET['post'];
 
-			if ( get_post_type( $post_id ) === Documentation_Item::POST_TYPE ) {
+			if ( get_post_type( $post_id ) === Documentation::POST_TYPE ) {
 				$force_highlight = true;
 			}
 		}
 
 		// Creating a new documentation item
 		if ( $self === 'post-new.php' && isset( $_GET['post_type'] ) &&
-			 $_GET['post_type'] === Documentation_Item::POST_TYPE ) {
+			 $_GET['post_type'] === Documentation::POST_TYPE ) {
 			$force_highlight = true;
 		}
 
@@ -147,7 +147,7 @@ class Plugin_Page {
 	public function hide_quick_edit() {
 		printf(
 			'<style>.type-%s .row-actions .inline { display: none; }</style>',
-			Documentation_Item::POST_TYPE
+			Documentation::POST_TYPE
 		);
 	}
 
@@ -185,7 +185,7 @@ class Plugin_Page {
 	 */
 	public function get_manage_link( $format = 'absolute' ) {
 		$relative_url = add_query_arg(
-			[ 'post_type' => Documentation_Item::POST_TYPE ],
+			[ 'post_type' => Documentation::POST_TYPE ],
 			'edit.php'
 		);
 
@@ -205,7 +205,7 @@ class Plugin_Page {
 	 */
 	public function get_add_new_link() {
 		return add_query_arg(
-			[ 'post_type' => Documentation_Item::POST_TYPE ],
+			[ 'post_type' => Documentation::POST_TYPE ],
 			admin_url( 'post-new.php' )
 		);
 	}
@@ -214,7 +214,7 @@ class Plugin_Page {
 	/**
 	 *  Get Plugin View Link for Given Documentation Item
 	 *
-	 *  @param  Documentation_Item   $item
+	 *  @param  Documentation   $item
 	 *  @return string
 	 */
 	public function get_view_link_for_item( $item ) {
@@ -258,7 +258,7 @@ class Plugin_Page {
 			$item_id = (int) $_GET[ self::ITEM_ID_PARAM ];
 
 			if ( ! empty( $item_id ) &&
-				get_post_type( $item_id ) === Documentation_Item::POST_TYPE ) {
+				get_post_type( $item_id ) === Documentation::POST_TYPE ) {
 				return $item_id;
 			}
 		}

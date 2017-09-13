@@ -6,14 +6,14 @@
  * Time: 10:46
  */
 
-use \SimpleDocumentation\Post_Type_Item;
+use SimpleDocumentation\Models\Post_Type;
 
 class PostTypeItemTests extends WP_UnitTestCase {
 
 	public function test_get_id() {
 		$post = $this->factory->post->create_and_get();
 
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
 		$this->assertSame( $post->ID, $item->get_id() );
 	}
@@ -25,7 +25,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 			'post_title' => $test_title,
 		]);
 
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
 		$this->assertSame( $test_title, $item->get_title() );
 	}
@@ -33,7 +33,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 	public function test_get_permalink() {
 		$post = $this->factory->post->create_and_get();
 
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
 		$this->assertSame(
 			esc_url_raw( $item->get_permalink(), [ 'http', 'https' ] ),
@@ -48,7 +48,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 			'post_content' => $test_content,
 		]);
 
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
 		// use trim because the_content filter will add an extra return
 		$this->assertSame( $test_content, trim( $item->get_content() ) );
@@ -73,13 +73,13 @@ class PostTypeItemTests extends WP_UnitTestCase {
 	public function test_from_post_called_with_post() {
 		$post = $this->factory->post->create_and_get();
 
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
 		$this->assertSame( $post->ID, $item->get_id() );
 	}
 
 	public function test_from_post_with_wrong_arg_type() {
-		$this->assertFalse( Post_Type_Item::from_post( 'foo' ) );
+		$this->assertWPError( Post_Type::from_post( 'foo' ) );
 	}
 
 	public function test_from_post_called_with_wrong_post_type() {
@@ -87,47 +87,47 @@ class PostTypeItemTests extends WP_UnitTestCase {
 			'post_type' => 'not-post',
 		]);
 
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
 		$this->assertWPError( $item );
 	}
 
 	public function test_is_instance() {
 		$post = $this->factory->post->create_and_get();
-		$item = Post_Type_Item::from_post( $post );
+		$item = Post_Type::from_post( $post );
 
-		$this->assertTrue( Post_Type_Item::is_instance( $item ) );
-		$this->assertFalse( Post_Type_Item::is_instance( $post ) );
-		$this->assertFalse( Post_Type_Item::is_instance( $post->ID ) );
-		$this->assertFalse( Post_Type_Item::is_instance( 'foo' ) );
-		$this->assertFalse( Post_Type_Item::is_instance( new stdClass() ) );
-		$this->assertFalse( Post_Type_Item::is_instance( [ 'ID' => $post->ID ] ) );
+		$this->assertTrue( Post_Type::is_instance( $item ) );
+		$this->assertFalse( Post_Type::is_instance( $post ) );
+		$this->assertFalse( Post_Type::is_instance( $post->ID ) );
+		$this->assertFalse( Post_Type::is_instance( 'foo' ) );
+		$this->assertFalse( Post_Type::is_instance( new stdClass() ) );
+		$this->assertFalse( Post_Type::is_instance( [ 'ID' => $post->ID ] ) );
 	}
 
 	public function test_equals() {
 		$post_1 = $this->factory->post->create_and_get();
 		$post_2 = $this->factory->post->create_and_get();
 
-		$item_1 = Post_Type_Item::from_post( $post_1 );
-		$item_2 = Post_Type_Item::from_post( $post_2 );
-		$item_3 = Post_Type_Item::from_post( $post_1 );
+		$item_1 = Post_Type::from_post( $post_1 );
+		$item_2 = Post_Type::from_post( $post_2 );
+		$item_3 = Post_Type::from_post( $post_1 );
 
 		// Same Class Instance but not same item
-		$this->assertFalse( Post_Type_Item::equals( $item_1, $item_2 ) );
+		$this->assertFalse( Post_Type::equals( $item_1, $item_2 ) );
 
 		// Different instances but same item
-		$this->assertTrue( Post_Type_Item::equals( $item_1, $item_3 ) );
+		$this->assertTrue( Post_Type::equals( $item_1, $item_3 ) );
 
 		// Make sure we don't have a false position when testing with item WP_Post instance
-		$this->assertFalse( Post_Type_Item::equals( $item_1, $post_1 ) );
+		$this->assertFalse( Post_Type::equals( $item_1, $post_1 ) );
 
 		// Test wrong argument types.
-		$this->assertFalse( Post_Type_Item::equals( $item_1, $post_1->ID ) );
-		$this->assertFalse( Post_Type_Item::equals( $item_1, 'foo' ) );
+		$this->assertFalse( Post_Type::equals( $item_1, $post_1->ID ) );
+		$this->assertFalse( Post_Type::equals( $item_1, 'foo' ) );
 	}
 
 	public function test_query_empty() {
-		$query = Post_Type_Item::query();
+		$query = Post_Type::query();
 
 		$this->assertInstanceOf( WP_Query::class, $query );
 		$this->assertTrue( isset( $query->posts ) );
@@ -136,7 +136,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 
 	public function test_query_not_empty() {
 		$post = $this->factory->post->create_and_get();
-		$query = Post_Type_Item::query();
+		$query = Post_Type::query();
 
 		$this->assertInstanceOf( WP_Query::class, $query );
 		$this->assertTrue( isset( $query->posts ) );
@@ -156,7 +156,7 @@ class PostTypeItemTests extends WP_UnitTestCase {
 	public function test_get() {
 		$post = $this->factory->post->create_and_get();
 
-		$item = Post_Type_Item::from_id( $post->ID );
+		$item = Post_Type::from_id( $post->ID );
 
 		$this->assertSame( $post->ID, $item->get_id() );
 	}
