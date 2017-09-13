@@ -62,7 +62,7 @@
 
 				?>
 				<ul>
-					<?php foreach ( $args['items'] as $item ): ?>
+					<?php foreach ( $args['items'] as $item ) : ?>
 						<li>
 							<span class="dashicons dashicons-editor-alignleft"></span>
 							<?php echo $item; ?>

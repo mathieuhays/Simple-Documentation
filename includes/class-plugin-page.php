@@ -185,7 +185,9 @@ class Plugin_Page {
 	 */
 	public function get_manage_link( $format = 'absolute' ) {
 		$relative_url = add_query_arg(
-			[ 'post_type' => Documentation::POST_TYPE ],
+			[
+				'post_type' => Documentation::POST_TYPE,
+			],
 			'edit.php'
 		);
 
@@ -205,7 +207,9 @@ class Plugin_Page {
 	 */
 	public function get_add_new_link() {
 		return add_query_arg(
-			[ 'post_type' => Documentation::POST_TYPE ],
+			[
+				'post_type' => Documentation::POST_TYPE,
+			],
 			admin_url( 'post-new.php' )
 		);
 	}
@@ -219,7 +223,9 @@ class Plugin_Page {
 	 */
 	public function get_view_link_for_item( $item ) {
 		return add_query_arg(
-			[ self::ITEM_ID_PARAM => $item->get_id() ],
+			[
+				self::ITEM_ID_PARAM => $item->get_id(),
+			],
 			$this->get_permalink()
 		);
 	}

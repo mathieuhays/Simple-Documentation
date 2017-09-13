@@ -101,7 +101,9 @@ class PostTypeItemTests extends WP_UnitTestCase {
 		$this->assertFalse( Post_Type::is_instance( $post->ID ) );
 		$this->assertFalse( Post_Type::is_instance( 'foo' ) );
 		$this->assertFalse( Post_Type::is_instance( new stdClass() ) );
-		$this->assertFalse( Post_Type::is_instance( [ 'ID' => $post->ID ] ) );
+		$this->assertFalse( Post_Type::is_instance( [
+			'ID' => $post->ID,
+		] ) );
 	}
 
 	public function test_equals() {

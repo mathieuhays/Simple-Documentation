@@ -3,7 +3,7 @@
  *  Simple Documentation -- Main Plugin Page Template
  */
 
-use SimpleDocumentation\Models\Documentation_Item;
+use SimpleDocumentation\Models\Documentation;
 use SimpleDocumentation\Utilities\Iterator;
 use SimpleDocumentation\Utilities\Iterators;
 use \SimpleDocumentation\Utilities\Loader;
@@ -13,15 +13,15 @@ $plugin_page = Plugin_Page::instance();
 
 ?>
 <div class="wrap">
-	<h1 class="wp-heading-inline"><?php echo __( 'Documentation', 'simple-documentation' ) ?></h1>
-	<a href="<?php echo esc_attr( $plugin_page->get_permalink() ) ?>" class="page-title-action">View list</a>
-	<a href="<?php echo esc_attr( $plugin_page->get_add_new_link() ) ?>" class="page-title-action">Add New</a>
+	<h1 class="wp-heading-inline"><?php echo __( 'Documentation', 'simple-documentation' ); ?></h1>
+	<a href="<?php echo esc_attr( $plugin_page->get_permalink() ); ?>" class="page-title-action">View list</a>
+	<a href="<?php echo esc_attr( $plugin_page->get_add_new_link() ); ?>" class="page-title-action">Add New</a>
 
 	<?php
 
 	if ( $plugin_page->is_single() ) {
 		$documentation_id = $plugin_page->get_documentation_id();
-		$item = Documentation_Item::from_id( $documentation_id );
+		$item = Documentation::from_id( $documentation_id );
 
 		/**
 		 *  Load Default single component
@@ -30,16 +30,11 @@ $plugin_page = Plugin_Page::instance();
 	} else {
 		// Create an iterators for our documentation items
 		$iterator = new Iterator(
-			Documentation_Item::get_page()
+			Documentation::get_page()
 		);
 
 		// Register iterator as our current one.
 		Iterators::instance()->setup( $iterator );
-
-		/**
-		 * Highlight
-		 */
-//		Loader::component( 'highlight' );
 
 		?>
 		<div class="sd-container">

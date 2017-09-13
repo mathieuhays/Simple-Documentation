@@ -29,7 +29,7 @@ class DocumentationTests extends WP_UnitTestCase {
 
 		$item = Documentation::from_post( $post );
 
-		// should use wordpress admin
+		// should use WordPress admin
 		$this->assertNotFalse( strpos( $item->get_edit_link(), 'post.php' ) );
 	}
 
