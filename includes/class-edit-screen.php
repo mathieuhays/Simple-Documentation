@@ -50,7 +50,7 @@ class Edit_Screen {
 		 *  Restrict Asset loading for the edit screen
 		 */
 		if ( $hook !== 'post-new.php' &&
-		     $hook !== 'post.php' ) {
+			 $hook !== 'post.php' ) {
 			return;
 		}
 
@@ -164,12 +164,12 @@ class Edit_Screen {
 	 * @return Edit_Screen
 	 */
 	public static function instance() {
-	    static $instance;
+		static $instance;
 
-	    if ( is_null( $instance ) ) {
-	        $instance = new self;
-	    }
+		if ( is_null( $instance ) ) {
+			$instance = new self;
+		}
 
-	    return $instance;
+		return $instance;
 	}
 }

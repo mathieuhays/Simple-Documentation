@@ -255,7 +255,7 @@ class Post_Type_Column_Helper {
 
 		// return early if an error occurred w/ the regex or if we did find what we were looking for.
 		if ( $pattern_count === false ||
-		     $pattern_count > 0 ) {
+			 $pattern_count > 0 ) {
 			return $size;
 		}
 

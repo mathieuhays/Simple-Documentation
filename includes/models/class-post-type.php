@@ -121,7 +121,7 @@ class Post_Type {
 		}
 
 		$args = wp_parse_args( $custom_args, [
-			'label' => ucfirst( static::POST_TYPE )
+			'label' => ucfirst( static::POST_TYPE ),
 		]);
 
 		return register_post_type( static::POST_TYPE, $args );
@@ -160,7 +160,7 @@ class Post_Type {
 	public static function from_id( $post_id ) {
 		$wp_post = get_post( $post_id );
 
-		if ( empty ( $wp_post ) ) {
+		if ( empty( $wp_post ) ) {
 			return false;
 		}
 

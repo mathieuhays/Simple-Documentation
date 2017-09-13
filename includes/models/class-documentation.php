@@ -129,7 +129,7 @@ final class Documentation extends Post_Type {
 				'editor',
 				'revisions',
 			],
-			'show_in_menu'	=> false,
+			'show_in_menu' => false,
 		]));
 	}
 }

@@ -8,7 +8,7 @@ namespace SimpleDocumentation;
 
 class Upgrade {
 	/**
-	 *	Bootstrap
+	 * Bootstrap
 	 */
 	public function bootstrap() {
 		/**
@@ -69,12 +69,12 @@ class Upgrade {
 	 * @return Upgrade
 	 */
 	public static function instance() {
-	    static $instance;
+		static $instance;
 
-	    if ( is_null( $instance ) ) {
-	        $instance = new self;
-	    }
+		if ( is_null( $instance ) ) {
+			$instance = new self;
+		}
 
-	    return $instance;
+		return $instance;
 	}
 }
