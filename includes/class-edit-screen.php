@@ -14,11 +14,6 @@ class Edit_Screen {
 	 */
 	public function bootstrap() {
 		/**
-		 *  Add type selector below title
-		 */
-		add_action( 'edit_form_after_title', [ $this, 'render_type_selector' ] );
-
-		/**
 		 *  Load JavaScript
 		 */
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_js' ] );
@@ -29,14 +24,6 @@ class Edit_Screen {
 		add_action( 'save_post_' . Documentation::POST_TYPE, [ $this, 'on_save' ], 12, 3 );
 
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
-	}
-
-
-	/**
-	 *  Render Type Selector
-	 */
-	public function render_type_selector() {
-		Loader::component( 'type-selector' );
 	}
 
 
@@ -147,7 +134,6 @@ class Edit_Screen {
 		Loader::component( 'meta-box-attachments' );
 	}
 
-
 	/**
 	 * Restrict User Roles Meta Box Component Loader
 	 */
@@ -158,7 +144,6 @@ class Edit_Screen {
 	public function multisite_meta_box_callback() {
 		Loader::component( 'meta-box-multisite' );
 	}
-
 
 	/**
 	 * @return Edit_Screen
