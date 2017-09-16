@@ -96,7 +96,9 @@ class Documentation_Legacy {
 	}
 
 	/**
-	 * @return string[]
+	 * Get allowed user roles.
+	 *
+	 * @return string[] - array of role slug
 	 */
 	public function get_allowed_user_roles() {
 		/**
@@ -161,5 +163,31 @@ class Documentation_Legacy {
 		 * @TODO implement get_all
 		 */
 		return [];
+	}
+
+	/**
+	 * @param array $custom_arguments
+	 *
+	 * @return bool|static
+	 */
+	public function insert( $custom_arguments = [] ) {
+		$args = wp_parse_args( $custom_arguments, [
+			'title' => '',
+			'content' => '',
+			'restricted' => false,
+			'attachment_id' => 0,
+			'ordered' => '',
+		] );
+
+		// @TODO implement insert
+
+		return false;
+	}
+
+	/**
+	 * @param $entry_id
+	 */
+	public function delete( $entry_id ) {
+		// @TODO implement delete
 	}
 }

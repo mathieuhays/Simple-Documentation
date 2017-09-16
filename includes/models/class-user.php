@@ -28,7 +28,7 @@ class User {
 	/**
 	 * @return \WP_User
 	 */
-	public function get_object() {
+	public function get_wp_user() {
 		return $this->user;
 	}
 
@@ -36,14 +36,14 @@ class User {
 	 * @return int
 	 */
 	public function get_id() {
-		return $this->get_object()->ID;
+		return $this->get_wp_user()->ID;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function get_username() {
-		return $this->get_object()->user_nicename;
+		return $this->get_wp_user()->user_nicename;
 	}
 
 	/**
@@ -52,7 +52,7 @@ class User {
 	 * @return string
 	 */
 	public function get_email() {
-		return $this->get_object()->user_email;
+		return $this->get_wp_user()->user_email;
 	}
 
 	/**
@@ -63,18 +63,39 @@ class User {
 	 * @return bool
 	 */
 	public function can( $capability ) {
-		return user_can( $this->get_object(), $capability );
+		return user_can( $this->get_wp_user(), $capability );
+	}
+
+	/**
+	 * Whether the user has one of the given roles
+	 *
+	 * @param array|string $roles
+	 *
+	 * @return bool
+	 */
+	public function has_role( $roles = [] ) {
+		if ( ! is_array( $roles ) ) {
+			$roles = [ $roles ];
+		}
+
+		foreach ( $roles as $role ) {
+			if ( in_array( $role, $this->get_wp_user()->roles, true ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
 	/**
 	 * Whether the user can view a given documentation item or not.
 	 *
-	 * @param Documentation $documentation_item
+	 * @param Documentation $documentation
 	 *
 	 * @return bool
 	 */
-	public function can_view_doc( $documentation_item ) {
+	public function can_view_doc( $documentation ) {
 		/**
 		 * @TODO implement view access test
 		 * should test for capability then check if there are not extra restrictions attached to the specified doc.
@@ -85,11 +106,11 @@ class User {
 	/**
 	 * Whether the user can edit a given documentation item or not.
 	 *
-	 * @param Documentation $documentation_item
+	 * @param Documentation $documentation
 	 *
 	 * @return bool
 	 */
-	public function can_edit_doc( $documentation_item ) {
+	public function can_edit_doc( $documentation ) {
 		/**
 		 * @TODO implement checks specific to a given document
 		 */
