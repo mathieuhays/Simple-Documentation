@@ -71,34 +71,13 @@ class Post_Type {
 	 * ======= */
 
 	/**
-	 * Bootstrap Post Type
-	 *
-	 * Register post type, custom columns, etc...
-	 *
-	 * @param array $args
-	 *
-	 * @return \WP_Error|\WP_Post_Type
-	 */
-	public static function bootstrap( $args = [] ) {
-		if ( static::$is_bootstrapped ) {
-			return get_post_type_object( static::POST_TYPE );
-		}
-
-		$register_status = static::register( $args );
-
-		static::$is_bootstrapped = true;
-
-		return $register_status;
-	}
-
-	/**
 	 * Register Post Type
 	 *
 	 * @param array $custom_args - optional arguments for register_post_type()
 	 *
 	 * @return \WP_Error|\WP_Post_Type
 	 */
-	protected static function register( $custom_args = [] ) {
+	public static function register( $custom_args = [] ) {
 		$is_built_in_type = in_array(
 			static::POST_TYPE,
 			[

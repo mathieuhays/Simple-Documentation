@@ -17,7 +17,6 @@ class Upgrade {
 		 */
 	}
 
-
 	/**
 	 *  Whether we detected the existing data format is from a previous version
 	 *  of the plugin and requires upgrade, or not.
@@ -34,7 +33,6 @@ class Upgrade {
 		return false;
 	}
 
-
 	/**
 	 *  Migrate Legacy Options to the current data structure for settings
 	 */
@@ -47,7 +45,6 @@ class Upgrade {
 		 *  - Update data structure version
 		 */
 	}
-
 
 	/**
 	 *  Migrate Documentation Item from the legacy custom tables to the new
@@ -63,7 +60,6 @@ class Upgrade {
 		 *  - Delete custom tables when migration done
 		 */
 	}
-
 
 	/**
 	 * @return Upgrade

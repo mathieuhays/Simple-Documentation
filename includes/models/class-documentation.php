@@ -97,13 +97,13 @@ final class Documentation extends Post_Type {
 	 */
 
 	/**
-	 * Bootstrap
+	 * Register
 	 *
-	 * @param array $args
+	 * @param array $custom_args
 	 *
 	 * @return \WP_Error|\WP_Post_Type
 	 */
-	public static function bootstrap( $args = [] ) {
+	public static function register( $custom_args = [] ) {
 		$labels = array(
 			'name' => __( 'Documentation Items', 'simple-documentation' ),
 			'singular_name' => __( 'Simple Documentation', 'simple-documentation' ),
@@ -117,7 +117,7 @@ final class Documentation extends Post_Type {
 			'not_found_in_trash' => __( 'No Items found in Trash', 'simple-documentation' ),
 		);
 
-		return parent::bootstrap( wp_parse_args( $args, [
+		return parent::register( wp_parse_args( $custom_args, [
 			'labels' => $labels,
 			'public' => false,
 			'show_ui' => true,

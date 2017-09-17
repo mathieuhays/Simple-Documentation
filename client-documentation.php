@@ -13,6 +13,17 @@
  */
 
 // Load Plugin's Constant
+use SimpleDocumentation\Core;
+use SimpleDocumentation\Dashboard;
+use SimpleDocumentation\Edit_Screen;
+use SimpleDocumentation\Export;
+use SimpleDocumentation\Import;
+use SimpleDocumentation\Models\Documentation;
+use SimpleDocumentation\Models\Documentation_Type;
+use SimpleDocumentation\Plugin_Page;
+use SimpleDocumentation\Settings;
+use SimpleDocumentation\Upgrade;
+
 require_once 'constants.php';
 
 /**
@@ -31,6 +42,7 @@ require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-taxonomy.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-user.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-legacy.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-type.php';
 
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-core.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-dashboard.php';
@@ -42,18 +54,13 @@ require_once SIMPLEDOC_INCLUDES_DIR . '/class-settings.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-upgrade.php';
 
 /**
- * Instantiate Models when relevant
- */
-\SimpleDocumentation\Models\Documentation::bootstrap();
-
-/**
  * Instantiate Classes
  */
-\SimpleDocumentation\Core::instance()->bootstrap();
-\SimpleDocumentation\Dashboard::instance()->bootstrap();
-\SimpleDocumentation\Edit_Screen::instance()->bootstrap();
-\SimpleDocumentation\Export::instance()->bootstrap();
-\SimpleDocumentation\Import::instance()->bootstrap();
-\SimpleDocumentation\Plugin_Page::instance()->bootstrap();
-\SimpleDocumentation\Settings::instance()->bootstrap();
-\SimpleDocumentation\Upgrade::instance()->bootstrap();
+Core::instance()->bootstrap();
+Dashboard::instance()->bootstrap();
+Edit_Screen::instance()->bootstrap();
+Export::instance()->bootstrap();
+Import::instance()->bootstrap();
+Plugin_Page::instance()->bootstrap();
+Settings::instance()->bootstrap();
+Upgrade::instance()->bootstrap();

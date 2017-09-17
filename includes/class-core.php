@@ -2,6 +2,9 @@
 
 namespace SimpleDocumentation;
 
+use SimpleDocumentation\Models\Documentation;
+use SimpleDocumentation\Models\Documentation_Type;
+
 class Core {
 	const SLUG = 'simple-documentation';
 
@@ -10,9 +13,18 @@ class Core {
 	 */
 	public function bootstrap() {
 		$this->load_textdomain();
+		$this->register_models();
 
 		add_filter( 'plugin_action_links_' . plugin_basename( SIMPLEDOC_ROOT_DIR . '/client-documentation.php' ), [ $this, 'add_action_links' ] );
 		add_filter( 'plugin_row_meta', [ $this, 'add_plugin_row_meta' ], 10, 2 );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function is_installed() {
+		// @TODO implement is_installed
+		return false;
 	}
 
 	/**
@@ -26,6 +38,10 @@ class Core {
 		);
 	}
 
+	public function register_models() {
+		Documentation::register();
+		Documentation_Type::register( [], Documentation::POST_TYPE );
+	}
 
 	/**
 	 * Add custom action link on plugin entry on the WordPress Plugins page.
