@@ -265,8 +265,12 @@ class Documentation_Legacy_Tests extends WP_UnitTestCase {
 	}
 
 	public function test_insert() {
-		$doc_1_id = Documentation_Legacy::insert([ 'foo' => 'bar' ]);
-		$doc_2_id = Documentation_Legacy::insert([ 'title' => 'Lorem Ipsum' ]);
+		$doc_1_id = Documentation_Legacy::insert( [
+			'foo' => 'bar',
+		] );
+		$doc_2_id = Documentation_Legacy::insert( [
+			'title' => 'Lorem Ipsum',
+		] );
 
 		// should return false if omitting the title argument
 		$this->assertFalse( $doc_1_id );
