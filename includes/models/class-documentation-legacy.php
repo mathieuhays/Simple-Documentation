@@ -27,7 +27,7 @@ class Documentation_Legacy {
 	 * @return int
 	 */
 	public function get_id() {
-		return $this->row->ID;
+		return (int) $this->row->ID;
 	}
 
 	/**
@@ -129,6 +129,19 @@ class Documentation_Legacy {
 	}
 
 	/**
+	 * @return bool|int
+	 */
+	public function delete() {
+		global $wpdb;
+
+		$where = [
+			'ID' => $this->get_id(),
+		];
+
+		return $wpdb->delete( self::get_table(), $where, [ '%d' ] );
+	}
+
+	/**
 	 * @param \stdClass $row
 	 *
 	 * @return bool|static
@@ -141,53 +154,96 @@ class Documentation_Legacy {
 		return false;
 	}
 
+	protected static function get_table() {
+		global $wpdb;
+		return $wpdb->prefix . 'simpledocumentation';
+	}
+
 	/**
 	 * @param int $entry_id
 	 *
 	 * @return static|bool
 	 */
 	public static function get( $entry_id ) {
-		/**
-		 * @TODO implement get
-		 *
-		 * Get row from db and return new instance
-		 */
-		return false;
+		global $wpdb;
+
+		$table = self::get_table();
+
+		$query = $wpdb->prepare(
+			"SELECT * FROM {$table} WHERE `ID` = %d;",
+			$entry_id
+		);
+
+		$row = $wpdb->get_row( $query );
+
+		return static::from_db_row( $row );
 	}
 
 	/**
 	 * @return static[]
 	 */
-	public function get_all() {
-		/**
-		 * @TODO implement get_all
-		 */
+	public static function get_all() {
+		global $wpdb;
+
+		$table = self::get_table();
+
+		$rows = $wpdb->get_results( "SELECT * FROM {$table} ORDER BY ID;" );
+
+		if ( is_array( $rows ) ) {
+			return array_map( [ get_called_class(), 'from_db_row' ], $rows );
+		}
+
 		return [];
 	}
 
 	/**
 	 * @param array $custom_arguments
 	 *
-	 * @return bool|static
+	 * @return bool|int
 	 */
-	public function insert( $custom_arguments = [] ) {
-		$args = wp_parse_args( $custom_arguments, [
+	public static function insert( $custom_arguments = [] ) {
+		global $wpdb;
+
+		if ( empty( $custom_arguments['title'] ) ) {
+			return false;
+		}
+
+		$default_args = [
+			'type' => 'note',
 			'title' => '',
 			'content' => '',
-			'restricted' => false,
+			'restricted' => '',
 			'attachment_id' => 0,
-			'ordered' => '',
-		] );
+			'ordered' => 0,
+		];
 
-		// @TODO implement insert
+		$format = [
+			'%s',
+			'%s',
+			'%s',
+			'%s',
+			'%d',
+			'%d',
+		];
 
-		return false;
-	}
+		$args = wp_parse_args( $custom_arguments, $default_args );
 
-	/**
-	 * @param $entry_id
-	 */
-	public function delete( $entry_id ) {
-		// @TODO implement delete
+		$data = [];
+
+		foreach ( array_keys( $default_args ) as $key ) {
+			$data[ $key ] = $args[ $key ];
+		}
+
+		$rows_affected = $wpdb->insert(
+			self::get_table(),
+			$data,
+			$format
+		);
+
+		if ( $rows_affected === false ) {
+			return false;
+		}
+
+		return $wpdb->insert_id;
 	}
 }
