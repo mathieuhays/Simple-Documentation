@@ -6,15 +6,29 @@
 
 namespace SimpleDocumentation;
 
+use SimpleDocumentation\Models\Documentation_Type;
+
 class Upgrade {
 	/**
 	 * Bootstrap
 	 */
 	public function bootstrap() {
-		/**
-		 *  @TODO implement bootstrap
-		 *  if should_upgrade >> migrate()
-		 */
+		// Use init hook to ensure we registered every post types / terms
+		add_action( 'init', [ $this, 'maybe_setup_plugin_data' ] );
+	}
+
+	/**
+	 * Setup plugin data if migration is need or the plugin has just been installed
+	 */
+	public function maybe_setup_plugin_data() {
+		if ( $this->should_upgrade() ) {
+			$this->migrate_options();
+			$this->migrate_table_data();
+		}
+
+		if ( $this->is_first_load() ) {
+			$this->load_initial_data();
+		}
 	}
 
 	/**
@@ -35,6 +49,8 @@ class Upgrade {
 
 	/**
 	 *  Migrate Legacy Options to the current data structure for settings
+	 *
+	 * @return bool
 	 */
 	public function migrate_options() {
 		/**
@@ -44,12 +60,16 @@ class Upgrade {
 		 *  - Delete legacy options entry
 		 *  - Update data structure version
 		 */
+
+		return false;
 	}
 
 	/**
 	 *  Migrate Documentation Item from the legacy custom tables to the new
 	 *  structure which uses a custom post type instead for better support
 	 *  across environments and languages
+	 *
+	 * @return bool
 	 */
 	public function migrate_table_data() {
 		/**
@@ -59,6 +79,30 @@ class Upgrade {
 		 *    when relevant
 		 *  - Delete custom tables when migration done
 		 */
+
+		return false;
+	}
+
+	/**
+	 * Whether the current load is the first one or not.
+	 *
+	 * @return bool
+	 */
+	public function is_first_load() {
+		return false;
+	}
+
+	/**
+	 * Setup basic data so the user have some data to play with and understand the plugin better.
+	 */
+	public function load_initial_data() {
+		// Insert default documentation types
+		array_map( [ Documentation_Type::class, 'insert' ], [ 'Note', 'File', 'Link', 'Video' ] );
+
+		// Default options
+		if ( is_multisite() ) {
+			//.
+		}
 	}
 
 	/**
