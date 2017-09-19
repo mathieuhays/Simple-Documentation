@@ -2,6 +2,10 @@
 <ruleset name="WordPress Coding Standards for Plugins">
 	<description>Generally-applicable sniffs for WordPress plugins</description>
 
+	<!-- Don't fail the build on PHPCS warnings & errors -->
+	<config name="ignore_warnings_on_exit" value="1"/>
+	<config name="ignore_errors_on_exit" value="1"/>
+
 	<rule ref="WordPress-Core">
 		<exclude name="WordPress.PHP.YodaConditions" />
 	</rule>
