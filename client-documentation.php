@@ -18,10 +18,7 @@ use SimpleDocumentation\Dashboard;
 use SimpleDocumentation\Edit_Screen;
 use SimpleDocumentation\Export;
 use SimpleDocumentation\Import;
-use SimpleDocumentation\Models\Documentation;
-use SimpleDocumentation\Models\Documentation_Type;
 use SimpleDocumentation\Plugin_Page;
-use SimpleDocumentation\Settings;
 use SimpleDocumentation\Upgrade;
 
 require_once 'constants.php';
@@ -50,7 +47,6 @@ require_once SIMPLEDOC_INCLUDES_DIR . '/class-edit-screen.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-export.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-import.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-plugin-page.php';
-require_once SIMPLEDOC_INCLUDES_DIR . '/class-settings.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-upgrade.php';
 
 /**
@@ -62,5 +58,4 @@ Edit_Screen::instance()->bootstrap();
 Export::instance()->bootstrap();
 Import::instance()->bootstrap();
 Plugin_Page::instance()->bootstrap();
-Settings::instance()->bootstrap();
 Upgrade::instance()->bootstrap();
