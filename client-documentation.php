@@ -28,12 +28,15 @@ require_once 'constants.php';
  */
 
 // Utilities
-require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-post-type-column-helper.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/namespace.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-debug.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterator.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-iterators.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-loader.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/utilities/class-post-type-column-helper.php';
 
 // Models
+require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-base-model.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-post-type.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-taxonomy.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-user.php';
