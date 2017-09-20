@@ -144,21 +144,35 @@ class Debug {
 	 */
 	public static function convert_arguments_for_js( $args ) {
 		return array_map( function( $arg ) {
-			/**
-			 * Since object are not rendered very well with json_encode and console.log
-			 * we render a representation of the object.
-			 * Note, we're only able to get public properties and methods.
-			 */
-			if ( is_object( $arg ) ) {
-				$arg = [
-					'class' => get_class( $arg ),
-					'properties' => get_object_vars( $arg ),
-					'methods' => get_class_methods( $arg ),
-				];
-			}
+			$arg = self::convert_object_deep( $arg );
 
 			return json_encode( $arg );
 		}, $args );
+	}
+
+	/**
+	 * Since object are not rendered very well with json_encode and console.log
+	 * we render a representation of the object.
+	 * Note, we're only able to get public properties and methods.
+	 *
+	 * @param mixed $mixed
+	 *
+	 * @return mixed
+	 */
+	public static function convert_object_deep( $mixed ) {
+		if ( is_array( $mixed ) ) {
+			return array_map( [ get_called_class(), __FUNCTION__ ], $mixed );
+		}
+
+		if ( is_object( $mixed ) ) {
+			return  [
+				'class' => get_class( $mixed ),
+				'properties' => get_object_vars( $mixed ),
+				'methods' => get_class_methods( $mixed ),
+			];
+		}
+
+		return $mixed;
 	}
 
 	/**
