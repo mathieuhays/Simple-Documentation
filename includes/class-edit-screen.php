@@ -98,9 +98,28 @@ class Edit_Screen {
 		add_meta_box(
 			'simpledocumentation-attachment',
 			'Attachments',
-			[ $this, 'attachment_meta_box_callback' ],
+			[ $this, 'render_meta_box' ],
 			Documentation::POST_TYPE,
-			'side'
+			'normal',
+			'default',
+			[
+				'component' => 'meta-box-attachments',
+			]
+		);
+
+		/**
+		 * Documentation Type
+		 */
+		add_meta_box(
+			'simpledocumentation-type',
+			'Type',
+			[ $this, 'render_meta_box' ],
+			Documentation::POST_TYPE,
+			'side',
+			'default',
+			[
+				'component' => 'meta-box-types',
+			]
 		);
 
 		/**
@@ -109,9 +128,13 @@ class Edit_Screen {
 		add_meta_box(
 			'simpledocumentation-user-roles',
 			'Restrict access to user roles',
-			[ $this, 'user_roles_meta_box_callback' ],
+			[ $this, 'render_meta_box' ],
 			Documentation::POST_TYPE,
-			'side'
+			'side',
+			'default',
+			[
+				'component' => 'meta-box-user-roles',
+			]
 		);
 
 		/**
@@ -120,29 +143,29 @@ class Edit_Screen {
 		add_meta_box(
 			'simpledocumentation-multisite-options',
 			'Multisite Options',
-			[ $this, 'multisite_meta_box_callback' ],
+			[ $this, 'render_meta_box' ],
 			Documentation::POST_TYPE,
-			'side'
+			'normal',
+			'default',
+			[
+				'component' => 'meta-box-multisite',
+			]
 		);
 	}
 
-
 	/**
-	 * Attachment Meta Box Component Loader
+	 * @param \WP_Post $post
+	 * @param array $args
 	 */
-	public function attachment_meta_box_callback() {
-		Loader::component( 'meta-box-attachments' );
-	}
-
-	/**
-	 * Restrict User Roles Meta Box Component Loader
-	 */
-	public function user_roles_meta_box_callback() {
-		Loader::component( 'meta-box-user-roles' );
-	}
-
-	public function multisite_meta_box_callback() {
-		Loader::component( 'meta-box-multisite' );
+	public function render_meta_box( $post, $options = [] ) {
+		if ( isset( $options['args']['component'] ) ) {
+			Loader::component(
+				$options['args']['component'],
+				[
+					'post' => $post,
+				]
+			);
+		}
 	}
 
 	/**
