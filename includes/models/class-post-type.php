@@ -5,17 +5,7 @@
 
 namespace SimpleDocumentation\Models;
 
-class Post_Type {
-	/**
-	 * @var bool
-	 */
-	protected static $is_bootstrapped = false;
-
-	/**
-	 * @var int
-	 */
-	protected $ID;
-
+class Post_Type extends Base_Model {
 	/**
 	 * @var \WP_Post
 	 */
@@ -29,18 +19,24 @@ class Post_Type {
 	/**
 	 * PostTypeItem constructor.
 	 *
-	 * @param \WP_Post|Int $post_mixed
+	 * @param \WP_Post $post
 	 */
-	public function __construct( $post_mixed = null ) {
-		$this->post = get_post( $post_mixed );
-		$this->ID = $this->post->ID;
+	public function __construct( $post ) {
+		$this->post = get_post( $post );
+	}
+
+	/**
+	 * @return \WP_Post
+	 */
+	public function get_post() {
+		return $this->post;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function get_id() {
-		return $this->ID;
+		return $this->get_post()->ID;
 	}
 
 	/**
@@ -61,7 +57,7 @@ class Post_Type {
 	 * @return string
 	 */
 	public function get_content() {
-		return apply_filters( 'the_content', $this->post->post_content );
+		return apply_filters( 'the_content', $this->get_post()->post_content );
 	}
 
 	/** ======
@@ -144,39 +140,6 @@ class Post_Type {
 		}
 
 		return static::from_post( $wp_post );
-	}
-
-	/**
-	 * Whether the specified object is an instance of the current class
-	 *
-	 * @param mixed $object
-	 *
-	 * @return bool
-	 */
-	public static function is_instance( $object ) {
-		return is_a( $object, get_called_class() );
-	}
-
-	/**
-	 * Whether the two specified objects refers to the same post
-	 *
-	 * @param mixed $mixed_1
-	 * @param mixed $mixed_2
-	 *
-	 * @return bool
-	 */
-	public static function equals( $mixed_1, $mixed_2 ) {
-		if ( ! self::is_instance( $mixed_1 ) ||
-			 ! self::is_instance( $mixed_2 )
-		) {
-			return false;
-		}
-
-		/**
-		 * @var static $mixed_1
-		 * @var static $mixed_2
-		 */
-		return $mixed_1->get_id() === $mixed_2->get_id();
 	}
 
 	/**

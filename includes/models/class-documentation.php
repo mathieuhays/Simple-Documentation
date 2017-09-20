@@ -91,6 +91,31 @@ final class Documentation extends Post_Type {
 		return false;
 	}
 
+	/**
+	 * @param Documentation_Type $type
+	 */
+	public function update_type( $type ) {
+		wp_set_object_terms(
+			$this->get_id(),
+			[ $type->get_id() ],
+			Documentation_Type::TAXONOMY,
+			false
+		);
+	}
+
+	/**
+	 * @return bool|Documentation_Type
+	 */
+	public function get_type() {
+		$type = Documentation_Type::get_for_post( $this->get_post() );
+
+		if ( ! empty( $type ) ) {
+			return $type[0];
+		}
+
+		return false;
+	}
+
 
 	/**
 	 *  == Static ==

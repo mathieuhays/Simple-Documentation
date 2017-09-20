@@ -6,7 +6,7 @@
 
 namespace SimpleDocumentation\Models;
 
-class Taxonomy {
+class Taxonomy extends Base_Model {
 	/**
 	 * @var \WP_Term
 	 */
@@ -184,6 +184,10 @@ class Taxonomy {
 		return register_taxonomy_for_object_type( static::TAXONOMY, $post_type_slug );
 	}
 
+	/**
+	 * @param string $name
+	 * @param array $custom_args
+	 */
 	public static function insert( $name, $custom_args = [] ) {
 		wp_insert_term( $name, static::TAXONOMY, $custom_args );
 	}
@@ -192,7 +196,7 @@ class Taxonomy {
 	 * @param int|\WP_Term $mixed
 	 * @return static|false
 	 */
-	public function from_term( $mixed ) {
+	public static function from_term( $mixed ) {
 		$term = get_term( $mixed, static::TAXONOMY );
 
 		if ( empty( $term ) ||
@@ -201,5 +205,45 @@ class Taxonomy {
 		}
 
 		return new static( $term );
+	}
+
+	/**
+	 * @param int $term_id
+	 *
+	 * @return false|static
+	 */
+	public static function from_id( $term_id ) {
+		return self::from_term( $term_id );
+	}
+
+	/**
+	 * @return static[]
+	 */
+	public static function get_all() {
+		$terms = get_terms([
+			'taxonomy' => static::TAXONOMY,
+			'hide_empty' => false,
+		]);
+
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			return [];
+		}
+
+		return array_map( [ get_called_class(), 'from_term' ], $terms );
+	}
+
+	/**
+	 * @param \WP_Post $post
+	 *
+	 * @return array
+	 */
+	public static function get_for_post( $post ) {
+		$terms = get_the_terms( $post, self::TAXONOMY );
+
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			return [];
+		}
+
+		return array_map( [ get_called_class(), 'from_term' ], $terms );
 	}
 }
