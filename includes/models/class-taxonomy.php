@@ -238,7 +238,7 @@ class Taxonomy extends Base_Model {
 	 * @return array
 	 */
 	public static function get_for_post( $post ) {
-		$terms = get_the_terms( $post, self::TAXONOMY );
+		$terms = get_the_terms( $post, static::TAXONOMY );
 
 		if ( empty( $terms ) || is_wp_error( $terms ) ) {
 			return [];
