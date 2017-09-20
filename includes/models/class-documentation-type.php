@@ -22,7 +22,7 @@ class Documentation_Type extends Taxonomy {
 				'singular_name' => 'type',
 			],
 			'public' => false,
-			'show_ui' => true,
+			'show_ui' => false,
 			'show_admin_column' => true,
 			'hierarchical' => true,
 			'query_var' => false,

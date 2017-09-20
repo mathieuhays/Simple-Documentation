@@ -6,9 +6,13 @@
 namespace SimpleDocumentation;
 
 use SimpleDocumentation\Models\Documentation;
+use SimpleDocumentation\Models\Documentation_Type;
 use SimpleDocumentation\Utilities\Loader;
 
 class Edit_Screen {
+	private $documentation;
+	private $post;
+
 	/**
 	 *  Bootstrap
 	 */
@@ -68,14 +72,22 @@ class Edit_Screen {
 	 * @param bool $update
 	 */
 	public function on_save( $post_id, $post, $update ) {
-		//.
+		$doc = Documentation::from_post( $post );
+
+		/**
+		 * Save Documentation Type
+		 * Type is mandatory so we don't do anything if empty.
+		 */
+		if ( ! empty( $_REQUEST['documentation-type'] ) ) {
+			$type = Documentation_Type::from_id( $_REQUEST['documentation-type'] );
+
+			if ( ! empty( $type ) ) {
+				$doc->update_type( $type );
+			}
+		}
 
 		/**
 		 * @TODO handle attachments -- $_REQUEST['sd_attachments'] - comma separated list of attachment ids.
-		 */
-
-		/**
-		 * @TODO handle video
 		 */
 
 		/**
@@ -158,11 +170,17 @@ class Edit_Screen {
 	 * @param array $args
 	 */
 	public function render_meta_box( $post, $options = [] ) {
+		if ( empty( $this->post ) ) {
+			$this->post = $post;
+			$this->documentation = Documentation::from_post( $this->post );
+		}
+
 		if ( isset( $options['args']['component'] ) ) {
 			Loader::component(
 				$options['args']['component'],
 				[
-					'post' => $post,
+					'post' => $this->post,
+					'documentation' => $this->documentation,
 				]
 			);
 		}
