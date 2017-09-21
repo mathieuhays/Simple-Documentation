@@ -28,7 +28,7 @@ class Dashboard {
 	public function register() {
 		wp_add_dashboard_widget(
 			Core::SLUG,
-			Settings::instance()->get( 'label_widget_title' ),
+			'Documentation',
 			[ $this, 'render' ]
 		);
 	}

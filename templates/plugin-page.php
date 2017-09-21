@@ -38,22 +38,13 @@ $plugin_page = Plugin_Page::instance();
 
 		?>
 		<div class="sd-container">
-			<div class="sd-container__item sd-container__item--main">
-				<?php
+			<?php
 
-				Loader::component( 'search-field' );
+//			Loader::component( 'search-field' );
 
-				Loader::component( 'list' );
+			Loader::component( 'list' );
 
-				?>
-			</div>
-			<div class="sd-container__item sd-container__item--side">
-				<?php
-
-				Loader::component( 'sidebar' );
-
-				?>
-			</div>
+			?>
 		</div>
 		<?php
 	}

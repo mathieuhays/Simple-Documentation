@@ -4,6 +4,7 @@
  * Component - Search Field
  */
 
+return;
 ?>
 <form>
 	<h2>Search</h2>

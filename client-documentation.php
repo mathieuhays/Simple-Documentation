@@ -42,6 +42,7 @@ require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-taxonomy.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-user.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-legacy.php';
+require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-category.php';
 require_once SIMPLEDOC_INCLUDES_DIR . '/models/class-documentation-type.php';
 
 require_once SIMPLEDOC_INCLUDES_DIR . '/class-core.php';

@@ -57,7 +57,10 @@ class Post_Type extends Base_Model {
 	 * @return string
 	 */
 	public function get_content() {
-		return apply_filters( 'the_content', $this->get_post()->post_content );
+		$content = apply_filters( 'the_content', $this->get_post()->post_content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+
+		return $content;
 	}
 
 	/** ======
@@ -173,5 +176,33 @@ class Post_Type extends Base_Model {
 		]);
 
 		return array_map( [ get_called_class(), 'from_post' ], $query->posts );
+	}
+
+	/**
+	 * @param Taxonomy $taxonomy
+	 * @param int $limit
+	 *
+	 * @return static[]
+	 */
+	public static function get_for_taxonomy( $taxonomy, $limit = -1 ) {
+		$query = new \WP_Query([
+			'post_type' => static::POST_TYPE,
+			'posts_per_page' => $limit,
+			'tax_query' => [
+				[
+					'taxonomy' => $taxonomy::TAXONOMY,
+					'terms' => $taxonomy->get_id(),
+				],
+			],
+		]);
+
+		if ( ! $query->have_posts() ) {
+			return [];
+		}
+
+		return array_map(
+			[ get_called_class(), 'from_post' ],
+			$query->posts
+		);
 	}
 }

@@ -1,0 +1,22 @@
+//
+//	Simple Documentation
+//	Component - Entry
+//
+
+.#{$namespace}entry {
+	@include custom-font;
+	@include font-size(14px, 1.6);
+
+	&__link {
+		color: inherit;
+		display: block;
+		padding: 7px 0 0;
+		text-decoration: none;
+	}
+
+	& + & {
+		.#{$namespace}entry__link {
+			border-top: 1px solid rgba(0, 0, 0, .1);
+		}
+	}
+}

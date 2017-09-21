@@ -3,6 +3,7 @@
 namespace SimpleDocumentation;
 
 use SimpleDocumentation\Models\Documentation;
+use SimpleDocumentation\Models\Documentation_Category;
 use SimpleDocumentation\Models\Documentation_Type;
 
 class Core {
@@ -41,6 +42,7 @@ class Core {
 	public function register_models() {
 		Documentation::register();
 		Documentation_Type::register( [], Documentation::POST_TYPE );
+		Documentation_Category::register( [], Documentation::POST_TYPE );
 	}
 
 	/**

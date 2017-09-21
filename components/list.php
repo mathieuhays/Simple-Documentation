@@ -3,95 +3,73 @@
  *  Simple Documentation -- List Component
  */
 
-?>
+use SimpleDocumentation\Models\Documentation;
+use SimpleDocumentation\Models\Documentation_Category;
 
-<div id="poststuff" class="postbox-container postbox-container--simple-documentation">
-	<?php
+$categories = Documentation_Category::get_all( true );
 
-	/**
-	 * Load Posts Meta Boxes
-	 */
-	$sample_data = [
-		[
-			'title' => 'Get Started',
-			'items' => [
-				'Vestibulum id ligula porta felis euismod semper',
-				'Tellus Sem Adipiscing Aenean Tristique',
-				'Vulputate Tellus Mollis',
-				'Mollis Nibh Mattis Fringilla',
-			],
-		],
-		[
-			'title' => 'Events',
-			'items' => [
-				'Curabitur blandit tempus porttitor',
-				'Bibendum Vulputate Ultricies Magna Tortor',
-				'Ridiculus Ipsum Pellentesque Justo',
-				'Aenean Bibendum Malesuada Justo Dapibus',
-			],
-		],
-		[
-			'title' => 'Form Applications',
-			'items' => [
-				'Curabitur blandit tempus porttitor',
-				'Bibendum Vulputate Ultricies Magna Tortor',
-				'Ridiculus Ipsum Pellentesque Justo',
-				'Aenean Bibendum Malesuada Justo Dapibus',
-			],
-		],
-		[
-			'title' => 'Support / Help',
-			'items' => [
-				'Curabitur blandit tempus porttitor',
-				'Bibendum Vulputate Ultricies Magna Tortor',
-				'Ridiculus Ipsum Pellentesque Justo',
-				'Aenean Bibendum Malesuada Justo Dapibus',
-			],
-		],
-	];
+if ( empty( $categories ) ) {
+	echo 'No categories :(';
+} else {
+	foreach ( $categories as $category ) {
+		$items = Documentation::get_for_taxonomy( $category );
 
-	/**
-	 * Register Meta boxes
-	 */
-	foreach ( $sample_data as $index => $data ) {
-		add_meta_box(
-			'simple-doc-meta-' . $index,
-			$data['title'],
-			function( $post, $options ) {
-				$args = $options['args'];
+		?>
+		<div class="sd-section js-sd-section-toggle">
+			<h2 class="sd-section__title">
+				<button class="sd-section__trigger js-sd-toggle-trigger">
+					<?php echo $category->get_name(); ?>
 
-				?>
-				<ul>
-					<?php foreach ( $args['items'] as $item ) : ?>
-						<li>
-							<span class="dashicons dashicons-editor-alignleft"></span>
-							<?php echo $item; ?>
+					<span class="sd-section__count">
+						<?php
+
+						printf(
+						// translators: Documentation item count
+							_n( '%d item', '%d items', count( $items ), 'simple-documentation' ),
+							count( $items )
+						);
+
+						?>
+					</span>
+				</button>
+			</h2>
+
+			<div class="sd-section__content">
+				<ul class="sd-list">
+					<?php
+
+					foreach ( $items as $item ) {
+						/** @var Documentation $item */
+						$type = $item->get_type();
+						$icon_class = '';
+
+						if ( ! empty( $type ) ) {
+							$icon_class = $type->get_icon_class();
+						}
+
+						?>
+						<li class="sd-list__item sd-entry">
+							<a href="<?php echo $item->get_view_link(); ?>" class="sd-entry__link">
+								<?php
+
+								if ( ! empty( $icon_class ) ) {
+									printf( '<span class="%s"></span> ', $icon_class );
+								}
+
+								echo $item->get_title();
+
+								?>
+							</a>
 						</li>
-					<?php endforeach; ?>
+						<?php
+					}
+
+					?>
 				</ul>
-				<?php
-			},
-			\SimpleDocumentation\Plugin_Page::instance()->get_slug(),
-			'list',
-			'default',
-			$data
-		);
+			</div>
+		</div>
+		<?php
 	}
+}
 
-	/**
-	 * Render Meta Boxes
-	 */
-	ob_start();
-	do_meta_boxes( \SimpleDocumentation\Plugin_Page::instance()->get_slug(), 'list', null );
-	$meta_boxes = ob_get_contents();
-	ob_end_clean();
-
-	/**
-	 * Remove Sortable class to disable Drag&Drop functionality as we don't support it yet
-	 */
-	$meta_boxes = str_replace( 'meta-box-sortables', '', $meta_boxes );
-
-	echo $meta_boxes;
-
-	?>
-</div>
+?>

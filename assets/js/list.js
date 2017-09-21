@@ -2,47 +2,27 @@
 	'use strict';
 
 	$(document).ready(function() {
-		var $metaboxContainer = $('.postbox-container--simple-documentation');
-
-		closeMetaBoxes( $metaboxContainer, true );
-		handleMetaboxAutoClose( $metaboxContainer );
+		// Handle Section Toggle
+		toggleElement($('.js-sd-section-toggle'), 'sd-section--retracted', true);
 	});
 
-	/**
-	 * Close all meta boxes
-	 *
-	 * @param {jQuery} $container
-	 * @param {bool} ignore_first
-	 */
-	function closeMetaBoxes( $container, ignore_first ) {
-		$container.find('.postbox').each(function(index) {
-			if ( ignore_first && index === 0 ) {
-				return true;
+	function toggleElement($elements, className, startToggled, customTriggerClass) {
+		if ( ! $elements.length ) {
+			return;
+		}
+
+		$elements.each(function() {
+			var $element = $(this),
+				triggerClass = customTriggerClass || 'js-sd-toggle-trigger',
+				$trigger = $element.find('.' + triggerClass);
+
+			if ( startToggled ) {
+				$element.addClass(className);
 			}
 
-			$(this).addClass('closed');
-		});
-	}
-
-	/**
-	 * Close any opened meta box if we're opening a new one.
-	 *
-	 * @param {jQuery} $container
-	 */
-	function handleMetaboxAutoClose( $container ) {
-		$container.on('click', '.hndle,.handlediv', function() {
-			var $button = $(this),
-				$postBox = $button.parents('.postbox');
-
-			if ( ! $postBox.hasClass('closed') ) {
-				$container.find('.postbox').each(function() {
-					if ( $(this).attr('id') === $postBox.attr('id') ) {
-						return true;
-					}
-
-					$(this).addClass('closed');
-				});
-			}
+			$trigger.on('click', function() {
+				$element.toggleClass(className);
+			});
 		});
 	}
 })(jQuery);

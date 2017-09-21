@@ -45,6 +45,11 @@ class Plugin_Page {
 			return;
 		}
 
+		/**
+		 * @TODO add option and/or filter to disable use of Google Fonts
+		 */
+		wp_enqueue_style( 'sp-roboto-font', 'https://fonts.googleapis.com/css?family=Roboto:400,700,900' );
+
 		// Meta box dependency
 		wp_enqueue_script( 'postbox' );
 		wp_enqueue_script( 'common' );

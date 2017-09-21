@@ -4,16 +4,52 @@
 //
 
 .#{$namespace}section {
+	background: #fff;
+	overflow: auto;
 
 	&__title {
+		@include custom-font;
+		@include font-size(40px);
+		margin: 0;
+		position: relative;
+	}
 
+	&__count {
+		@include font-size(14px);
+		color: #999;
+		font-weight: 400;
+	}
+
+	&__trigger {
+		@include appearance(none);
+		background: transparent url($icons-dir + '/arrow-down.svg') center right 40px no-repeat;
+		background-size: 10%;
+		border: 0;
+		cursor: pointer;
+		display: block;
+		font-size: inherit;
+		line-height: inherit;
+		padding: 30px 40px;
+		text-align: left;
+		width: 100%;
 	}
 
 	&__content {
-
+		background: #fcfcfc;
+		border: 1px solid #efefef;
+		border-top-color: #ddd;
+		padding: 10px 40px;
 	}
 
 	& + & {
-		margin-top: 15px;
+		margin-top: 30px;
+	}
+
+	&--retracted {
+		.#{$namespace}section {
+			&__content {
+				display: none;
+			}
+		}
 	}
 }

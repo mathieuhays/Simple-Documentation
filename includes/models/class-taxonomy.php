@@ -219,10 +219,10 @@ class Taxonomy extends Base_Model {
 	/**
 	 * @return static[]
 	 */
-	public static function get_all() {
+	public static function get_all( $ignore_empty = false ) {
 		$terms = get_terms([
 			'taxonomy' => static::TAXONOMY,
-			'hide_empty' => false,
+			'hide_empty' => $ignore_empty,
 		]);
 
 		if ( empty( $terms ) || is_wp_error( $terms ) ) {
