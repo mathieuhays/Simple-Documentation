@@ -184,17 +184,16 @@ class Post_Type extends Base_Model {
 	 *
 	 * @return static[]
 	 */
-	public static function get_for_taxonomy( $taxonomy, $limit = -1 ) {
-		$query = new \WP_Query([
+	public static function from_taxonomy( $taxonomy, $custom_args = [] ) {
+		$query = new \WP_Query( wp_parse_args( $custom_args, [
 			'post_type' => static::POST_TYPE,
-			'posts_per_page' => $limit,
 			'tax_query' => [
 				[
 					'taxonomy' => $taxonomy::TAXONOMY,
 					'terms' => $taxonomy->get_id(),
 				],
 			],
-		]);
+		] ) );
 
 		if ( ! $query->have_posts() ) {
 			return [];

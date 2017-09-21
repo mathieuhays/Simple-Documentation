@@ -57,7 +57,7 @@ class Plugin_Page {
 
 		// Plugin
 		wp_enqueue_style(
-			CORE::SLUG . '-main',
+			SIMPLEDOC_SLUG . '-main',
 			SIMPLEDOC_CSS_URL . '/simple-documentation.css',
 			false,
 			SIMPLEDOC_VERSION
@@ -65,7 +65,7 @@ class Plugin_Page {
 
 		// Plugin
 		wp_enqueue_script(
-			CORE::SLUG . '-list',
+			SIMPLEDOC_SLUG . '-list',
 			SIMPLEDOC_JS_URL . '/list.js',
 			false,
 			SIMPLEDOC_VERSION
@@ -163,7 +163,7 @@ class Plugin_Page {
 	 *  @return string
 	 */
 	public function get_slug() {
-		return CORE::SLUG . '-top-level';
+		return SIMPLEDOC_SLUG . '-top-level';
 	}
 
 

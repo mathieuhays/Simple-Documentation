@@ -27,7 +27,7 @@ class Dashboard {
 	 */
 	public function register() {
 		wp_add_dashboard_widget(
-			Core::SLUG,
+			SIMPLEDOC_SLUG,
 			'Documentation',
 			[ $this, 'render' ]
 		);

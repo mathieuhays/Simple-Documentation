@@ -12,7 +12,10 @@ if ( empty( $categories ) ) {
 	echo 'No categories :(';
 } else {
 	foreach ( $categories as $category ) {
-		$items = Documentation::get_for_taxonomy( $category );
+		$items = Documentation::from_taxonomy( $category, [
+			'posts_per_page' => -1,
+			'order' => 'ASC',
+		] );
 
 		?>
 		<div class="sd-section js-sd-section-toggle">

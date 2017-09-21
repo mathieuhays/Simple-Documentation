@@ -46,7 +46,7 @@ class Edit_Screen {
 		}
 
 		wp_enqueue_script(
-			Core::SLUG . '-edit-screen',
+			SIMPLEDOC_SLUG . '-edit-screen',
 			SIMPLEDOC_JS_URL . '/edit-screen.js',
 			[ 'jquery' ],
 			SIMPLEDOC_VERSION,
@@ -54,7 +54,7 @@ class Edit_Screen {
 		);
 
 		wp_localize_script(
-			CORE::SLUG . '-edit-screen',
+			SIMPLEDOC_SLUG . '-edit-screen',
 			'simpleDocumentationEditScreen',
 			[
 				'metaboxes' => [],

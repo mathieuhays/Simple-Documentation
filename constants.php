@@ -9,6 +9,8 @@
  */
 define( 'SIMPLEDOC_VERSION', '2.0.0.0' );
 
+define( 'SIMPLEDOC_SLUG', 'simple-documentation' );
+
 // Plugin Root
 define( 'SIMPLEDOC_ROOT_DIR', __DIR__ );
 define( 'SIMPLEDOC_ROOT_URL', plugin_dir_url( __FILE__ ) );
