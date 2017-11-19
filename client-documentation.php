@@ -72,7 +72,7 @@ class simpleDocumentation {
 		//	include( plugin_dir_path( __FILE__ ) . 'inc/wp_cli.php' );
 
 		//Activation
-		register_activation_hook( __FILE__, array( $this, 'setup_tables' ), 10 );
+		register_activation_hook( __FILE__, array( $this, 'setup_tables' ) );
 
 		//Uninstall
 		register_uninstall_hook( __FILE__, array( 'simpleDocumentation', 'uninstall' ) );
