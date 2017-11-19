@@ -64,7 +64,7 @@
 				$ua = 0;
 				foreach($users as $user){
 					if($ua>0) $usersAllowed .= ', ';
-					/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'], $this->slug );
+					/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'] );
 					$ua++;
 				}
 				
@@ -95,7 +95,7 @@
 	<div class="widget_footer">
 	<?php if($pages_count > 0): ?>
 		<nav>
-			<?php _e('Pages', $this->slug ); ?>: 
+			<?php _e('Pages', 'client-documentation' ); ?>:
 		<?php
 			for($i=1;$i <= $pages_count;$i++){ 
 				$class = ($i==$current_page)?" class='active'":'';
@@ -109,7 +109,7 @@
 	
 		}else{
 			
-			echo "<p>" . __('No Documentation available yet.', $this->slug ) . "</p>";
+			echo "<p>" . __('No Documentation available yet.', 'client-documentation' ) . "</p>";
 			
 		}
 	

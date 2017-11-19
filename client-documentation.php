@@ -8,7 +8,7 @@
 	Author: Mathieu Hays
 	Author URI: https://mathieuhays.co.uk
 	License: GPL2
-	Text Domain: simple-documentation
+	Text Domain: client-documentation
 	Domain Path: /languages
 
 	#-----------------------------------------------------------------------
@@ -99,7 +99,7 @@ class simpleDocumentation {
 	 *	Help to translate this plugin using the simpledocumentation.po file
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( $this->slug , false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'client-documentation' , false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 
 	/*
@@ -116,11 +116,11 @@ class simpleDocumentation {
 			'first_activation' => true,
 			'db_version' => '2.0',
 			'item_per_page' => 10,
-			'label_widget_title' => __( 'Resources' , $this->slug ),
-			'label_welcome_title' => __( 'Welcome', $this->slug ),
-			'label_welcome_message' => __( 'Need Help ? All you need is here !', $this->slug )
-			//'label_pinned' => __( 'Pinned', $this->slug ),
-			//'label_all_items' => __( 'All items', $this->slug )
+			'label_widget_title' => __( 'Resources' , 'client-documentation' ),
+			'label_welcome_title' => __( 'Welcome', 'client-documentation' ),
+			'label_welcome_message' => __( 'Need Help ? All you need is here !', 'client-documentation' ),
+			//'label_pinned' => __( 'Pinned', 'client-documentation' ),
+			//'label_all_items' => __( 'All items', 'client-documentation' )
 		);
 
 		$rename = array(
@@ -248,8 +248,8 @@ class simpleDocumentation {
 
 		$data = array(
 			'type' => 'note',
-			'title' => __( 'How to create your first post', $this->slug ),
-			'content' => __( 'Example of content' , $this->slug )
+			'title' => __( 'How to create your first post', 'client-documentation' ),
+			'content' => __( 'Example of content' , 'client-documentation' ),
 		);
 
 		if($this->settings['first_activation']){
@@ -331,18 +331,18 @@ class simpleDocumentation {
 		// Localization
 		$local = array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'fields_missing' => __( 'Following fields are missing :', $this->slug ),
-			'is_missing' => __( 'is missing !', $this->slug ),
+			'fields_missing' => __( 'Following fields are missing :', 'client-documentation' ),
+			'is_missing' => __( 'is missing !', 'client-documentation' ),
 			'item_number' => $this->settings['item_per_page'],
-			'view_list' => __( 'View List', $this->slug ),
-			'order_saved' => __( 'Order saved', $this->slug ),
-			'loading' => __( 'Loading', $this->slug ),
-			'processing' => __( 'Processing', $this->slug ),
-			'label_done' => __( 'Done', $this->slug ),
-			'error' => __( 'Error!', $this->slug ),
-			'add_item' => __( 'Add item', $this->slug ),
-			'save_changes' => __( 'Save changes', $this->slug ),
-			'add_new' => __( 'Add new', $this->slug )
+			'view_list' => __( 'View List', 'client-documentation' ),
+			'order_saved' => __( 'Order saved', 'client-documentation' ),
+			'loading' => __( 'Loading', 'client-documentation' ),
+			'processing' => __( 'Processing', 'client-documentation' ),
+			'label_done' => __( 'Done', 'client-documentation' ),
+			'error' => __( 'Error!', 'client-documentation' ),
+			'add_item' => __( 'Add item', 'client-documentation' ),
+			'save_changes' => __( 'Save changes', 'client-documentation' ),
+			'add_new' => __( 'Add new', 'client-documentation' ),
 		);
 
         if($pagenow == 'index.php' || ($pagenow == 'admin.php' && ( $_GET['page'] == $this->slug || $_GET['page'] == $this->slug . '_import_export') )){
@@ -395,23 +395,23 @@ class simpleDocumentation {
 	    );
 		add_submenu_page(
 			$this->slug,
-			__( 'Import / Export', $this->slug ),
-			__( 'Import / Export', $this->slug ),
+			__( 'Import / Export', 'client-documentation' ),
+			__( 'Import / Export', 'client-documentation' ),
 			'manage_options',
 			$this->slug . '_import_export',
 			array( $this, 'import_export_page' )
 		);
 		add_submenu_page(
 			$this->slug,
-			__( 'Settings', $this->slug ),
-			__( 'Settings', $this->slug ),
+			__( 'Settings', 'client-documentation' ),
+			__( 'Settings', 'client-documentation' ),
 			'manage_options',
 			$this->slug . '_settings',
 			array( $this, 'settings_page' )
 		);
 
 		if ( isset( $submenu[$this->slug] ) )
-			$submenu[$this->slug][0][0] = __( 'Documentation', $this->slug );
+			$submenu[$this->slug][0][0] = __( 'Documentation', 'client-documentation' );
 
     }
 
@@ -496,7 +496,7 @@ class simpleDocumentation {
 		    		}
 		    		if( count($ok_to_save) > 0 ){
 		    			$this->update_settings();
-		    			$success = __( 'Settings saved', $this->slug );
+		    			$success = __( 'Settings saved', 'client-documentation' );
 		    		}
 		    	}
 
@@ -622,7 +622,7 @@ class simpleDocumentation {
 				if(!empty($item['type'])){
 
 					$empty_fields = array();
-					if(empty($item['title'])) $empty_fields[] = __( 'title', $this->slug );
+					if(empty($item['title'])) $empty_fields[] = __( 'title', 'client-documentation' );
 
 					$title = htmlspecialchars( $item['title'] );
 					$roles = isset($item['user_roles']) ? json_encode( $item['user_roles'] ) : null;
@@ -630,13 +630,13 @@ class simpleDocumentation {
 
 					if( $item['type'] == 'note' || $item['type'] == 'video' ){
 
-						if(empty($item['editor'])) $empty_fields[] = __( 'content', $this->slug );
+						if(empty($item['editor'])) $empty_fields[] = __( 'content', 'client-documentation' );
 
 						$content = htmlspecialchars( $item['editor'] );
 
 					}elseif( $item['type'] == 'link' ){
 
-						if(empty($item['input'])) $empty_fields[] = __( 'link', $this->slug );
+						if(empty($item['input'])) $empty_fields[] = __( 'link', 'client-documentation' );
 
 						if(!preg_match('/^https?:\/\/(.)*/', $item['input']))
 							$content = 'http://' . htmlspecialchars( $item['input'] );
@@ -645,7 +645,7 @@ class simpleDocumentation {
 
 					}elseif( $item['type'] == 'file' ){
 
-						if(empty($item['file'])) $empty_fields[] = __( 'file', $this->slug );
+						if(empty($item['file'])) $empty_fields[] = __( 'file', 'client-documentation' );
 
 						$attachment = intval( $item['file'] );
 						$attachment_filename = $this->get_attachment_filename($attachment);
@@ -686,7 +686,7 @@ class simpleDocumentation {
 						foreach( $users_nt as $usr ){
 
 							//if( in_array( $usr, $registered_usr) ) $users[] = __( $registered_usr[$usr]['name'], $this->slug );
-							$users[] = __( $registered_usr[$usr]['name'], $this->slug );
+							$users[] = __( $registered_usr[$usr]['name'] ); // use WordPress translation for user role
 						}
 
 						$data = array(
@@ -779,7 +779,7 @@ class simpleDocumentation {
 				$this->s( array( $this->filterData($data, true), $options ) );
 
 			else
-				$this->s( __('error', $this->slug ));
+				$this->s( __('error', 'client-documentation' ));
 
 		}elseif($_POST['a'] == 'import'){
 
