@@ -51,12 +51,12 @@ Hit the import/export button to copy your installation on multiple WP installati
 
 == Changelog ==
 
-= 1.2.6
+= 1.2.6 =
 
 * Fix bug when trying to add empty item
 * Add compatibility with translate.wordpress.org
 
-= 1.2.5
+= 1.2.5 =
 
 * Fix bug when using the editor in "Text" mode
 
