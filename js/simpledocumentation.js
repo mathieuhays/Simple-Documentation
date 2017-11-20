@@ -1,11 +1,10 @@
-(function($){$.stripslashes=function(str){str=str.replace(/\\'/g,'\'');str=str.replace(/\\"/g,'"');str=str.replace(/\\/g,'');str=str.replace(/\\\\/g,'\\');str=str.replace(/\\0/g,'\0');return str;}; /** Stripslashes jquery function **/
+(function($){$.stripslashes=function(str){if (str == '') { return str; }str=str.replace(/\\'/g,'\'');str=str.replace(/\\"/g,'"');str=str.replace(/\\/g,'');str=str.replace(/\\\\/g,'\\');str=str.replace(/\\0/g,'\0');return str;}; /** Stripslashes jquery function **/
 })(jQuery);
 jQuery(document).ready(function($){
 
 	var tinyMCE = tinyMCE || window.tinymce;
 
 	var list_admin = $('#simpledoc_list');
-	var elements_admin = list_admin.find('li');
 
 	var editor = $('#smpldoc_editor'),
 		input = $('#smpldoc_input'),

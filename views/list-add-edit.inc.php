@@ -8,14 +8,14 @@
 	?>
 	<div class="wrap">
 
-		<h2><?php _e( 'Simple Documentation', $this->slug ); ?> <a href="#add_new_content" class="add-new-h2" id="swtch_btn"><?php _e( 'Add New', $this->slug ); ?></a></h2>
+		<h2><?php _e( 'Simple Documentation', 'client-documentation' ); ?> <a href="#add_new_content" class="add-new-h2" id="swtch_btn"><?php _e( 'Add New', 'client-documentation' ); ?></a></h2>
 
 		<div class="<?php echo $this->slug; ?> clearfix">
 
 			<div class="smpldcmttn_main">
 
 				<div id="sd_list">
-				<h3><?php _e( 'Documentation list', $this->slug ); ?></h3>
+				<h3><?php _e( 'Documentation list', 'client-documentation' ); ?></h3>
 
 				<ul class="list_doc" id="simpledoc_list">
 
@@ -44,7 +44,7 @@
 
 							if($item->restricted){ $users = json_decode( $item->restricted ); }
 							else{
-								$usersAllowed = __( '(default) ', $this->slug );
+								$usersAllowed = __( '(default) ', 'client-documentation' );
 								$users = $this->settings['user_role'];
 							}
 
@@ -56,7 +56,7 @@
 
 							foreach($users as $user){
 								if($ua>0) $usersAllowed .= ', ';
-								/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'], $this->slug );
+								/*if(in_array($user, $registered_usr) > -1)*/ $usersAllowed .= __( $registered_usr[$user]['name'] );
 								$ua++;
 							}
 
@@ -88,24 +88,24 @@
 				</div>
 				<div id="sd_add" style="display:none">
 
-					<h3><?php _e( 'Add Content', $this->slug ); ?></h3>
+					<h3><?php _e( 'Add Content', 'client-documentation' ); ?></h3>
 
 					<ul class="add_list clearfix">
 						<li>
 							<a href="#video" data-type='video' id='smdoc_video_cat'><i class="fa fa-youtube-play"></i><br />
-							<?php _e( 'Video', $this->slug ); ?></a>
+							<?php _e( 'Video', 'client-documentation' ); ?></a>
 						</li>
 						<li>
 							<a href="#note" data-type='note' id='smdoc_note_cat'><i class="fa fa-comments"></i><br />
-							<?php _e( 'Note', $this->slug ); ?></a>
+							<?php _e( 'Note', 'client-documentation' ); ?></a>
 						</li>
 						<li>
 							<a href="#link" data-type='link' id='smdoc_link_cat'><i class="fa fa-link"></i><br />
-							<?php _e( 'Link', $this->slug ); ?></a>
+							<?php _e( 'Link', 'client-documentation' ); ?></a>
 						</li>
 						<li>
 							<a href="#file" data-type='file' id='smdoc_file_cat'><i class="fa fa-files-o"></i><br />
-							<?php _e( 'File', $this->slug ); ?></a>
+							<?php _e( 'File', 'client-documentation' ); ?></a>
 						</li>
 					</ul>
 
@@ -114,7 +114,7 @@
 						<table class="form-table">
 							<tbody>
 								<tr valign="top">
-									<th scope="row"><label for="smpldoc_item_title"><?php _e( 'Title', $this->slug ); ?></label></th>
+									<th scope="row"><label for="smpldoc_item_title"><?php _e( 'Title', 'client-documentation' ); ?></label></th>
 									<td><input name="smpldoc_item_title" type="text" id="smpldoc_item_title" value="" class="large-text"></td>
 								</tr>
 								<tr valign="top" class="smpldoc_editor_field" id="smpldoc_editor">
@@ -126,23 +126,23 @@
 									</td>
 								</tr>
 								<tr valign="top" class="smpldoc_link_field" style="display:none" id="smpldoc_input">
-									<th scope="row"><label for="smpldoc_item_link"><?php _e( 'Link', $this->slug ); ?></label></th>
+									<th scope="row"><label for="smpldoc_item_link"><?php _e( 'Link', 'client-documentation' ); ?></label></th>
 									<td><input name="smpldoc_item_link" type="url" id="smpldoc_item_link" value="" class="large-text" placeholder="http://"></td>
 								</tr>
 								<tr valign="top" class="smpldoc_file_field" style="display:none" id="smpldoc_file">
-									<th scope="row"><label for="smpldoc_item_file"><?php _e('File', $this->slug ); ?></label></th>
+									<th scope="row"><label for="smpldoc_item_file"><?php _e('File', 'client-documentation' ); ?></label></th>
 									<td>
 										<input name="smpldoc_item_file" type="hidden" id="smpldoc_item_file" value="">
-										<input type="button" id="cd_button_file" tabindex="18" class="button-secondary cd_button_upload" value="<?php _e( 'Upload a file' , $this->slug ); ?>"/>
-										<span id="smpldoc_filename"><?php _e( 'Select a file', $this->slug ); ?>...</span>
+										<input type="button" id="cd_button_file" tabindex="18" class="button-secondary cd_button_upload" value="<?php _e( 'Upload a file' , 'client-documentation' ); ?>"/>
+										<span id="smpldoc_filename"><?php _e( 'Select a file', 'client-documentation' ); ?>...</span>
 									</td>
 								</tr>
 								<tr valign="top">
 									<th scope="row">
-										<label for="smpldoc_item_users"><?php _e( 'Limit to user roles', $this->slug ); ?></label><br />
+										<label for="smpldoc_item_users"><?php _e( 'Limit to user roles', 'client-documentation' ); ?></label><br />
 										<small>
-											<?php _e( 'Leave blank to use default', $this->slug ); ?><br/>
-											<?php _e( 'Current Defaults', $this->slug ); ?>:<br />
+											<?php _e( 'Leave blank to use default', 'client-documentation' ); ?><br/>
+											<?php _e( 'Current Defaults', 'client-documentation' ); ?>:<br />
 											<?php
 												$i=0;
 												foreach($this->settings['user_role'] as $defrol){
@@ -178,23 +178,23 @@
 			</div>
 
 			<div class="smpldcmttn_side">
-				<h3><?php _e( 'Information', $this->slug ); ?></h3>
+				<h3><?php _e( 'Information', 'client-documentation' ); ?></h3>
 
-				<p><?php _e('Welcome to Simple Documentation.', $this->slug ); ?></p>
+				<p><?php _e('Welcome to Simple Documentation.', 'client-documentation' ); ?></p>
 
-				<h2><?php _e('Update', $this->slug ); ?> 1.2</h2>
-				<p><?php _e( "This new update comes with new features such as item re-ordering and restricting access per user.", $this->slug ); ?></p>
+				<h2><?php _e('Update', 'client-documentation' ); ?> 1.2</h2>
+				<p><?php _e( "This new update comes with new features such as item re-ordering and restricting access per user.", 'client-documentation' ); ?></p>
 
-				<h2><?php _e('Contribution', $this->slug ); ?></h2>
+				<h2><?php _e('Contribution', 'client-documentation' ); ?></h2>
 				<ul>
-					<li><?php _e('Spanish translation by', $this->slug ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
-					<li><?php _e('German translation by', $this->slug ); ?> Alexander Pfabel</li>
-					<li><?php _e('Serbo-Croatian translation by', $this->slug ); ?> <a href='http://www.webhostinghub.com/'>Borisa Djuraskovic</a></li>
-					<li><?php _e('Dutch translation by', $this->slug ); ?> <a href='http://www.funsite.eu'>Gerhard Hoogterp</a></li>
+					<li><?php _e('Spanish translation by', 'client-documentation' ); ?> <a href='http://sugartoys.net/'>Sugartoys</a></li>
+					<li><?php _e('German translation by', 'client-documentation' ); ?> Alexander Pfabel</li>
+					<li><?php _e('Serbo-Croatian translation by', 'client-documentation' ); ?> <a href='http://www.webhostinghub.com/'>Borisa Djuraskovic</a></li>
+					<li><?php _e('Dutch translation by', 'client-documentation' ); ?> <a href='http://www.funsite.eu'>Gerhard Hoogterp</a></li>
 				</ul>
-				<p><?php _e('If you want to contribute, feel free to ', $this->slug); ?><a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', $this->slug ); ?></a> <?php _e('or', $this->slug ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', $this->slug ); ?></a></p>
+				<p><?php _e('If you want to contribute, feel free to ', 'client-documentation' ); ?> <a href='mailto:mathieu@mathieuhays.co.uk'><?php _e('contact me', 'client-documentation' ); ?></a> <?php _e('or', 'client-documentation' ); ?> <a href='https://github.com/mathieuhays/Simple-Documentation'><?php _e('fork the project on github', 'client-documentation' ); ?></a></p>
 
-				<p class="sd-credit"><?php _e('Plugin created by', $this->slug); ?> <a href='https://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='https://github.com/mathieuhays/Simple-Documentation/issues'><?php _e('Report issues', $this->slug); ?></a></p>
+				<p class="sd-credit"><?php _e('Plugin created by', 'client-documentation' ); ?> <a href='https://mathieuhays.co.uk'>Mathieu HAYS</a> - <a href='https://github.com/mathieuhays/Simple-Documentation/issues'><?php _e('Report issues', 'client-documentation' ); ?></a></p>
 			</div>
 
 		</div>

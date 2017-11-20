@@ -4,27 +4,27 @@
 	global $wp_roles;
 ?>
 <div class="wrap">
-	<h2><?php _e( 'Settings', $this->slug ); ?></h2>
+	<h2><?php _e( 'Settings', 'client-documentation' ); ?></h2>
 	<?php
 	
 		if(!empty($success)) $this->success($success);
 	
 	?>
-	<p><?php _e( "As all fields are required, any empty field will keep its former value", $this->slug ); ?></p>
+	<p><?php _e( "As all fields are required, any empty field will keep its former value", 'client-documentation' ); ?></p>
 	<form action="#" method="post"> 
 	<table class="form-table smpldoc_settings">
 		<tbody>
 			<tr>
 				<th colspan="2" class="smpldoc_title">
-					<h3><?php _e( 'General', $this->slug ); ?></h3>
+					<h3><?php _e( 'General', 'client-documentation' ); ?></h3>
 				</th>
 			</tr>
 			<tr>
-				<th><?php _e( 'Number of items displayed per page', $this->slug ); ?></th>
+				<th><?php _e( 'Number of items displayed per page', 'client-documentation' ); ?></th>
 				<td><input type="text" name="item_per_page" value="<?php echo $this->settings['item_per_page']; ?>"></td>
 			</tr>
 			<tr>
-				<th><?php _e( 'Default client user role', $this->slug ); ?></th>
+				<th><?php _e( 'Default client user role', 'client-documentation' ); ?></th>
 				<td class="smplodc_user_items clearfix">
 				<?php	
 					$roles = $wp_roles->roles;
@@ -42,17 +42,17 @@
 			</tr>
 			<tr>
 				<th colspan="2" class="smpldoc_title">
-					<h3><?php _e( 'Custom titles & content', $this->slug ); ?></h3>
+					<h3><?php _e( 'Custom titles & content', 'client-documentation' ); ?></h3>
 				</th>
 			</tr>
 			<?php
 			
 			$custom = array(
-				'widget_title' => __( 'Widget Title', $this->slug ), 
-				'welcome_title' => __( 'Welcome Title', $this->slug ),
-				'welcome_message' => __( 'Welcome Message', $this->slug )
-				//'pinned' => __( 'Pinned Title', $this->slug ),
-				//'all_items' => __( 'All Items Title', $this->slug )
+				'widget_title' => __( 'Widget Title', 'client-documentation' ),
+				'welcome_title' => __( 'Welcome Title', 'client-documentation' ),
+				'welcome_message' => __( 'Welcome Message', 'client-documentation' )
+				//'pinned' => __( 'Pinned Title', 'client-documentation' ),
+				//'all_items' => __( 'All Items Title', 'client-documentation' )
 			);
 			
 			foreach( $custom as $cstm => $cstv ){
@@ -80,7 +80,7 @@
 			<tr>
 				<td colspan="2" class="smpldoc_submit">
 					<input type="hidden" name="smpldoc_settings_edit" value="yep">
-					<input type="submit" class="button button-primary" value="<?php _e( 'Save', $this->slug ); ?>">
+					<input type="submit" class="button button-primary" value="<?php _e( 'Save', 'client-documentation' ); ?>">
 				</td>
 			</tr>
 		</tbody>
