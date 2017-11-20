@@ -3,4 +3,4 @@ Simple-Documentation
 
 Wordpress plugin
 
-Find the stable version on the Wordpress Repository: [Simple Documentation](http://wordpress.org/plugins/client-documentation/)
+Find the stable version on the Wordpress Repository: [Simple Documentation](https://github.com/mathieuhays/Simple-Documentation/tree/master)

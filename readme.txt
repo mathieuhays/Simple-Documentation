@@ -2,8 +2,8 @@
 Contributors: mathieuhays
 Tags: documentation,video,link,file,note,screenr,youtube,vimeo,backend,embed,multisite
 Requires at least: 3.0.1
-Tested up to: 4.8
-Stable tag: 1.2.5
+Tested up to: 4.9
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,11 @@ The installation is not tricky. It's simple as activating the plugin and Add con
 Hit the import/export button to copy your installation on multiple WP installations.
 
 == Changelog ==
+
+= 1.2.6
+
+* Fix bug when trying to add empty item
+* Add compatibility with translate.wordpress.org
 
 = 1.2.5
 
