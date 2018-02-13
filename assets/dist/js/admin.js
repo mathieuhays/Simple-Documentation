@@ -24,15 +24,15 @@ jQuery(document).ready(function($){
 	/** Retrieve icon from item type **/
 	function i(type){
 		switch(type){
-		    case 'video':
-		    	return 'youtube-play';
-		    case 'link':
-		    	return 'link';
-		    case 'file':
-		    	return 'files-o';
-		    default:
-		    	return 'comments';
-	    }
+			case 'video':
+				return 'youtube-play';
+			case 'link':
+				return 'link';
+			case 'file':
+				return 'files-o';
+			default:
+				return 'comments';
+		}
 	}
 
 	/** Reset the main form **/
@@ -207,28 +207,28 @@ jQuery(document).ready(function($){
 
 		event.preventDefault();
 
-	    if ( file_frame ) {
-	      file_frame.open();
-	      return;
-	    }
+		if ( file_frame ) {
+			file_frame.open();
+			return;
+		}
 
-	    file_frame = wp.media.frames.file_frame = wp.media({
-	      title: $( this ).data( 'uploader_title' ),
-	      button: {
-	        text: $( this ).data( 'uploader_button_text' ),
-	      },
-	      multiple: false
-	    });
+		file_frame = wp.media.frames.file_frame = wp.media({
+			title: $( this ).data( 'uploader_title' ),
+			button: {
+				text: $( this ).data( 'uploader_button_text' ),
+			},
+			multiple: false
+		});
 
-	    file_frame.on( 'select', function() {
+		file_frame.on( 'select', function() {
 
-	      var attachment = file_frame.state().get('selection').first().toJSON();
-		  file_id.attr('value', attachment.id);
-		  file_name.html(attachment.filename);
+			var attachment = file_frame.state().get('selection').first().toJSON();
+			file_id.attr('value', attachment.id);
+			file_name.html(attachment.filename);
 
-	    });
+		});
 
-	    file_frame.open();
+		file_frame.open();
 
 		return false;
 	});

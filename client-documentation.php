@@ -314,8 +314,8 @@ class simpleDocumentation {
 	public function add_admin_styles() {
 		global $wp_styles;
 
-		wp_enqueue_style( $this->slug . '_stylesheet' , plugins_url('css/simpledocumentation.css', __FILE__), false, self::VERSION );
-		wp_enqueue_style('font-awesome', plugins_url('css/font-awesome.min.css', __FILE__) );
+		wp_enqueue_style( $this->slug . '_stylesheet' , plugins_url('assets/dist/css/simpledocumentation.css', __FILE__), false, self::VERSION );
+		wp_enqueue_style('font-awesome', plugins_url('assets/dist/css/font-awesome.min.css', __FILE__) );
 	}
 
 	/**
@@ -343,7 +343,7 @@ class simpleDocumentation {
 
         if($pagenow == 'index.php' || ($pagenow == 'admin.php' && ( $_GET['page'] == $this->slug || $_GET['page'] == $this->slug . '_import_export') )){
 			wp_enqueue_script( 'jquery-ui-sortable' );
-	        wp_enqueue_script( $this->slug . '_js', plugins_url( '/js/simpledocumentation.js' , __FILE__ ), array( 'jquery' ), self::VERSION );
+	        wp_enqueue_script( $this->slug . '_js', plugins_url( 'assets/dist/js/admin.js' , __FILE__ ), array( 'jquery' ), self::VERSION );
 	        wp_localize_script( $this->slug . '_js', 'ajax_object', $local );
 	        wp_enqueue_media();
         }
