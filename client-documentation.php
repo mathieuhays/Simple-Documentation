@@ -67,10 +67,6 @@ class simpleDocumentation {
 		$this->load_textdomain();
 		$this->settings();
 
-		/* Wordpress Command line */
-		//if( defined( 'WP_CLI' ) && WP_CLI )
-		//	include( plugin_dir_path( __FILE__ ) . 'inc/wp_cli.php' );
-
 		//Activation
 		register_activation_hook( __FILE__, array( $this, 'setup_tables' ) );
 
