@@ -12,7 +12,6 @@ namespace Simple_Documentation;
 require_once 'models/namespace.php';
 
 
-
 /**
  * Classes
  */
@@ -25,8 +24,16 @@ require_once 'class-simple-documentation.php';
 require_once 'database.php';
 
 
-
 /**
  * Bootstrap
+ */
+function bootstrap() {
+//	maybe_setup_db();
+}
+add_action( 'plugins_loaded', __NAMESPACE__ . '\\bootstrap' );
+
+
+/**
+ * Legacy initialisation
  */
 new Simple_Documentation();
