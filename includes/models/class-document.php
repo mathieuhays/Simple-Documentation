@@ -25,8 +25,6 @@ class Document extends DB_Row_Model {
 			'type' => '%s',
 			'title' => '%s',
 			'content' => '%s',
-			'etoile_b' => '%d',
-			'etoile_t' => '%s',
 			'restricted' => '%s',
 			'attachment_id' => '%d',
 			'ordered' => '%d',

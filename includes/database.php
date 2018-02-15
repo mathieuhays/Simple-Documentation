@@ -40,7 +40,7 @@ function create_tables() {
 		`ordered` bigint(20) unsigned,
 		
 		PRIMARY KEY (`ID`)
-	);";
+	) ENGINE=InnoDB;";
 
 	$result = $wpdb->query( $query );
 
