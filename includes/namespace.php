@@ -12,6 +12,12 @@ namespace Simple_Documentation;
 require_once 'class-simple-documentation.php';
 
 
+/**
+ * Functions
+ */
+require_once 'database.php';
+
+
 
 /**
  * Bootstrap
