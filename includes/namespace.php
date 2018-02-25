@@ -28,7 +28,7 @@ require_once 'database.php';
  * Bootstrap
  */
 function bootstrap() {
-//	maybe_setup_db();
+	maybe_setup_db();
 }
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\bootstrap' );
 

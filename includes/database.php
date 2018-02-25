@@ -14,15 +14,7 @@ namespace Simple_Documentation;
 function is_installed() {
 	global $wpdb;
 
-	$installed = wp_cache_get( 'installed', 'simpledocumentation', false, $found );
-
-	if ( ! $found ) {
-		$installed = count( $wpdb->get_col( "SHOW TABLES LIKE `{$wpdb->prefix}simpledocumentation`" ) ) === 1;
-
-		wp_cache_set( 'installed', $installed, 'simpledocumentation' );
-	}
-
-	return $installed;
+	return $wpdb->query( "SHOW TABLES LIKE '{$wpdb->prefix}simpledocumentation'" ) === 1;
 }
 
 
@@ -50,7 +42,36 @@ function create_table() {
 }
 
 
+function maybe_rename_table() {
+	global $wpdb;
+
+	$table = get_site_option( 'clientDocumentation_table', false );
+
+	if ( $table === false ) {
+		$main_settings = get_site_option( 'simpledocumentation_main_settings', false );
+
+		if ( isset( $main_settings['table'] ) ) {
+			$table = $main_settings['table'];
+		}
+	}
+
+	if ( empty( $table ) ) {
+		return;
+	}
+
+	$new_table_name = $wpdb->prefix . 'simpledocumentation';
+
+	if ( $table === $new_table_name ) {
+		return;
+	}
+
+	$wpdb->query( "RENAME TABLE `{$table}` TO `{$new_table_name}`" );
+}
+
+
 /**
+ * This function relies on the fact that the table has been renamed first.
+ *
  * @return bool|int
  */
 function get_db_version() {
@@ -60,20 +81,20 @@ function get_db_version() {
 		return false;
 	}
 
-	$etoile_b_count = count( $wpdb->get_col(
+	$etoile_b_column = $wpdb->query(
 		"SHOW COLUMNS FROM `{$wpdb->prefix}simpledocumentation` LIKE 'etoile_b'"
-	) );
+	);
 
-	if ( $etoile_b_count === 0 ) {
+	if ( $etoile_b_column === 0 ) {
 		/**
 		 * Version 3 removed un-used `etoile_b` column
 		 */
 		return 3;
 	}
 
-	$restricted_count = count( $wpdb->get_col(
+	$restricted_count = $wpdb->query(
 		"SHOW COLUMNS FROM `{$wpdb->prefix}simpledocumentation` LIKE 'restricted'"
-	) );
+	);
 
 	if ( $restricted_count === 1 ) {
 		/**
@@ -101,7 +122,8 @@ function upgrade_db_from_v1() {
 	 *	PRIMARY KEY  (ID) )";
 	 */
 
-	$query = "ALTER TABLE `{$wpdb->prefix}simpledocumentation`
+	$query = "
+		ALTER TABLE `{$wpdb->prefix}simpledocumentation`
 		MODIFY COLUMN `ID` BIGINT(20) unsigned NOT NULL AUTO_INCREMENT,
 		MODIFY COLUMN `type` VARCHAR(255) NOT NULL,
 		MODIFY COLUMN `content` LONGTEXT,
@@ -109,13 +131,10 @@ function upgrade_db_from_v1() {
 		DROP_COLUMN `etoile_t`,
 		ADD COLUMN `restricted` VARCHAR(500),
 		ADD COLUMN `attachment_id` BIGINT(20) unsigned,
-		ADD COLUMN `ordered` BIGINT(20) unsigned;";
+		ADD COLUMN `ordered` BIGINT(20) unsigned,
+		ENGINE=InnoDB;";
 
-	$result = $wpdb->query( $query );
-
-	if ( $result !== 1 ) {
-		// @TODO handle error
-	}
+	$wpdb->query( $query );
 }
 
 
@@ -140,24 +159,33 @@ function upgrade_db_from_v2() {
 	 * 1. set to int(5) on upgrade from v1 by mistake :-(
 	 */
 
-	$query = "ALTER TABLE `{$wpdb->prefix}simpledocumentation`
+	$query = "
+		ALTER TABLE `{$wpdb->prefix}simpledocumentation`
 		MODIFY COLUMN `ID` BIGINT(20) unsigned NOT NULL AUTO_INCREMENT,
 		MODIFY COLUMN `type` VARCHAR(255) NOT NULL,
 		MODIFY COLUMN `content` LONGTEXT,
 		MODIFY COLUMN `attachment_id` BIGINT(20) unsigned,
 		MODIFY COLUMN `ordered` BIGINT(20) unsigned,
 		DROP COLUMN `etoile_b`,
-		DROP_COLUMN `etoile_t`;";
+		DROP COLUMN `etoile_t`,
+		ENGINE=InnoDB;";
 
-	$result = $wpdb->query( $query );
+	$wpdb->query( $query );
 
-	if ( $result !== 1 ) {
-		// @TODO handle error
+	$has_unique_key = count( $wpdb->get_col(
+		"SHOW INDEX FROM `{$wpdb->prefix}simpledocumentation` WHERE Key_name = 'ID' "
+	) );
+
+	if ( $has_unique_key === 1 ) {
+		$wpdb->query(
+			"ALTER TABLE `{$wpdb->prefix}simpledocumentation` DROP INDEX `ID`, ADD PRIMARY KEY (`ID`);"
+		);
 	}
 }
 
-
 function maybe_setup_db() {
+	maybe_rename_table();
+
 	$db_version = get_db_version();
 
 	if ( $db_version === 1 ) {

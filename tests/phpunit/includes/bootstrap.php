@@ -18,9 +18,13 @@ require_once $_tests_dir . '/includes/functions.php';
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
-	require dirname( dirname( __FILE__ ) ) . '/client-documentation.php';
+	require dirname( __FILE__ ) . '/../../../client-documentation.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
 // Start up the WP testing environment.
 require $_tests_dir . '/includes/bootstrap.php';
+
+require dirname( __FILE__ ) . '/utils.php';
+require dirname( __FILE__ ) . '/simpledocumentation-testcase.php';
+require dirname( __FILE__ ) . '/simpledocumentation-testcase-db.php';
