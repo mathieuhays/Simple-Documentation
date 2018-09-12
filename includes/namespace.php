@@ -9,6 +9,7 @@ namespace Simple_Documentation;
 /**
  * Sub-namespaces
  */
+require_once SIMPLE_DOCUMENTATION_INCLUDES . '/utilities/namespace.php';
 require_once SIMPLE_DOCUMENTATION_INCLUDES . '/models/namespace.php';
 
 
@@ -27,4 +28,4 @@ require_once SIMPLE_DOCUMENTATION_INCLUDES . '/functions.php';
 /**
  * Bootstrap
  */
-new Simple_Documentation();
+Simple_Documentation::bootstrap();

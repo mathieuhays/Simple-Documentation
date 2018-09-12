@@ -6,6 +6,8 @@
 namespace Simple_Documentation\Models;
 
 
+use Simple_Documentation\Simple_Documentation;
+
 class Documentation extends Table_Model {
 
 	/**
@@ -94,6 +96,28 @@ class Documentation extends Table_Model {
 	 */
 	public function get_order_index() {
 		return (int) $this->row->ordered;
+	}
+
+
+	/**
+	 * @param \WP_User $user
+	 *
+	 * @return bool
+	 */
+	public function user_has_access( \WP_User $user ) {
+		$allowed_roles = $this->get_allowed_roles();
+
+		if ( empty( $allowed_roles ) ) {
+			$allowed_roles = Simple_Documentation::get_instance()->settings['user_role'];
+		}
+
+		foreach ( $user->roles as $user_role ) {
+			if ( in_array( $user_role, $allowed_roles ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
