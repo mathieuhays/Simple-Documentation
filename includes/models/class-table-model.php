@@ -267,6 +267,27 @@ class Table_Model extends Base_Model {
 
 
 	/**
+	 * @return array
+	 */
+	public static function get_all() {
+		global $wpdb;
+
+		$table = static::get_table();
+
+		$results = $wpdb->get_results( "SELECT * FROM {$table}" );
+
+		if ( ! is_array( $results ) ) {
+			// @TODO log error in debug mode
+			return [];
+		}
+
+		$model_instances = array_map([ get_called_class(), 'from_row' ], $results);
+
+		return array_filter( $model_instances );
+	}
+
+
+	/**
 	 * @return int
 	 */
 	public static function get_count() {

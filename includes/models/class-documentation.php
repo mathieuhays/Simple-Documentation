@@ -121,6 +121,31 @@ class Documentation extends Table_Model {
 	}
 
 
+	public function to_array() {
+		$attachment_filename = null;
+		$attachment_url = null;
+		$attachment_id = $this->get_attachment_id();
+
+		if ( ! empty( $attachment_id ) ) {
+			$attachment_url = wp_get_attachment_url( $attachment_id );
+			$attachment_filename = basename( $attachment_url );
+		}
+
+		return [
+			'ID' => $this->get_id(),
+			'title' => $this->get_title(),
+			'content' => $this->get_content(),
+			'type' => $this->get_type(),
+			'attachment_id' => $attachment_id,
+			'attachment_filename' => $attachment_filename,
+			'attachment_url' => $attachment_url,
+			// items below should be renamed
+			'ordered' => $this->get_order_index(),
+			'restricted' => $this->get_allowed_roles(),
+		];
+	}
+
+
 	/**
 	 * @param array $args
 	 *

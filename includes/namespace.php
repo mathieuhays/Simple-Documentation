@@ -17,6 +17,7 @@ require_once SIMPLE_DOCUMENTATION_INCLUDES . '/models/namespace.php';
  * Classes
  */
 require_once SIMPLE_DOCUMENTATION_INCLUDES . '/class-simple-documentation.php';
+require_once SIMPLE_DOCUMENTATION_INCLUDES . '/class-export.php';
 
 
 /**
