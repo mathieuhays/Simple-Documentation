@@ -322,4 +322,15 @@ class Table_Model extends Base_Model {
 	protected static function get_default_args() {
 		return [];
 	}
+
+
+	/**
+	 * @param array $fields
+	 * @param static $object
+	 *
+	 * @return array
+	 */
+	protected static function prepare_db_args( $fields, $object = null ) {
+		return $fields;
+	}
 }

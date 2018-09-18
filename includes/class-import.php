@@ -6,6 +6,8 @@
 namespace Simple_Documentation;
 
 
+use Simple_Documentation\Models\Documentation;
+
 class Import {
 
 	/**
@@ -142,8 +144,33 @@ class Import {
 			return;
 		}
 
-		/**
-		 * @TODO implement maybe_import_data method
-		 */
+		$fields = [
+			'ID',
+			'title',
+			'content',
+			'type',
+			'attachment_id',
+			'attachment_filename',
+			'attachment_url',
+			// items below should be renamed
+			'ordered',
+			'restricted',
+		];
+
+		foreach ( $this->data as $row ) {
+			$insert_data = [];
+
+			foreach ( $fields as $field_name ) {
+				if ( isset( $row[ $field_name ] ) ) {
+					$insert_data[ $field_name ] = $row[ $field_name ];
+				}
+			}
+
+			$item = Documentation::insert( $insert_data );
+
+			if ( is_wp_error( $item ) ) {
+				$this->log_error( $item );
+			}
+		}
 	}
 }
