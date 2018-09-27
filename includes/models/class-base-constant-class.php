@@ -21,4 +21,19 @@ class Base_Constant_Class {
 
 		return [];
 	}
+
+
+	/**
+	 * @param string $value
+	 * @param boolean $strict
+	 *
+	 * @return bool
+	 */
+	public static function exists( $value, $strict = true ) {
+		return in_array(
+			$value,
+			array_values( static::get_all() ),
+			$strict
+		);
+	}
 }

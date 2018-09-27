@@ -39,4 +39,25 @@ abstract class Base_Ajax {
 		wp_send_json( $data );
 	}
 
+
+	/**
+	 * @param array $data
+	 */
+	public function send_success( $data = [] ) {
+		$data['status'] = 'ok';
+
+		$this->response( $data );
+	}
+
+
+	/**
+	 * @param array $data
+	 */
+	public function send_error( $type, $data = [] ) {
+		$data['status'] = 'error';
+		$data['type'] = $type;
+
+		$this->response( $data );
+	}
+
 }

@@ -41,6 +41,21 @@ class Documentation extends Table_Model {
 		return $this->row->type;
 	}
 
+
+	/**
+	 * @param string $value
+	 *
+	 * @return bool
+	 */
+	public function update_type( $value ) {
+		if ( ! Documentation_Type::exists( $value ) ) {
+			return false;
+		}
+
+		return $this->update_prop( 'type', $value );
+	}
+
+
 	/**
 	 * @return string
 	 */
@@ -75,6 +90,7 @@ class Documentation extends Table_Model {
 		return htmlspecialchars_decode( stripslashes( $content ) );
 	}
 
+
 	/**
 	 * Get explicitly allowed roles for this item
 	 *
@@ -84,6 +100,17 @@ class Documentation extends Table_Model {
 		return json_decode( $this->row->restricted );
 	}
 
+
+	/**
+	 * @param array $value
+	 *
+	 * @return bool
+	 */
+	public function update_restricted( $value ) {
+		return $this->update_prop( 'restricted', json_encode( $value ) );
+	}
+
+
 	/**
 	 * @return int
 	 */
@@ -91,11 +118,22 @@ class Documentation extends Table_Model {
 		return (int) $this->row->attachment_id;
 	}
 
+
 	/**
 	 * @return int
 	 */
 	public function get_order_index() {
 		return (int) $this->row->ordered;
+	}
+
+
+	/**
+	 * @param int $value
+	 *
+	 * @return bool
+	 */
+	public function update_ordered( $value ) {
+		return $this->update_prop( 'ordered', (int) $value );
 	}
 
 

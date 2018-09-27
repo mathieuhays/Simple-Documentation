@@ -76,6 +76,43 @@ class Table_Model extends Base_Model {
 
 
 	/**
+	 * @param array $fields
+	 *
+	 * @return bool
+	 */
+	public function update_fields( $fields ) {
+		if ( empty( $fields ) ) {
+			return false;
+		}
+
+		$field_keys = array_keys( static::get_fields() );
+		$all_saved = true;
+
+		foreach ( $fields as $field_name => $field_value ) {
+			if ( ! in_array( $field_name, $field_keys, true ) ) {
+				$all_saved = false;
+				continue;
+			}
+
+			$method_name = 'update_' . $field_name;
+			$updated = false;
+
+			if ( method_exists( $this, $method_name ) ) {
+				$updated = $this->$method_name( $field_value );
+			} else {
+				$updated = $this->update_prop( $field_name, $field_value );
+			}
+
+			if ( ! $updated ) {
+				$all_saved = false;
+			}
+		}
+
+		return $all_saved;
+	}
+
+
+	/**
 	 * @return int
 	 */
 	public function get_id() {
