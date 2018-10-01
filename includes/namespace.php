@@ -11,6 +11,7 @@ namespace Simple_Documentation;
  */
 require_once SIMPLE_DOCUMENTATION_INCLUDES . '/utilities/namespace.php';
 require_once SIMPLE_DOCUMENTATION_INCLUDES . '/models/namespace.php';
+require_once SIMPLE_DOCUMENTATION_INCLUDES . '/rest/namespace.php';
 
 /**
  * Classes
