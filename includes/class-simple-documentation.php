@@ -6,8 +6,9 @@
 
 namespace Simple_Documentation;
 
+use Simple_Documentation\Utilities\Singleton;
 
-class Simple_Documentation {
+class Simple_Documentation extends Singleton {
 
 	const VERSION = "1.2.6";
 
@@ -16,32 +17,37 @@ class Simple_Documentation {
 
 	public $settings = array();
 
-	public function __construct(){
+	public static function bootstrap() {
+		/**
+		 * @var static $instance
+		 */
+		$instance = parent::bootstrap();
 
-		$this->load_textdomain();
-		$this->settings();
+		$instance->load_textdomain();
+		$instance->settings();
 
 		//Activation
-		register_activation_hook( __FILE__, array( $this, 'setup_tables' ) );
+		register_activation_hook( __FILE__, array( $instance, 'setup_tables' ) );
 
 		//Uninstall
 		register_uninstall_hook( __FILE__, array( 'simpleDocumentation', 'uninstall' ) );
 
-		add_action( 'plugins_loaded' , array( $this, 'load_textdomain' ) );
-		add_action( 'wp_dashboard_setup', array( $this, 'add_dashboard' ) );
-		add_action( 'admin_init' , array( $this , 'add_admin_styles' ) );
-		add_action( 'admin_init' , array( $this , 'add_admin_scripts' ) );
-		add_action( 'wp_ajax_simpleDocumentation_ajax' , array( $this , 'ajax' ) );
+		add_action( 'plugins_loaded' , array( $instance, 'load_textdomain' ) );
+		add_action( 'wp_dashboard_setup', array( $instance, 'add_dashboard' ) );
+		add_action( 'admin_init' , array( $instance , 'add_admin_styles' ) );
+		add_action( 'admin_init' , array( $instance , 'add_admin_scripts' ) );
+		add_action( 'wp_ajax_simpleDocumentation_ajax' , array( $instance , 'ajax' ) );
 		//add_action( 'admin_enqueue_scripts', array( $this, 'scripts') );
 
 		// MU support
 		if(is_multisite()){
-			add_action( 'network_admin_menu', array( $this, 'register_page' ));
-			add_action( 'wp_network_dashboard_setup', array($this, 'add_dashboard') );
+			add_action( 'network_admin_menu', array( $instance, 'register_page' ));
+			add_action( 'wp_network_dashboard_setup', array($instance, 'add_dashboard') );
 		}else{
-			add_action( 'admin_menu' , array( $this , 'register_page' ) );
+			add_action( 'admin_menu' , array( $instance , 'register_page' ) );
 		}
 
+		return $instance;
 	}
 
 	/**

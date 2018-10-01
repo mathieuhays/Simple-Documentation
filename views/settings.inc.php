@@ -1,13 +1,19 @@
 <?php
 
-	if ( ! defined( 'ABSPATH' ) ) exit;
-	global $wp_roles;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+global $wp_roles;
+
 ?>
 <div class="wrap">
 	<h2><?php _e( 'Settings', 'client-documentation' ); ?></h2>
 	<?php
 	
-		if(!empty($success)) $this->success($success);
+	if ( ! empty( $success ) ) {
+		$this->success( $success );
+	}
 	
 	?>
 	<p><?php _e( "As all fields are required, any empty field will keep its former value", 'client-documentation' ); ?></p>
@@ -27,16 +33,20 @@
 				<th><?php _e( 'Default client user role', 'client-documentation' ); ?></th>
 				<td class="smplodc_user_items clearfix">
 				<?php	
-					$roles = $wp_roles->roles;
-	                foreach($roles as $srole => $vrole){
-	                	
-	                	if(in_array($srole, $this->settings['user_role'])) $checked = ' checked';
-	                	else $checked = '';
-	                	
-	                	echo '
-	                <p><input type="checkbox" name="user_role[]" value="'.$srole.'"'.$checked.'>'.__( $vrole['name'] ).'</p>';
-	                
+
+				$roles = $wp_roles->roles;
+
+				foreach ( $roles as $srole => $vrole ) {
+					$checked = '';
+
+                    if ( in_array( $srole, $this->settings['user_role'] ) ) {
+                        $checked = ' checked';
 	                }
+
+                    echo '
+                        <p><input type="checkbox" name="user_role[]" value="'.$srole.'"'.$checked.'>'.__( $vrole['name'] ).'</p>';
+                }
+
 				?>
 				</td>
 			</tr>
@@ -55,18 +65,17 @@
 				//'all_items' => __( 'All Items Title', 'client-documentation' )
 			);
 			
-			foreach( $custom as $cstm => $cstv ){
-				
+			foreach ( $custom as $cstm => $cstv ) {
 				$label = __( $cstv, $this->slug );
 				$value = stripslashes( htmlspecialchars_decode( $this->settings[ 'label_' . $cstm ] )) ;
 				
-				if($cstm == 'welcome_message'){
+				if ( $cstm == 'welcome_message' ) {
 					echo "
 					<tr>
 						<th><label for='label_$cstm'>$label</label></th>
 						<td><textarea name='label_$cstm' class='large-text' rows='5'>$value</textarea></td>
 					</tr>";
-				}else{
+				} else {
 					echo "
 					<tr>
 						<th><label for='label_$cstm'>$label</label></th>
