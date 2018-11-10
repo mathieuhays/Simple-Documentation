@@ -26,12 +26,6 @@ class Simple_Documentation extends Singleton {
 		$instance->load_textdomain();
 		$instance->settings();
 
-		//Activation
-		register_activation_hook( __FILE__, array( $instance, 'setup_tables' ) );
-
-		//Uninstall
-		register_uninstall_hook( __FILE__, array( 'simpleDocumentation', 'uninstall' ) );
-
 		add_action( 'plugins_loaded' , array( $instance, 'load_textdomain' ) );
 		add_action( 'wp_dashboard_setup', array( $instance, 'add_dashboard' ) );
 		add_action( 'admin_init' , array( $instance , 'add_admin_styles' ) );

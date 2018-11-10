@@ -14,3 +14,13 @@
 require_once 'constants.php';
 
 require_once 'includes/namespace.php';
+
+register_activation_hook(
+	__FILE__,
+	[ \Simple_Documentation\Simple_Documentation::get_instance(), 'setup_tables' ]
+);
+
+register_uninstall_hook(
+	__FILE__,
+	[ \Simple_Documentation\Simple_Documentation::class, 'uninstall' ]
+);
