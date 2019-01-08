@@ -684,31 +684,55 @@ class Simple_Documentation extends Singleton {
 		}elseif($_POST['a'] == 'reorder'){
 
 			if(isset($_POST['data']) && is_array($_POST['data'])){
-
-				$i= 0;
 				$error = 0;
-				foreach($_POST['data'] as $id){
-					if(!$wpdb->query( "UPDATE $wpdb->simpleDocumentation SET ordered='$i' WHERE ID='$id'" )) $error++;
-					$i++;
+
+				foreach ( $_POST['data'] as $index =>  $item_id ) {
+					$reorder_query = $wpdb->prepare(
+						"UPDATE {$wpdb->simpleDocumentation} SET ordered = %d WHERE ID = %d;",
+						$index,
+						$item_id
+					);
+
+					if ( ! $wpdb->query( $reorder_query ) ) {
+						$error++;
+					}
 				}
 
-				if($error < 1)
-					$this->s(array( 'status' => 'ok', 'type' => 'reordered' ));
-				else
-					$this->s(array( 'status' => 'error', 'type' => 'save-reorder-fail' ));
-
+				if ( $error < 1 ) {
+					$this->s([
+						'status' => 'ok',
+						'type' => 'reordered',
+					]);
+				} else {
+					$this->s([
+						'status' => 'error',
+						'type' => 'save-reorder-fail',
+					]);
+				}
 			}
 
 		}elseif($_POST['a'] == 'get-data'){
 
-			$id = intval($_POST['id']);
+			$item_id = intval($_POST['id']);
 
-			$query = "SELECT * FROM $wpdb->simpleDocumentation WHERE ID='$id'";
-			if($data = $wpdb->get_results( $query ))
-				$this->s(array( 'status' => 'ok', 'type' => 'get-data', 'data' => $this->filterData($data[0]) ));
+			$query = $wpdb->prepare(
+				"SELECT * FROM {$wpdb->simpleDocumentation} WHERE ID = %d;",
+				$item_id
+			);
 
-			else
-				$this->s(array( 'status' => 'error', 'type' => 'get-data', 'id' => $id ));
+			if($data = $wpdb->get_results( $query )) {
+				$this->s([
+					'status' => 'ok',
+					'type' => 'get-data',
+					'data' => $this->filterData($data[0]),
+				]);
+			} else {
+				$this->s( [
+					'status' => 'error',
+					'type' => 'get-data',
+					'id' => $item_id,
+				]);
+			}
 
 		}elseif($_POST['a'] == 'export'){
 
