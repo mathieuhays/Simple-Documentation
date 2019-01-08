@@ -51,7 +51,11 @@ Hit the import/export button to copy your installation on multiple WP installati
 
 == Changelog ==
 
-= 1.2.7 =
+= 1.2.8 =
+
+* Fix potential plugin conflict
+
+= 1.2.7
 
 * [Security] Fix vulnerability
 

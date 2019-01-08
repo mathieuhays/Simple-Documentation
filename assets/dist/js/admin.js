@@ -59,7 +59,7 @@ jQuery(document).ready(function($){
 		add_sw.fadeOut(function(){
 			list_sw.fadeIn();
 			current = 'list';
-			swtch_btn.html( ajax_object.add_new );
+			swtch_btn.html( simple_documentation_vars.add_new );
 		});
 
 		resetFormView();
@@ -104,7 +104,7 @@ jQuery(document).ready(function($){
 			list_sw.fadeOut(function(){
 				add_sw.fadeIn();
 				current = 'add';
-				swtch_btn.html( ajax_object.view_list );
+				swtch_btn.html( simple_documentation_vars.view_list );
 			});
 
 		}else{
@@ -125,7 +125,7 @@ jQuery(document).ready(function($){
 			attachment_filename = '',
 			title = '';
 
-		$('#smpldoc_additem').attr('data-action', 'add').text( ajax_object.add_item );
+		$('#smpldoc_additem').attr('data-action', 'add').text( simple_documentation_vars.add_item );
 
 		if(data !== undefined){
 
@@ -140,7 +140,7 @@ jQuery(document).ready(function($){
 			$('.add_list').find('li').addClass('smpldoc_disabled');
 			$('#smdoc_'+data.type+'_cat').parent('li').removeClass('smpldoc_disabled').addClass('smpldoc_active');
 
-			$('#smpldoc_additem').attr('data-action', 'edit').text( ajax_object.save_changes );
+			$('#smpldoc_additem').attr('data-action', 'edit').text( simple_documentation_vars.save_changes );
 
 			if(data.restricted){
 				$('.smpldoc_item_users').each(function(){
@@ -236,7 +236,7 @@ jQuery(document).ready(function($){
 	/** Display error alert specifying mising fields **/
 	function errorMessage(fields){
 
-		var message = ajax_object.fields_missing+'\n';
+		var message = simple_documentation_vars.fields_missing+'\n';
 		for(var i=0;i<fields.length;i++){
 			if(i>1) message += ', ';
 			message += fields[i];
@@ -255,7 +255,7 @@ jQuery(document).ready(function($){
 			list_sw.fadeOut(function(){
 				add_sw.fadeIn();
 				current = 'add';
-				swtch_btn.html( ajax_object.view_list );
+				swtch_btn.html( simple_documentation_vars.view_list );
 			});
 
 			$('#smpldoc_overlay').fadeOut(300);
@@ -316,7 +316,7 @@ jQuery(document).ready(function($){
 
 				viewList();
 			}else if(res.type == 'reorder'){
-				var message = $('<div />').attr('class', 'updated smpldoc_notif').html('<p>' + ajax_object.order_saved + ' !</p>').delay('1500').fadeOut(700,function(){ $('.smpldoc_notif').remove(); });
+				var message = $('<div />').attr('class', 'updated smpldoc_notif').html('<p>' + simple_documentation_vars.order_saved + ' !</p>').delay('1500').fadeOut(700,function(){ $('.smpldoc_notif').remove(); });
 				$('.wrap').prepend( message );
 			}
 
@@ -375,7 +375,7 @@ jQuery(document).ready(function($){
 			item: item
 		};
 
-		jQuery.post( ajax_object.ajax_url , data , function(response){ settings_response(response); });
+		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
 
 	});
 
@@ -391,7 +391,7 @@ jQuery(document).ready(function($){
 			id: id
 		};
 
-		jQuery.post( ajax_object.ajax_url , data , function(response){ settings_response(response); });
+		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
 
 	});
 
@@ -412,7 +412,7 @@ jQuery(document).ready(function($){
 				a: 'reorder',
 				data: ordering
 			};
-			jQuery.post( ajax_object.ajax_url , data , function(response){ settings_response(response); });
+			jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
 		}
 	});
 
@@ -427,21 +427,21 @@ jQuery(document).ready(function($){
 			id: id
 		};
 
-		jQuery.post( ajax_object.ajax_url , data , function(response){ settings_response(response); });
+		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
 
 	});
 
 	export_button.on('click', function(e){
 		e.preventDefault();
 
-		export_text.val( ajax_object.loading + '...' );
+		export_text.val( simple_documentation_vars.loading + '...' );
 		var data = {
 			action: 'simpleDocumentation_ajax',
 			a: 'export',
 			options: (export_options.attr('checked'))? 'include': 'exclude'
 		};
 
-		jQuery.post( ajax_object.ajax_url , data , function(response){
+		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){
 			export_text.val( response ).removeAttr('disabled').removeClass('disabled');
 		});
 	});
@@ -455,12 +455,12 @@ jQuery(document).ready(function($){
 			data: $.parseJSON( import_text.val() )
 		};
 
-		import_text.val( ajax_object.processing + '...');
+		import_text.val( simple_documentation_vars.processing + '...');
 
-		jQuery.post( ajax_object.ajax_url , data , function(response){
+		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){
 			var res = $.parseJSON(response);
-			if(res.status == 'ok') import_text.val( ajax_object.label_done );
-			else import_text.val( ajax_object.error );
+			if(res.status == 'ok') import_text.val( simple_documentation_vars.label_done );
+			else import_text.val( simple_documentation_vars.error );
 		});
 	});
 

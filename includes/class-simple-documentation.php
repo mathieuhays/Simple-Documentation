@@ -298,7 +298,7 @@ class Simple_Documentation extends Singleton {
 		if($pagenow == 'index.php' || ($pagenow == 'admin.php' && ( $_GET['page'] == $this->slug || $_GET['page'] == $this->slug . '_import_export') )){
 			wp_enqueue_script( 'jquery-ui-sortable' );
 			wp_enqueue_script( $this->slug . '_js', plugins_url( 'assets/dist/js/admin.js' , SIMPLE_DOCUMENTATION_DIR . '/client-documentation.php' ), array( 'jquery' ), self::VERSION );
-			wp_localize_script( $this->slug . '_js', 'ajax_object', $local );
+			wp_localize_script( $this->slug . '_js', 'simple_documentation_vars', $local );
 			wp_enqueue_media();
 		}
 	}
