@@ -4,7 +4,7 @@
 	Plugin Name: Simple Documentation
 	Plugin URI: https://mathieuhays.co.uk/simple-documentation/
 	Description: This plugin helps webmasters/developers to provide documentation through the wordpress dashboard.
-	Version: 1.2.6
+	Version: 1.2.7
 	Author: Mathieu Hays
 	Author URI: https://mathieuhays.co.uk
 	License: GPL2
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class simpleDocumentation {
 
-	const VERSION = "1.2.6";
+	const VERSION = "1.2.7";
 
 	/* Used as text domain and slug */
 	public $slug = 'simpledocumentation';
@@ -66,10 +66,6 @@ class simpleDocumentation {
 
 		$this->load_textdomain();
 		$this->settings();
-
-		/* Wordpress Command line */
-		//if( defined( 'WP_CLI' ) && WP_CLI )
-		//	include( plugin_dir_path( __FILE__ ) . 'inc/wp_cli.php' );
 
 		//Activation
 		register_activation_hook( __FILE__, array( $this, 'setup_tables' ) );
@@ -734,12 +730,18 @@ class simpleDocumentation {
 		}elseif($_POST['a'] == 'reorder'){
 
 			if(isset($_POST['data']) && is_array($_POST['data'])){
-
-				$i= 0;
 				$error = 0;
-				foreach($_POST['data'] as $id){
-					if(!$wpdb->query( "UPDATE $wpdb->simpleDocumentation SET ordered='$i' WHERE ID='$id'" )) $error++;
-					$i++;
+
+				foreach($_POST['data'] as $index => $item_id){
+					$reorder_query = $wpdb->prepare(
+						"UPDATE {$wpdb->simpleDocumentation} SET ordered = %d WHERE ID = %d;",
+						$index,
+						$item_id
+					);
+
+					if ( ! $wpdb->query( $reorder_query ) ) {
+						$error++;
+					}
 				}
 
 				if($error < 1)
@@ -749,16 +751,27 @@ class simpleDocumentation {
 
 			}
 
-		}elseif($_POST['a'] == 'get-data'){
+		} elseif ( $_POST['a'] == 'get-data' ) {
+			$item_id = intval($_POST['id']);
 
-			$id = intval($_POST['id']);
+			$get_query = $wpdb->prepare(
+				"SELECT * FROM {$wpdb->simpleDocumentation} WHERE ID = %d;",
+				$item_id
+			);
 
-			$query = "SELECT * FROM $wpdb->simpleDocumentation WHERE ID='$id'";
-			if($data = $wpdb->get_results( $query ))
-				$this->s(array( 'status' => 'ok', 'type' => 'get-data', 'data' => $this->filterData($data[0]) ));
-
-			else
-				$this->s(array( 'status' => 'error', 'type' => 'get-data', 'id' => $id ));
+			if ( $data = $wpdb->get_results( $get_query ) ) {
+				$this->s([
+					'status' => 'ok',
+					'type' => 'get-data',
+					'data' => $this->filterData($data[0]),
+				]);
+			} else {
+				$this->s( [
+					'status' => 'error',
+					'type' => 'get-data',
+					'id' => $item_id,
+				]);
+			}
 
 		}elseif($_POST['a'] == 'export'){
 
