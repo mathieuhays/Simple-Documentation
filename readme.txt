@@ -51,6 +51,10 @@ Hit the import/export button to copy your installation on multiple WP installati
 
 == Changelog ==
 
+= 1.2.7
+
+* [Security] Fix vulnerability
+
 = 1.2.6
 
 * Fix bug when trying to add empty item
