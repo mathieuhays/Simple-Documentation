@@ -4,7 +4,7 @@
 	Plugin Name: Simple Documentation
 	Plugin URI: https://mathieuhays.co.uk/simple-documentation/
 	Description: This plugin helps webmasters/developers to provide documentation through the wordpress dashboard.
-	Version: 1.2.7
+	Version: 1.2.8
 	Author: Mathieu Hays
 	Author URI: https://mathieuhays.co.uk
 	License: GPL2
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class simpleDocumentation {
 
-	const VERSION = "1.2.7";
+	const VERSION = "1.2.8";
 
 	/* Used as text domain and slug */
 	public $slug = 'simpledocumentation';
@@ -344,7 +344,7 @@ class simpleDocumentation {
         if($pagenow == 'index.php' || ($pagenow == 'admin.php' && ( $_GET['page'] == $this->slug || $_GET['page'] == $this->slug . '_import_export') )){
 			wp_enqueue_script( 'jquery-ui-sortable' );
 	        wp_enqueue_script( $this->slug . '_js', plugins_url( '/js/simpledocumentation.js' , __FILE__ ), array( 'jquery' ), self::VERSION );
-	        wp_localize_script( $this->slug . '_js', 'ajax_object', $local );
+	        wp_localize_script( $this->slug . '_js', 'simple_documentation_vars', $local );
 	        wp_enqueue_media();
         }
     }
