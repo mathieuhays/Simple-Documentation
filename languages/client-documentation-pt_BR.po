@@ -1,0 +1,314 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Documentation\n"
+"POT-Creation-Date: 2014-04-23 18:36-0000\n"
+"PO-Revision-Date: 2019-07-01 20:55-0300\n"
+"Language-Team: Mathieu HAYS <mathieu@mathieuhays.co.uk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"Last-Translator: Patrick de Ângelis <patrick.angelis@hotmail.com>\n"
+"Language: pt_BR\n"
+"X-Poedit-SearchPath-0: /Library/WebServer/Documents/wp/wp001/wp-content/"
+"plugins/client-documentation\n"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:118
+msgid "Resources"
+msgstr "Recursos"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:119
+msgid "Welcome"
+msgstr "Bem-vindo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:120
+msgid "Need Help ? All you need is here !"
+msgstr "Precisa de ajuda? Tudo que você precisa está aqui!"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:250
+msgid "How to create your first post"
+msgstr "Como criar seu primeiro post"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:251
+msgid "Example of content"
+msgstr "Exemplo de conteúdo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:333
+msgid "Following fields are missing :"
+msgstr "Os seguintes campos estão pendentes:"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:334
+msgid "is missing !"
+msgstr "está pendente!"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:336
+msgid "View List"
+msgstr "Visualizar lista"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:337
+msgid "Order saved"
+msgstr "Pedido salvo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:338
+msgid "Loading"
+msgstr "Carregando"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:339
+msgid "Processing"
+msgstr "Processando"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:340
+msgid "Done"
+msgstr "Pronto"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:341
+msgid "Error!"
+msgstr "Erro!"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:342
+msgid "Add item"
+msgstr "Adicionar item"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:343
+msgid "Save changes"
+msgstr "Salvar mudanças"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:344
+msgid "Add new"
+msgstr "Adicionar novo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:382
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:383
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:7
+msgid "Import / Export"
+msgstr "Importar / Exportar"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:390
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:391
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:7
+msgid "Settings"
+msgstr "Configurações"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:398
+msgid "Documentation"
+msgstr "Documentação"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:483
+msgid "Settings saved"
+msgstr "Configurações salvas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:574
+msgid "title"
+msgstr "título"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:582
+msgid "content"
+msgstr "conteúdo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:588
+msgid "link"
+msgstr "link"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:597
+msgid "file"
+msgstr "arquivo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:731
+msgid "error"
+msgstr "erro"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:9
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:14
+msgid "Export"
+msgstr "Exportar"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:16
+msgid "Include options"
+msgstr "Opções inclusas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:17
+msgid "if included, options will be overwritten"
+msgstr "se inclusas, as opções serão ser sobrescritas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:20
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:25
+msgid "Import"
+msgstr "Importar"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:11
+msgid "Simple Documentation"
+msgstr "Documentação Simples"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:11
+msgid "Add New"
+msgstr "Adicione um novo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:18
+msgid "Documentation list"
+msgstr "Lista de documentação"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:47
+msgid "(default) "
+msgstr "(padrão) "
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:91
+msgid "Add Content"
+msgstr "Adicionar conteúdo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:96
+msgid "Video"
+msgstr "Vídeo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:100
+msgid "Note"
+msgstr "Nota"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:104
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:129
+msgid "Link"
+msgstr "Link"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:108
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:133
+msgid "File"
+msgstr "Arquivo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:117
+msgid "Title"
+msgstr "Título"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:136
+msgid "Upload a file"
+msgstr "Carregue um arquivo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:137
+msgid "Select a file"
+msgstr "Selecione um arquvo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:142
+msgid "Limit to user roles"
+msgstr "Limite as funções do usuário"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:144
+msgid "Leave blank to use default"
+msgstr "Deixe em branco para usar o padrão"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:145
+msgid "Current Defaults"
+msgstr "Padrões atuais"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:181
+msgid "Information"
+msgstr "Informações"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:183
+msgid "Welcome to Simple Documentation."
+msgstr "Bem-vindo à Documentação Simples."
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:185
+msgid "Update"
+msgstr "Atualizar"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:186
+msgid ""
+"This new update comes with new features such as item re-ordering and "
+"restricting access per user."
+msgstr ""
+"Esta nova atualização vem com novos recursos, como reordenação de itens e "
+"restrição de acesso por usuário."
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:188
+msgid "Contribution"
+msgstr "Contribuição"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:189
+msgid "Some good people I would like to thank, helped me with the translations"
+msgstr ""
+"Algumas pessoas boas que eu gostaria de agradecer, me ajudaram com as "
+"traduções"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:191
+msgid "Spanish translation by"
+msgstr "Tradução para o espanhol por"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:192
+msgid "German translation by"
+msgstr "Tradução para o alemão por"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:193
+msgid "Serbo-Croatian translation by"
+msgstr "Tradução para servo-croata por"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "If you want to contribute, feel free to "
+msgstr "Se desejar contribuir, sinta-se livre "
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "contact me"
+msgstr "entre em contato comigo"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "or"
+msgstr "ou"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "fork the project on github"
+msgstr "realize o fork do projeto no github"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:197
+msgid "Plugin created by"
+msgstr "Plugin criador por"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:197
+msgid "Report issues"
+msgstr "Relatar problemas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:13
+msgid "As all fields are required, any empty field will keep its former value"
+msgstr ""
+"Todos os campos são obrigatórios, qualquer campo vazio manterá seu valor "
+"anterior"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:19
+msgid "General"
+msgstr "Geral"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:23
+msgid "Number of items displayed per page"
+msgstr "Número de itens exibidos por página"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:27
+msgid "Default client user role"
+msgstr "Regra de usuário padrão do cliente"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:45
+msgid "Custom titles & content"
+msgstr "Títulos e conteúdos personalizados"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:51
+msgid "Widget Title"
+msgstr "Título do Widget"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:52
+msgid "Welcome Title"
+msgstr "Título de boas-vindas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:53
+msgid "Welcome Message"
+msgstr "Mensagem de boas-vindas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:83
+msgid "Save"
+msgstr "Salvar"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/widget.inc.php:95
+msgid "Pages"
+msgstr "Páginas"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/widget.inc.php:109
+msgid "No Documentation available yet."
+msgstr "Nenhuma documentação está disponível ainda."
