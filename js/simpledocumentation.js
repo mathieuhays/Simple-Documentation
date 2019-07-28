@@ -1,467 +1,682 @@
-(function($){$.stripslashes=function(str){if (str == '') { return str; }str=str.replace(/\\'/g,'\'');str=str.replace(/\\"/g,'"');str=str.replace(/\\/g,'');str=str.replace(/\\\\/g,'\\');str=str.replace(/\\0/g,'\0');return str;}; /** Stripslashes jquery function **/
+(function($) {
+
+  var tinyMCE = tinyMCE || window.tinyMCE,
+    $list_admin,
+    $editor,
+    $input,
+    $file,
+    $list,
+    $add,
+    $switch_button,
+    $import_button,
+    $import_text,
+    $export_button,
+    $export_options,
+    $export_text,
+    $add_item,
+    $item_content,
+    $item_title,
+    $item_type,
+    $item_link,
+    $item_file,
+    $item_filename,
+    $item_users,
+    $item_id,
+    $overlay,
+    $upload_button,
+    current_view = 'list',
+    file_frame,
+    vars = window.simple_documentation_vars || {};
+
+  function init() {
+    $list_admin = $('#simpledoc_list');
+    $editor = $('#smpldoc_editor');
+    $input = $('#smpldoc_input');
+    $file = $('#smpldoc_file');
+    $list = $('#sd_list');
+    $add = $('#sd_add');
+    $switch_button = $('#swtch_btn');
+    $import_button = $('#sd_import_button');
+    $import_text = $('#sd_import');
+    $export_button = $('#sd_export_button');
+    $export_options = $('#sd_export_options');
+    $export_text = $('#sd_export');
+    $item_content = $('#smpldoc_item_content');
+    $item_title = $('#smpldoc_item_title');
+    $item_type = $('#item_type');
+    $item_link = $('#smpldoc_item_link');
+    $item_file = $('#smpldoc_item_file');
+    $item_filename = $('#smpldoc_filename');
+    $item_users = $('.smpldoc_item_users');
+    $item_id = $('#item_id');
+    $overlay = $('#smpldoc_overlay');
+    $upload_button = $('.cd_button_upload');
+    $add_item = $('#smpldoc_additem');
+
+    // setup listeners
+    $list_admin.on('click', 'li', on_item_click);
+    $switch_button.on('click', on_switch_click);
+    $add.find('ul.add_list').on('click', 'a', on_type_option_click);
+    $upload_button.on('click', on_upload_click);
+    $add_item.on('click', on_add_item_submit);
+    $list_admin.on('click', '.smpldoc_delete_item', on_delete_item);
+    $list_admin.on('click', '.smpldoc_edit_item', on_edit_click);
+    $export_button.on('click', on_export_click);
+    $import_button.on('click', on_import_click);
+
+    $list_admin.sortable({
+      containment: 'parent',
+      axis: 'y',
+      handle: '.smpldoc_sort',
+      opacity: .6,
+      update: on_sort_update
+    });
+  }
+
+
+  /**
+   * @param {string} value
+   * @return {string}
+   */
+  function stripslashes(value) {
+    if (!value || value === '') {
+      return value;
+    }
+
+    value = value.replace(/\\'/g,'\'');
+    value = value.replace(/\\"/g,'"');
+    value = value.replace(/\\/g,'');
+    value = value.replace(/\\\\/g,'\\');
+    value = value.replace(/\\0/g,'\0');
+
+    return value;
+  }
+
+
+  /**
+   * @param {string} type
+   * @return {string}
+   */
+  function get_icon(type) {
+    switch (type) {
+      case 'video':
+        return 'youtube-play';
+      case 'link':
+        return 'link';
+      case 'file':
+        return 'files-o';
+      default:
+        return 'comments';
+    }
+  }
+
+
+  /**
+   * @return {boolean|*}
+   */
+  function get_editor() {
+    var _editor = tinyMCE || window.tinyMCE || window.tinymce;
+
+    if (_editor) {
+      return _editor.get('smpldoc_item_content');
+    }
+
+    return false;
+  }
+
+
+  function reset_form_view() {
+    console.log('reset_form_view');
+
+    var editor = get_editor();
+
+    if (editor) {
+      editor.setContent('');
+    } else {
+      $item_content.val('');
+    }
+
+    $item_id.val('');
+    $item_title.val('');
+    $item_type.val('');
+    $item_link.val('');
+    $item_file.val('');
+    $item_users.removeAttr('checked');
+    $add.find('ul.add_list').find('li').removeClass('smpldoc_active smpldoc_disabled');
+  }
+
+
+  function set_list_view() {
+    console.log('set_list_view');
+
+    $add.fadeOut(function() {
+      $list.fadeIn();
+      current_view = 'list';
+      $switch_button.html( vars.add_new );
+    });
+
+    reset_form_view();
+  }
+
+
+  function on_item_click() {
+    var $this = $(this),
+      delay = 0,
+      activeClass = 'hover';
+
+    console.log('on_item_click');
+
+    // Close active
+    $('.' + activeClass).each(function() {
+      var $hover = $(this);
+
+      if ($hover.attr('id') !== $this.attr('id')) {
+        $hover.find('.el_expand').animate({
+          height: 'toggle',
+          paddingTop: 'toggle',
+          paddingBottom: 'toggle'
+        }, 300, function(){
+          $hover.removeClass(activeClass);
+        });
+      }
+    });
+
+    $this.find('.el_expand').animate({
+      height: 'toggle',
+      paddingTop: 'toggle',
+      paddingBottom: 'toggle'
+    }, 700);
+
+    setTimeout(function() {
+      $this.toggleClass(activeClass);
+    }, delay);
+  }
+
+
+  function on_switch_click(e) {
+    e.preventDefault();
+
+    console.log('on_switch_click');
+
+    if (current_view === 'list') {
+      $list.fadeOut(function () {
+        $add.fadeIn();
+        current_view = 'add';
+        $switch_button.html( vars.view_list );
+      });
+    } else {
+      set_list_view();
+    }
+  }
+
+
+  /**
+   * @param {string} type
+   * @param {object} [data]
+   */
+  function setup_fields_for_type(type, data) {
+    var content = '',
+      attachment_id = 0,
+      attachment_url = '',
+      attachment_filename = '',
+      title = '',
+      editor = get_editor(),
+      fade_out_duration = 200,
+      fade_in_duration = 100;
+
+    console.log('setup_fields_for_type', type, data);
+
+    $item_type.val(type);
+
+    if ( data ) {
+      title = data.title;
+      content = data.content;
+      attachment_id = data.attachment_id;
+      attachment_url = data.attachment_url;
+      attachment_filename = data.attachment_filename;
+
+      if (data.ID || data.id) {
+        $item_id.val( data.ID || data.id );
+      }
+
+      $('.add_list').find('li').addClass('smpldoc_disabled');
+      $('#smdoc_' + type + '_cat').closest('li').removeClass('smpldoc_disabled').addClass('smpldoc_active');
+      $('#smpldoc_additem').attr('data-action', 'edit').text(vars.save_changes);
+
+      if (data.restricted) {
+        $item_users.each(function() {
+          var $role = $(this);
+
+          if ( data.restricted.indexOf($role.val()) !== -1 ) {
+            $role.attr('checked', '');
+          }
+        });
+      }
+    }
+
+    if (title) {
+      $item_title.val( title );
+    }
+
+    if ( type === 'note' || type === 'video' ) {
+      $input.fadeOut(fade_out_duration);
+      $file.fadeOut(fade_out_duration);
+
+      if (editor) {
+        console.log(editor);
+        editor.setContent(content);
+      } else {
+        $item_content.val(content);
+      }
+
+      $editor.delay(fade_out_duration).fadeIn(fade_in_duration);
+    }
+
+    if ( type === 'file' ) {
+      $input.fadeOut(fade_out_duration);
+      $editor.fadeOut(fade_out_duration);
+
+      if (attachment_id) {
+        $item_file.val(attachment_id);
+      }
+
+      $file.delay(fade_out_duration).fadeIn(fade_in_duration);
+
+      if (attachment_url && attachment_filename) {
+        $item_filename.empty().append($(generate_link_tag(attachment_url, attachment_filename)));
+      }
+    }
+
+    if ( type === 'link' ) {
+      $editor.fadeOut(fade_out_duration).val('');
+      $file.fadeOut(fade_out_duration).val('');
+
+      if (content) {
+        $item_link.val(content);
+      }
+
+      $input.delay(fade_out_duration).fadeIn(fade_in_duration);
+    }
+  }
+
+
+  function on_type_option_click(e) {
+    e.preventDefault();
+
+    var $this = $(this),
+      type = $this.attr('data-type');
+
+    console.log('on_type_option_click', type);
+
+    $add.find('ul.add_list').find('li').removeClass('smpldoc_active').addClass('smpldoc_disabled');
+    $this.parent('li').addClass('smpldoc_active');
+
+    setup_fields_for_type(type);
+
+    $overlay.fadeOut(300);
+  }
+
+
+  function on_upload_click(e) {
+    e.preventDefault();
+
+    var $button = $(this);
+
+    console.log('on_upload_click');
+
+    if ( ! file_frame ) {
+      file_frame = wp.media.frames.file_frame = wp.media({
+        title: $button.data('uploader_title'),
+        button: {
+          text: $button.data('uploader_button_text')
+        },
+        multiple: false
+      });
+
+      file_frame.on('select', on_file_select);
+    }
+
+    file_frame.open();
+  }
+
+
+  function on_file_select() {
+    var selected = file_frame.state().get('selection').first().toJSON();
+
+    console.log('on_file_select');
+
+    $item_file.attr('value', selected.id);
+    $item_filename.text(selected.filename);
+  }
+
+
+  /**
+   * @param {array} fields
+   */
+  function report_missing_fields(fields) {
+    var message = vars.fields_missing + "\n";
+
+    $.each(fields, function(index, field_name) {
+      if (index > 0) {
+        message += ', ';
+      }
+
+      message += field_name;
+    });
+
+    alert(message);
+  }
+
+
+  function fill_form(data) {
+    console.log('fill_form');
+
+    if ( current_view !== 'list' ) {
+      return;
+    }
+
+    setup_fields_for_type(data.type, data);
+
+    $list.fadeOut(function() {
+      $add.fadeIn();
+      current_view = 'add';
+      $switch_button.html( vars.view_list );
+    });
+
+    $overlay.fadeOut(300);
+  }
+
+
+  /**
+   * @param {string} url
+   * @param {string} label
+   * @return {string}
+   */
+  function generate_link_tag(url, label) {
+    return '<a href="' + url + '">' + label + '</a>';
+  }
+
+
+  /**
+   * @param data
+   * @return {jQuery}
+   */
+  function generate_list_item(data) {
+    var icon_slug = get_icon(data.type),
+      before = '<span class="el_front_bf"><a href="#" class="smpldoc_sort"><i class="fa fa-bars"></i></a> <i class="fa fa-' + icon_slug + '"></i></span>',
+      after = [
+        '<span class="el_front_af">',
+        '<i class="fa fa-user smpldoc_usersallowed"></i> ', // white space required for consistent spacing
+        '<a href="#edit" class="smpldoc_edit_item"><i class="fa fa-pencil"></i></a> ',
+        '<a href="#delete" class="smpldoc_delete_item"><i class="fa fa-times"></i></a>',
+        '</span>'
+      ].join(''),
+      title = '<span class="el_title">' + stripslashes(data.title) + '</span>',
+      content,
+      $expand = $('<div />').addClass('el_expand'),
+      $front = $('<div />').addClass('el_front').attr('data-id', data.id),
+      $element = $('<li />').attr('id', 'simpledoc_' + data.id);
+
+    if (data.type === 'file') {
+      content = generate_link_tag(data.attachment_url, data.attachment_url);
+    } else if (data.type === 'link') {
+      content = generate_link_tag(data.content, data.content);
+    } else {
+      content = data.content;
+    }
+
+    $expand.html(content);
+    $front.append($(before)).append($(title)).append($(after));
+    $element.append($front).append($expand);
+
+    return $element;
+  }
+
+
+  function add_notification(message, classnames) {
+    var $message = $('<div />');
+
+    if (!classnames) {
+      classnames = 'updated';
+    }
+
+    $message.addClass('smpldoc_notif');
+    $message.addClass(classnames);
+    $message.append(message);
+
+    $('.wrap').prepend($message);
+
+    setTimeout(function() {
+      $message.fadeOut(700, function() {
+        $message.remove();
+      });
+    }, 1500);
+  }
+
+
+  function handle_settings_response(_res) {
+    var res = $.parseJSON(_res),
+      $item,
+      content;
+
+    console.log('handle_settings_response');
+
+    if (res.status === 'user-error') {
+      if (res.type === 'empty_fields') {
+        report_missing_fields(res.data);
+      }
+    }
+
+    if (res.status === 'ok') {
+      if (res.type === 'delete') {
+        $('#simpledoc_' + res.id).fadeOut(500);
+      }
+
+      if (res.type === 'get-data') {
+        fill_form(res.data);
+      }
+
+      if (res.type === 'edit') {
+        $item = $('#simpledoc_' + res.data.id);
+        $item.find('.el_title').html(res.data.title);
+
+        if (res.data.type === 'link') {
+          content = '<a href="' + res.data.content + '">' + res.data.content + '</a>';
+        } else if (res.data.type === 'file') {
+          content = '<a href="' + res.data.attachment_url + '">' + res.data.attachment_url + '</a>';
+        } else {
+          content = res.data.content || '';
+        }
+
+        $item.find('.el_expand').html(content);
+        $item.find('.smpldoc_usersallowed').attr('title', res.data.users.join(', '));
+        set_list_view();
+      }
+
+      if (res.type === 'add') {
+        $list_admin.append(generate_list_item(res.data));
+        set_list_view();
+      }
+
+      if (res.type === 'reorder') {
+        add_notification($('<p />').html(vars.order_saved));
+      }
+    }
+  }
+
+
+  function on_add_item_submit(e) {
+    e.preventDefault();
+
+    console.log('on_add_item_submit');
+
+    var user_restriction = [],
+      empty_fields = [],
+      action_type = 'add',
+      content = '',
+      editor = get_editor(),
+      item,
+      data;
+
+    $item_users.each(function() {
+      var $this = $(this);
+
+      if ($this.is(':checked')) {
+        user_restriction.push($this.val());
+      }
+    });
+
+    if (editor) {
+      content = editor.getContent();
+    } else {
+      content = $item_content.val();
+    }
+
+    item = {
+      title: $item_title.val(),
+      type: $item_type.val(),
+      input: $item_link.val(),
+      file: $item_file.val(),
+      editor: content,
+      user_roles: user_restriction
+    };
+
+    if (!item.type || item.type === 'nope') {
+      empty_fields.push('type');
+    }
+
+    if (item.title.length < 1) {
+      empty_fields.push('title');
+    }
+
+    if ((item.type === 'note' || item.type === 'video') &&
+      (!item.editor || item.editor.length < 1)) {
+      empty_fields.push('content');
+    }
+
+    if (item.type === 'link' && item.input.length < 1) {
+      empty_fields.push('link');
+    }
+
+    if (item.type === 'file' && (!item.file || item.file === 'nope')) {
+      empty_fields.push('file');
+    }
+
+    if (empty_fields.length) {
+      report_missing_fields(empty_fields);
+      return false;
+    }
+
+    if ( $(this).attr('data-action') === 'edit' ) {
+      action_type = 'edit';
+      item.id = $item_id.val();
+    }
+
+    data = {
+      action: 'simpleDocumentation_ajax',
+      a: action_type,
+      item: item
+    };
+
+    $.post(vars.ajax_url, data).done(handle_settings_response);
+  }
+
+
+  function on_delete_item(e) {
+    e.preventDefault();
+
+    console.log('on_delete_item');
+
+    var id = $(this).parent().parent().attr('data-id'),
+      data = {
+        action: 'simpleDocumentation_ajax',
+        a: 'delete',
+        id: id
+      };
+
+    $.post(vars.ajax_url, data).done(handle_settings_response);
+  }
+
+
+  function on_sort_update() {
+    var ordering = [],
+      data;
+
+    console.log('on_sort_update');
+
+    $list_admin.find('li').each(function() {
+      ordering.push($(this).find('.el_front').attr('data-id'));
+    });
+
+    data = {
+      action: 'simpleDocumentation_ajax',
+      a: 'reorder',
+      data: ordering
+    };
+
+    $.post(vars.ajax_url, data).done(handle_settings_response);
+  }
+
+
+  function on_edit_click(e) {
+    e.preventDefault();
+
+    console.log('on_edit_click');
+
+    var id = $(this).parent().parent().attr('data-id'),
+      data = {
+        action: 'simpleDocumentation_ajax',
+        a: 'get-data',
+        id: id
+      };
+
+    $.post(vars.ajax_url, data).done(handle_settings_response);
+  }
+
+
+  function on_export_click(e) {
+    e.preventDefault();
+
+    console.log('on_export_click');
+
+    var data = {
+      action: 'simpleDocumentation_ajax',
+      a: 'export',
+      options: $export_options.is(':checked') ? 'include' : 'exclude'
+    };
+
+    $export_text.val( vars.loading + '...' );
+
+    $.post(vars.ajax_url, data).done(function(response) {
+      $export_text.val(response).removeAttr('disabled').removeClass('disabled');
+    });
+  }
+
+
+  function on_import_click(e) {
+    e.preventDefault();
+
+    console.log('on_import_click');
+
+    var data = {
+      action: 'simpleDocumentation_ajax',
+      a: 'import',
+      data: $.parseJSON( $import_text.val() )
+    };
+
+    $import_text.val(vars.loading + '...');
+
+    $.post(vars.ajax_url, data).done(function(_res) {
+      var res = $.parseJSON(_res);
+
+      if (res.status === 'ok') {
+        $import_text.val(vars.label_done);
+      } else {
+        $import_text.val(vars.error);
+      }
+    });
+  }
+
+  $(document).ready(init);
+
 })(jQuery);
-jQuery(document).ready(function($){
-
-	var tinyMCE = tinyMCE || window.tinymce;
-
-	var list_admin = $('#simpledoc_list');
-
-	var editor = $('#smpldoc_editor'),
-		input = $('#smpldoc_input'),
-		file = $('#smpldoc_file');
-
-	var list_sw = $('#sd_list'),
-		add_sw = $('#sd_add'),
-		swtch_btn = $('#swtch_btn'),
-		current = 'list';
-
-	var import_button  = $('#sd_import_button'),
-		import_text    = $('#sd_import'),
-		export_button  = $('#sd_export_button'),
-		export_options = $('#sd_export_options'),
-		export_text    = $('#sd_export');
-
-	/** Retrieve icon from item type **/
-	function i(type){
-		switch(type){
-		    case 'video':
-		    	return 'youtube-play';
-		    case 'link':
-		    	return 'link';
-		    case 'file':
-		    	return 'files-o';
-		    default:
-		    	return 'comments';
-	    }
-	}
-
-	/** Reset the main form **/
-	function resetFormView(){
-
-		var editor = tinyMCE.get( 'smpldoc_item_content' );
-
-		if (editor) {
-			editor.setContent('');
-		} else {
-			$('#smpldoc_item_content').val('');
-		}
-
-		$('#smpldoc_item_title').val('');
-		$('#item_type').val('nope');
-		$('#smpldoc_item_link').val('');
-		$('#smpldoc_item_file').val('');
-		$('.smpldoc_item_users').removeAttr('checked');
-		$('#sd_add').find('ul.add_list').find('li').removeClass('smpldoc_active').removeClass('smpldoc_disabled');
-	}
-
-	/** Shortcut function to get back to the list view **/
-	function viewList(){
-		add_sw.fadeOut(function(){
-			list_sw.fadeIn();
-			current = 'list';
-			swtch_btn.html( simple_documentation_vars.add_new );
-		});
-
-		resetFormView();
-	}
-
-	/** Expand items to see the content **/
-	list_admin.on( 'click' , 'li', function(e){
-		var _this = $(this);
-		var delay = 0;
-
-		$('.hover').each(function(){
-			var _this2 = $(this);
-			if(_this2.attr('id') != _this.attr('id')){
-				$('.hover').find('.el_expand').animate({
-					height: 'toggle',
-					paddingTop: 'toggle',
-					paddingBottom: 'toggle'
-				}, 300, function(){
-					_this2.removeClass('hover');
-				});
-			}
-		});
-
-		_this.find('.el_expand').animate({
-			height: 'toggle',
-			paddingTop: 'toggle',
-			paddingBottom: 'toggle'
-		}, 700 );
-
-		setTimeout(function(){
-			if( _this.hasClass( 'hover' ) ) _this.removeClass( 'hover' );
-			else _this.addClass( 'hover' );
-		}, delay);
-	});
-
-	/** Switch Between Views ( List | Add ) **/
-	swtch_btn.on( 'click', function(e){
-		e.preventDefault();
-
-		if( current === 'list' ){
-
-			list_sw.fadeOut(function(){
-				add_sw.fadeIn();
-				current = 'add';
-				swtch_btn.html( simple_documentation_vars.view_list );
-			});
-
-		}else{
-
-			viewList();
-
-		}
-
-	});
-
-	function setupFieldsFromType(type, data){
-
-		$('#item_type').val(type);
-
-		var content = '',
-			attachment = 0,
-			attachment_url = '',
-			attachment_filename = '',
-			title = '';
-
-		$('#smpldoc_additem').attr('data-action', 'add').text( simple_documentation_vars.add_item );
-
-		if(data !== undefined){
-
-			title = data.title;
-			content = data.content;
-			attachment = data.attachment_id;
-			attachment_url = data.attachment_url;
-			attachment_filename = data.attachment_filename;
-
-			$('#item_id').val( data.ID );
-
-			$('.add_list').find('li').addClass('smpldoc_disabled');
-			$('#smdoc_'+data.type+'_cat').parent('li').removeClass('smpldoc_disabled').addClass('smpldoc_active');
-
-			$('#smpldoc_additem').attr('data-action', 'edit').text( simple_documentation_vars.save_changes );
-
-			if(data.restricted){
-				$('.smpldoc_item_users').each(function(){
-					var role = $(this);
-					if( data.restricted.indexOf(role.val()) !== -1 ) role.attr('checked', '');
-				});
-			}
-		}
-
-		$('#smpldoc_item_title').val( title );
-
-		if(type=='note'||type=='video'){
-			input.fadeOut(200).val( '' );
-			file.fadeOut(200).val( '' );
-
-			var editorW = tinyMCE.get( 'smpldoc_item_content' );
-
-			if (editorW) {
-				editorW.setContent(content);
-			} else {
-				$('#smpldoc_item_content').val(content);
-			}
-
-			editor.delay(200).fadeIn(100);
-		}else if(type=='file'){
-			input.fadeOut(200).val('');
-			editor.fadeOut(200).val('');
-			$('#smpldoc_item_file').val( attachment );
-			file.delay(200).fadeIn(100);
-			if (attachment_url && attachment_filename) {
-				$('#smpldoc_filename').html( '<a href="'+attachment_url+'">'+(attachment_filename || '')+'</a>' );
-			} else {
-				$('#smpldoc_filename').html('');
-			}
-		}else if(type=='link'){
-			editor.fadeOut(200).val('');
-			file.fadeOut(200).val('');
-			$('#smpldoc_item_link').val( content );
-			input.delay(200).fadeIn(100);
-		}
-
-	}
-
-	/** Choose category between in the form view **/
-	$('#sd_add').find('ul.add_list').on('click', 'a', function(e){
-		e.preventDefault();
-		var link = $(this);
-		var type = link.attr('data-type');
-
-		$('#sd_add').find('ul.add_list').find('li').removeClass('smpldoc_active').addClass('smpldoc_disabled');
-		link.parent('li').addClass('smpldoc_active');
-
-		setupFieldsFromType(type);
-
-		$('#smpldoc_overlay').fadeOut(300);
-	});
-
-	/** File popup **/
-	var file_frame;
-
-	$('.cd_button_upload').on('click',function(event){
-		var file_id = $('#smpldoc_item_file'),
-			file_name = $('#smpldoc_filename');
-
-		event.preventDefault();
-
-	    if ( file_frame ) {
-	      file_frame.open();
-	      return;
-	    }
-
-	    file_frame = wp.media.frames.file_frame = wp.media({
-	      title: $( this ).data( 'uploader_title' ),
-	      button: {
-	        text: $( this ).data( 'uploader_button_text' ),
-	      },
-	      multiple: false
-	    });
-
-	    file_frame.on( 'select', function() {
-
-	      var attachment = file_frame.state().get('selection').first().toJSON();
-		  file_id.attr('value', attachment.id);
-		  file_name.html(attachment.filename);
-
-	    });
-
-	    file_frame.open();
-
-		return false;
-	});
-
-	/** Display error alert specifying mising fields **/
-	function errorMessage(fields){
-
-		var message = simple_documentation_vars.fields_missing+'\n';
-		for(var i=0;i<fields.length;i++){
-			if(i>1) message += ', ';
-			message += fields[i];
-		}
-		alert(message);
-
-	}
-
-	function fill_form(data){
-
-		if(current === 'list'){
-
-			//fill information
-			setupFieldsFromType(data.type, data);
-
-			list_sw.fadeOut(function(){
-				add_sw.fadeIn();
-				current = 'add';
-				swtch_btn.html( simple_documentation_vars.view_list );
-			});
-
-			$('#smpldoc_overlay').fadeOut(300);
-		}
-	}
-
-	/** Handle ajax response **/
-	function settings_response(response){
-
-		//console.log(response);
-		var res = $.parseJSON(response);
-		//console.log(res);
-
-		if( res.status == 'user-error' ){
-
-			// Display error messages
-			if( res.type == 'empty_fields' ) errorMessage( res.data );
-
-		}else if( res.status == 'ok' ){
-
-			// OK
-			if( res.type == 'delete' ){
-				$('#simpledoc_'+res.id).fadeOut(500);
-			}else if(res.type == 'get-data'){
-
-				fill_form(res.data);
-
-			}else if(res.type == 'edit'){
-
-				var item = $('#simpledoc_' + res.data.id ), content;
-				item.find('.el_title').html( res.data.title );
-
-				if(res.data.type == 'link') content = '<a href="'+res.data.content+'">'+res.data.content+'</a>';
-				else if(res.data.type == 'file') content = '<a href="'+res.data.attachment_url+'">'+res.data.attachment_url+'</a>';
-				else content = res.data.content;
-
-				//console.log(res.data);
-
-				item.find('.el_expand').html( content );
-				item.find('.smpldoc_usersallowed').attr('title', res.data.users.join(', ') );
-				viewList();
-
-			}else if(res.type == 'add'){
-				var content;
-				var bf = $('<span />').attr('class', 'el_front_bf').html('<a href="#" class="smpldoc_sort"><i class="fa fa-bars"></i></a> <i class="fa fa-'+i(res.data.type)+'"></i>');
-				var af = $('<span />').attr('class', 'el_front_af').html('<i class="fa fa-user"></i> <a href="#edit" class="smpldoc_edit_item"><i class="fa fa-pencil"></i></a> <a href="#delete" class="smpldoc_delete_item"><i class="fa fa-times"></i></a></span>');
-				var title = $('<span />').attr('class', 'el_title').html( $.stripslashes(res.data.title) );
-
-				if(res.data.type == 'file') content = '<a href="'+res.data.attachment_url+'">'+res.data.attachment_url+'</a>';
-				else if(res.data.type == 'link') content = '<a href="'+res.data.content+'">'+res.data.content+'</a>';
-				else content = res.data.content;
-
-				var expand = $('<div />').attr('class', 'el_expand').html( $.stripslashes(content) );
-				var front = $('<div />').attr('class', 'el_front').attr( 'data-id', res.data.id ).append(bf).append(title).append(af);
-				var el = $('<li />').attr( 'id', 'simpledoc_'+res.data.id ).append(front).append(expand);
-
-				$('#simpledoc_list').append(el);
-
-				viewList();
-			}else if(res.type == 'reorder'){
-				var message = $('<div />').attr('class', 'updated smpldoc_notif').html('<p>' + simple_documentation_vars.order_saved + ' !</p>').delay('1500').fadeOut(700,function(){ $('.smpldoc_notif').remove(); });
-				$('.wrap').prepend( message );
-			}
-
-		}
-
-	}
-
-	/** Submit form -- AJAX **/
-	$('#smpldoc_additem').on('click', function(e){
-		e.preventDefault();
-
-		var user_restriction = [], emptyfields = [], actionType = 'add', getcontent = '';
-
-		$('.smpldoc_item_users').each(function(){
-			if($(this).is(':checked')) user_restriction.push($(this).val());
-		});
-
-		var editor = tinyMCE.get( 'smpldoc_item_content' );
-
-		if (editor) {
-			getcontent = editor.getContent();
-		} else {
-			getcontent = $('#smpldoc_item_content').val();
-		}
-
-		var item = {
-			title: $('#smpldoc_item_title').val(),
-			type: $('#item_type').val(),
-			input: $('#smpldoc_item_link').val(),
-			file: $('#smpldoc_item_file').val(),
-			editor: getcontent,
-			user_roles: user_restriction
-		};
-
-		if( item.type == 'nope' ) emptyfields.push('type');
-
-		if( item.title.length < 1 ) emptyfields.push('title');
-
-		if( ( item.type == 'note' || item.type == 'video' ) && item.editor ) emptyfields.push('content');
-		if( item.type == 'link' && item.input.length < 1 ) emptyfields.push('link');
-		if( item.type == 'file' && item.file == 'nope' ) emptyfields.push('file');
-
-		if( emptyfields.length > 1 ){
-			errorMessage(emptyfields);
-			return false;
-		}
-
-		if( $(this).attr('data-action') == 'edit' ){
-			actionType = 'edit';
-			item.id = $('#item_id').val();
-		}
-
-		var data = {
-			action: 'simpleDocumentation_ajax',
-			a: actionType,
-			item: item
-		};
-
-		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
-
-	});
-
-	/** Delete button callback - List view **/
-	$('#simpledoc_list').on('click', '.smpldoc_delete_item', function(e){
-		e.preventDefault();
-
-		var id = $(this).parent().parent().attr('data-id');
-
-		var data = {
-			action: 'simpleDocumentation_ajax',
-			a: 'delete',
-			id: id
-		};
-
-		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
-
-	});
-
-
-	/** Drag & Drop - UX + Ajax **/
-	$('#simpledoc_list').sortable({
-		containment: "parent",
-		axis: "y",
-		handle: ".smpldoc_sort",
-		opacity: 0.6,
-		update: function(){
-			var ordering = [];
-			$('#simpledoc_list').find('li').each(function(){
-				ordering.push($(this).find('.el_front').attr('data-id'));
-			});
-			var data = {
-				action: 'simpleDocumentation_ajax',
-				a: 'reorder',
-				data: ordering
-			};
-			jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
-		}
-	});
-
-
-	$('#simpledoc_list').on('click', '.smpldoc_edit_item', function(e){
-		e.preventDefault();
-
-		var id = $(this).parent().parent().attr('data-id');
-		var data = {
-			action: 'simpleDocumentation_ajax',
-			a: 'get-data',
-			id: id
-		};
-
-		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){ settings_response(response); });
-
-	});
-
-	export_button.on('click', function(e){
-		e.preventDefault();
-
-		export_text.val( simple_documentation_vars.loading + '...' );
-		var data = {
-			action: 'simpleDocumentation_ajax',
-			a: 'export',
-			options: (export_options.attr('checked'))? 'include': 'exclude'
-		};
-
-		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){
-			export_text.val( response ).removeAttr('disabled').removeClass('disabled');
-		});
-	});
-
-	import_button.on('click', function(e){
-		e.preventDefault();
-
-		var data = {
-			action: 'simpleDocumentation_ajax',
-			a: 'import',
-			data: $.parseJSON( import_text.val() )
-		};
-
-		import_text.val( simple_documentation_vars.processing + '...');
-
-		jQuery.post( simple_documentation_vars.ajax_url , data , function(response){
-			var res = $.parseJSON(response);
-			if(res.status == 'ok') import_text.val( simple_documentation_vars.label_done );
-			else import_text.val( simple_documentation_vars.error );
-		});
-	});
-
-});
