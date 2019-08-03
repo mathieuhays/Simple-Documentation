@@ -208,14 +208,13 @@ class simpleDocumentation {
 	public function setup_tables(){
 		global $wpdb;
 
-		//$wpdb->hide_errors();
 		$table = $wpdb->simpleDocumentation;
 
 	    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
 		if($this->settings['db_version'] == '1.0'){
 
-			$cdoc_tables = "ALTER TABLE ".$table." ADD COLUMN restricted varchar(500), ADD COLUMN attachment_id int(5), ADD COLUMN ordered int(5)";
+			$cdoc_tables = "ALTER TABLE {$table} ADD COLUMN restricted varchar(500), ADD COLUMN attachment_id bigint(20), ADD COLUMN ordered bigint(20)";
 
 			if( $wpdb->query( $cdoc_tables ) )
 				$this->settings['db_version'] = '2.0';
@@ -224,8 +223,10 @@ class simpleDocumentation {
 
 		}else{
 
+			$charset = $wpdb->get_charset_collate();
+
 			$cdoc_tables = "
-	    	CREATE TABLE $table (
+	    	CREATE TABLE {$table} (
 				ID bigint(20) NOT NULL auto_increment,
 				type varchar(200) NOT NULL default 'note',
 				title varchar(255) NOT NULL default 'New document',
@@ -236,7 +237,7 @@ class simpleDocumentation {
 				attachment_id bigint(20),
 				ordered bigint(20),
 				UNIQUE KEY ID (ID)
-			);";
+			) {$charset};";
 
 			$wpdb->query( $cdoc_tables );
 
