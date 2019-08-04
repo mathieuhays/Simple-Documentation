@@ -126,8 +126,6 @@
 
 
   function reset_form_view() {
-    console.log('reset_form_view');
-
     var editor = get_editor();
 
     if (editor) {
@@ -147,8 +145,6 @@
 
 
   function set_list_view() {
-    console.log('set_list_view');
-
     $add.fadeOut(function() {
       $list.fadeIn();
       current_view = 'list';
@@ -163,8 +159,6 @@
     var $this = $(this),
       delay = 0,
       activeClass = 'hover';
-
-    console.log('on_item_click');
 
     // Close active
     $('.' + activeClass).each(function() {
@@ -196,8 +190,6 @@
   function on_switch_click(e) {
     e.preventDefault();
 
-    console.log('on_switch_click');
-
     if (current_view === 'list') {
       $list.fadeOut(function () {
         $add.fadeIn();
@@ -223,8 +215,6 @@
       editor = get_editor(),
       fade_out_duration = 200,
       fade_in_duration = 100;
-
-    console.log('setup_fields_for_type', type, data);
 
     $item_type.val(type);
 
@@ -263,7 +253,6 @@
       $file.fadeOut(fade_out_duration);
 
       if (editor) {
-        console.log(editor);
         editor.setContent(content);
       } else {
         $item_content.val(content);
@@ -306,8 +295,6 @@
     var $this = $(this),
       type = $this.attr('data-type');
 
-    console.log('on_type_option_click', type);
-
     $add.find('ul.add_list').find('li').removeClass('smpldoc_active').addClass('smpldoc_disabled');
     $this.parent('li').addClass('smpldoc_active');
 
@@ -321,8 +308,6 @@
     e.preventDefault();
 
     var $button = $(this);
-
-    console.log('on_upload_click');
 
     if ( ! file_frame ) {
       file_frame = wp.media.frames.file_frame = wp.media({
@@ -342,8 +327,6 @@
 
   function on_file_select() {
     var selected = file_frame.state().get('selection').first().toJSON();
-
-    console.log('on_file_select');
 
     $item_file.attr('value', selected.id);
     $item_filename.text(selected.filename);
@@ -369,8 +352,6 @@
 
 
   function fill_form(data) {
-    console.log('fill_form');
-
     if ( current_view !== 'list' ) {
       return;
     }
@@ -459,8 +440,6 @@
       $item,
       content;
 
-    console.log('handle_settings_response');
-
     if (res.status === 'user-error') {
       if (res.type === 'empty_fields') {
         report_missing_fields(res.data);
@@ -507,8 +486,6 @@
 
   function on_add_item_submit(e) {
     e.preventDefault();
-
-    console.log('on_add_item_submit');
 
     var user_restriction = [],
       empty_fields = [],
@@ -585,8 +562,6 @@
   function on_delete_item(e) {
     e.preventDefault();
 
-    console.log('on_delete_item');
-
     var id = $(this).parent().parent().attr('data-id'),
       data = {
         action: 'simpleDocumentation_ajax',
@@ -601,8 +576,6 @@
   function on_sort_update() {
     var ordering = [],
       data;
-
-    console.log('on_sort_update');
 
     $list_admin.find('li').each(function() {
       ordering.push($(this).find('.el_front').attr('data-id'));
@@ -621,8 +594,6 @@
   function on_edit_click(e) {
     e.preventDefault();
 
-    console.log('on_edit_click');
-
     var id = $(this).parent().parent().attr('data-id'),
       data = {
         action: 'simpleDocumentation_ajax',
@@ -636,8 +607,6 @@
 
   function on_export_click(e) {
     e.preventDefault();
-
-    console.log('on_export_click');
 
     var data = {
       action: 'simpleDocumentation_ajax',
@@ -655,8 +624,6 @@
 
   function on_import_click(e) {
     e.preventDefault();
-
-    console.log('on_import_click');
 
     var data = {
       action: 'simpleDocumentation_ajax',
