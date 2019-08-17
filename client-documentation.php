@@ -664,6 +664,7 @@ class simpleDocumentation {
 							$query .= " SET type='%s',title='%s',attachment_id='%d',restricted='%s'";
 
 						$query .= ($_POST['a'] == 'edit') ? " WHERE ID='%d'" : "";
+						$query_p = '';
 
 						if( $item['type'] != 'file' && $_POST['a'] == 'add' )
 							$query_p = $wpdb->prepare( $query, $item['type'], $title, $content, $roles, 99999 );
@@ -696,11 +697,14 @@ class simpleDocumentation {
 							'users' => $users
 						);
 
-						if( $wpdb->query( $query_p ) ){
+						if( $wpdb->query( $query_p ) !== false ){
 							$data['id'] = ($_POST['a'] == 'add') ? $wpdb->insert_id : $item['id'];
 							$this->s(array( 'status' => 'ok', 'type' => $_POST['a'], 'data' => $data ));
 						}else{
-							$this->s(array( 'status' => 'error', 'type' => 'query-fail' ));
+							$this->s(array(
+								'status' => 'error',
+								'type' => 'query-fail',
+							));
 						}
 
 					}else{
