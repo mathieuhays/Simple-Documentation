@@ -503,7 +503,7 @@
       }
     });
 
-    if (editor) {
+    if (editor && ! editor.hidden) {
       content = editor.getContent();
     } else {
       content = $item_content.val();
