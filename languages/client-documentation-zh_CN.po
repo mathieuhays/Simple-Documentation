@@ -1,0 +1,314 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Documentation\n"
+"POT-Creation-Date: 2014-04-23 18:36-0000\n"
+"PO-Revision-Date: 2014-04-23 18:56-0000\n"
+"Last-Translator: \n"
+"Language-Team: Mathieu HAYS <mathieu@mathieuhays.co.uk>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: /Library/WebServer/Documents/wp/wp001/wp-content/"
+"plugins/client-documentation\n"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:118
+msgid "Resources"
+msgstr "资源"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:119
+msgid "Welcome"
+msgstr "欢迎！"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:120
+msgid "Need Help ? All you need is here !"
+msgstr "需要帮助？你需要的都在这里。"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:250
+msgid "How to create your first post"
+msgstr "如何创建你的第一篇文章"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:251
+msgid "Example of content"
+msgstr "内容示例"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:333
+msgid "Following fields are missing :"
+msgstr "缺少以下字段："
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:334
+msgid "is missing !"
+msgstr "丢失了。"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:336
+msgid "View List"
+msgstr "查看列表"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:337
+msgid "Order saved"
+msgstr "已保存"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:338
+msgid "Loading"
+msgstr "正在加载"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:339
+msgid "Processing"
+msgstr "处理中"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:340
+msgid "Done"
+msgstr "完成"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:341
+msgid "Error!"
+msgstr "出现错误！"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:342
+msgid "Add item"
+msgstr "新增"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:343
+msgid "Save changes"
+msgstr "保存修改"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:344
+msgid "Add new"
+msgstr "新增"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:382
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:383
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:7
+msgid "Import / Export"
+msgstr "导入/导出"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:390
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:391
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:7
+msgid "Settings"
+msgstr "设置"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:398
+msgid "Documentation"
+msgstr "帮助文档
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:483
+msgid "Settings saved"
+msgstr "设置已保存"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:574
+msgid "title"
+msgstr "标题"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:582
+msgid "content"
+msgstr "内容"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:588
+msgid "link"
+msgstr "链接"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:597
+msgid "file"
+msgstr "文件"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/client-documentation.php:731
+msgid "error"
+msgstr "错误"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:9
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:14
+msgid "Export"
+msgstr "导出"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:16
+msgid "Include options"
+msgstr "包含的项目"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:17
+msgid "if included, options will be overwritten"
+msgstr "如果选择了，相关选项将被重写。"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:20
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/import-export.inc.php:25
+msgid "Import"
+msgstr "导入"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:11
+msgid "Simple Documentation"
+msgstr "简单文档"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:11
+msgid "Add New"
+msgstr "新增"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:18
+msgid "Documentation list"
+msgstr "文档列表"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:47
+msgid "(default) "
+msgstr "(默认)"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:91
+msgid "Add Content"
+msgstr "新增内容"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:96
+msgid "Video"
+msgstr "视频"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:100
+msgid "Note"
+msgstr "笔记"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:104
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:129
+msgid "Link"
+msgstr "链接"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:108
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:133
+msgid "File"
+msgstr "文件"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:117
+msgid "Title"
+msgstr "标题"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:136
+msgid "Upload a file"
+msgstr "上传文件"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:137
+msgid "Select a file"
+msgstr "选择文件"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:142
+msgid "Limit to user roles"
+msgstr "用户角色限制"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:144
+msgid "Leave blank to use default"
+msgstr "留空以使用默认值"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:145
+msgid "Current Defaults"
+msgstr "当前使用默认"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:181
+msgid "Information"
+msgstr "信息"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:183
+msgid "Welcome to Simple Documentation."
+msgstr "欢迎使用简单文档插件"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:185
+msgid "Update"
+msgstr "升级"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:186
+msgid ""
+"This new update comes with new features such as item re-ordering and "
+"restricting access per user."
+msgstr ""
+"Cette nouvelle mise à jour est fournit avec de nouvelles fonctionnalités "
+"telle que arrangement de l'ordre et restriction des éléments par "
+"utilisateurs."
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:188
+msgid "Contribution"
+msgstr "贡献"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:189
+msgid "Some good people I would like to thank, helped me with the translations"
+msgstr ""
+"Quelques personnes que j'aimerai remercier m'ont aidés pour les traductions"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:191
+msgid "Spanish translation by"
+msgstr "Traduction espagnol par "
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:192
+msgid "German translation by"
+msgstr "Traduction allemande par"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:193
+msgid "Serbo-Croatian translation by"
+msgstr "Traduction serbo-croate par"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "If you want to contribute, feel free to "
+msgstr "Si vous voulez contribuer, n'hésitez pas à"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "contact me"
+msgstr "me contacter"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "or"
+msgstr "ou"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:195
+msgid "fork the project on github"
+msgstr "formez le projet sur github"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:197
+msgid "Plugin created by"
+msgstr "插件作者"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/list-add-edit.inc.php:197
+msgid "Report issues"
+msgstr "反馈"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:13
+msgid "As all fields are required, any empty field will keep its former value"
+msgstr ""
+"Comme tout les champs sont obligatoire, les champs vides garderont leur "
+"valeur d'origine"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:19
+msgid "General"
+msgstr "通用"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:23
+msgid "Number of items displayed per page"
+msgstr "Nombre d'élément affichés par page"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:27
+msgid "Default client user role"
+msgstr "Rôle utilisateurs par défaut"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:45
+msgid "Custom titles & content"
+msgstr "自定义标题和内容"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:51
+msgid "Widget Title"
+msgstr "侧边栏标题"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:52
+msgid "Welcome Title"
+msgstr "欢迎标题"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:53
+msgid "Welcome Message"
+msgstr "欢迎信息"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/settings.inc.php:83
+msgid "Save"
+msgstr "保存"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/widget.inc.php:95
+msgid "Pages"
+msgstr "页面"
+
+#: /Library/WebServer/Documents/wp/wp001/wp-content/plugins/client-documentation/views/widget.inc.php:109
+msgid "No Documentation available yet."
+msgstr "当前没有有效的文档。"
